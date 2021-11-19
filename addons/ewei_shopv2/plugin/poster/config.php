@@ -11,9 +11,9 @@ return array(
 	'name'    => '超级海报',
 	'v3'      => true,
 	'menu'    => array(
-		'title'     => '页面',
+		'title'     => '分享海报',
 		'plugincom' => 1,
-		'icon'      => 'page',
+		'icon'      => 'mendianguanli',
 		'items'     => array(
 			array(
 				'title'   => '海报管理',

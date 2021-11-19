@@ -46,11 +46,11 @@
 
     <ul>
         {if $system['right_menu']['system']}
-            <li data-toggle="tooltip" data-placement="bottom" title="">
+          <!--  <li data-toggle="tooltip" data-placement="bottom" title="">
                 <a href="{php echo webUrl('system')}">
                     系统管理
                 </a>
-            </li>
+            </li>-->
         {/if}
         {if p('app')}
             {php  $appsets = p('app')->getGlobal()}
@@ -71,11 +71,11 @@
 
         {/if}
         {if $_W['role'] == 'founder'}
-        <li>
+       <!-- <li>
             <a href="{php echo webUrl('system')}" target="_blank">
                 <i class="icow icow-icon_shoppingmall" style="margin-right: 10px;color: #f34347"></i>系统管理
             </a>
-        </li>
+        </li>-->
         {/if}
         <li class="dropdown {if $system['merch']}auto{/if} ellipsis">
             <a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
@@ -198,7 +198,7 @@
                 {/loop}
             </li>
             {else}
-            <li class="sysset">
+            <!--<li class="sysset">
                 <i class="icow icow-qiehuan"></i>
 
                 <span class="wb-nav-title" data-href="">系统管理</span>
@@ -212,7 +212,7 @@
                     <a href="{php echo webUrl('system/auth/upgrade')}"><i class="icow icow-gengxin"></i>更新</a>
                     <span class="syssettips"></span>
                 </div>
-            </li>
+            </li>-->
             {/if}
             {/if}
         </ul>

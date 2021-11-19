@@ -61,8 +61,8 @@
                 <li {if $_GPC['tab']=='des'}class="active"{/if} ><a href="#tab_des">详情</a></li>
                 <li {if $_GPC['tab']=='buy'}class="active"{/if} ><a href="#tab_buy">购买权限</a></li>
                 <li {if $_GPC['tab']=='sale'}class="active"{/if} ><a href="#tab_sale">营销</a></li>
-                <li {if $_GPC['tab']=='discount'}class="active"{/if} ><a href="#tab_discount">会员折扣</a></li>
-                <li {if $_GPC['tab']=='share'}class="active"{/if} ><a href="#tab_share">分享关注</a></li>
+<!--                <li {if $_GPC['tab']=='discount'}class="active"{/if} ><a href="#tab_discount">会员折扣</a></li>-->
+<!--                <li {if $_GPC['tab']=='share'}class="active"{/if} ><a href="#tab_share">分享关注</a></li>-->
                 <li {if $_GPC['tab']=='notice'}class="active"{/if} ><a href="#tab_notice">卖家通知</a></li>
 
                 {if !empty($com_set['level'])}
@@ -70,20 +70,20 @@
                 {/if}
 
 				{if $merchid == 0 }
-				<li {if $_GPC['tab']=='verify'}class="active"{/if} id="tab_nav_verify" {if $item['type']==3||$item['type']==5||($item['type']==2&&!empty($item['virtualsend']))}style="display:none;"{/if}><a href="#tab_verify">线下核销</a></li>
-
+				<!--<li {if $_GPC['tab']=='verify'}class="active"{/if} id="tab_nav_verify" {if $item['type']==3||$item['type']==5||($item['type']==2&&!empty($item['virtualsend']))}style="display:none;"{/if}><a href="#tab_verify">线下核销</a></li>
+-->
 				{/if}
 
                 {if p('diyform')}
-                <li {if $_GPC['tab']=='diyform'}class="active"{/if}><a href="#tab_diyform">自定义表单</a></li>
+<!--                <li {if $_GPC['tab']=='diyform'}class="active"{/if}><a href="#tab_diyform">自定义表单</a></li>-->
                 {/if}
 
                 {if $merchid == 0}
-                <li {if $_GPC['tab']=='detaildiy'}class="active"{/if}><a href="#tab_detaildiy">店铺信息</a></li>
+<!--                <li {if $_GPC['tab']=='detaildiy'}class="active"{/if}><a href="#tab_detaildiy">店铺信息</a></li>-->
                 {/if}
 
                 {if p('diypage')}
-                <li {if $_GPC['tab']=='diypage'}class="active"{/if}><a href="#tab_diypage">自定义模板</a></li>
+<!--                <li {if $_GPC['tab']=='diypage'}class="active"{/if}><a href="#tab_diypage">自定义模板</a></li>-->
                 {/if}
                 {if p('ccard')}
                 <li class="ccard-group {if $_GPC['tab']=='ccard'}active{/if}" {if $item['type'] != 20}style="display:none;"{/if}><a href="#tab_ccard">充值说明</a></li>

@@ -857,7 +857,7 @@ class System_EweiShopV2Model
                     )
                 )
             ),
-            'store' => array(
+            /*'store' => array(
                 'title'=>'门店',
                 'subtitle'=>'门店',
                 'icon'=>'mendianguanli',
@@ -878,7 +878,7 @@ class System_EweiShopV2Model
                             array(
                                 'title'=>'店员管理',
                                 'route'=>'saler'
-                            ),/*
+                            ),
                             array(
                                 'title'=>'门店分类',
                                 'route'=>'category',
@@ -893,7 +893,7 @@ class System_EweiShopV2Model
                             array(
                                 'title'=>'服务人员',
                                 'route'=>'staff'
-                            ),*/
+                            ),
                             array(
                                 'title'=>'关键词设置',
                                 'route'=>'set'
@@ -903,7 +903,7 @@ class System_EweiShopV2Model
                     array(
                         'title'=>'门店商品管理',
                         'items'=>array(
-                            /*
+
                             array(
                                 'title'=>'商品组管理',
                                 'route'=>'goodsgroup',
@@ -911,7 +911,7 @@ class System_EweiShopV2Model
                                     'store.goodsgroup.detail',
                                     'store.goodsgroup.goods'
                                 )
-                            ),*/
+                            ),
                             array(
                                 'title'=>'记次时商品管理',
                                 'route'=>'verifygoods',
@@ -930,19 +930,19 @@ class System_EweiShopV2Model
                         'title'=>'核销订单记录',
                         'route'=>'verifyorder.log'
                     ),
-//                    array(
-//                        'title'=>'行业模版',
-//                        'isplugin'=>'newstore',
-//                        'items'=>array(
-//                            array(
-//                                'title'=>'模版管理',
-//                                'isplugin'=>'newstore',
-//                                'route'=>'newstore.temp',
-//                                'top'=>true
-//                            )
-//                        )
-//                    ),
-                    /*array(
+                    array(
+                        'title'=>'行业模版',
+                        'isplugin'=>'newstore',
+                        'items'=>array(
+                            array(
+                                'title'=>'模版管理',
+                                'isplugin'=>'newstore',
+                                'route'=>'newstore.temp',
+                                'top'=>true
+                            )
+                        )
+                    ),
+                    array(
                         'title'=>'预约商品管理',
                         'isplugin'=>'newstore',
                         'items'=>array(
@@ -1022,21 +1022,21 @@ class System_EweiShopV2Model
                                 'top'=>true,
                             )
                         )
-                    )*/
-                    /*
+                    ),
+
                     array(
                         'title'=>'模版列表',
                         'route'=>'diypage'
-                    )*/
+                    )
 
                 )
-            ),
+            ),*/
             'sale' => array(
                 'title'=>'营销',
                 'subtitle'=>'营销设置',
                 'icon'=>'yingxiao',
                 'items'=>array(
-                    array(
+                    /*array(
                         'title'=>'基本功能',
                         'items'=>array(
                             array(
@@ -1094,7 +1094,7 @@ class System_EweiShopV2Model
                                 'route'=>'bindmobile'
                             )
                         )
-                    ),
+                    ),*/
                     array(
                         'title'=>'优惠券',
                         'route'=>'coupon',
@@ -1255,12 +1255,15 @@ class System_EweiShopV2Model
                     )
                 )
             ),
-            'app' => $this->pluginMenu('app'),
-            'plugins' => array(
+            //'app' => $this->pluginMenu('app'),
+            'creditshop'    => $this->pluginMenu('creditshop'),
+           'abonus'         => $this->pluginMenu('abonus'),
+           'poster'         => $this->pluginMenu('poster'),
+           /* 'plugins' => array(
                 'title'=>'应用',
                 'subtitle'=>'应用管理',
                 'icon'=>'plugins'
-            ),
+            ),*/
             //'diypage' => $this->pluginMenu('diypage'),
             'sysset' => array(
                 'title'=>'设置',
@@ -1268,7 +1271,7 @@ class System_EweiShopV2Model
                 'icon'=>'sysset',
                 'items'=>array(
                     array(
-                        'title'=>'商城',
+                        'title'=>'兑换商城',
                         'items'=>array(
                             array(
                                 'title'=>'基础设置',

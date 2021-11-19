@@ -3,11 +3,11 @@ defined('IN_IA') or exit('Access Denied');
 
 $config = array();
 
-$config['db']['master']['host'] = 'localhost';
-$config['db']['master']['username'] = 'xinjiang';
-$config['db']['master']['password'] = '655pp5H2fBDE64xE';
+$config['db']['master']['host'] = '127.0.0.1';
+$config['db']['master']['username'] = 'root';
+$config['db']['master']['password'] = '111111';
 $config['db']['master']['port'] = '3306';
-$config['db']['master']['database'] = 'xinjiang';
+$config['db']['master']['database'] = '03_new';
 $config['db']['master']['charset'] = 'utf8';
 $config['db']['master']['pconnect'] = 0;
 $config['db']['master']['tablepre'] = 'ims_';

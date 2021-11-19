@@ -10,7 +10,8 @@ return array(
     "v3"=>true,
     'menu'=>array(
         'plugincom'=>1,
-        'icon'=>'page',
+        'title' => '推广区',
+        'icon'=>'mendianguanli',
         'items'=>array(
             array(
                 'title'=>'商品管理',
