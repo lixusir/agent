@@ -14,16 +14,16 @@
         {ife 'creditshop.goods' $item}
             <label class="radio-inline"><input type="radio" name='goodstype' value="0" {if empty($item['goodstype'])}checked{/if} {if !empty($item)} disabled{/if} />商品</label>
             {if com('coupon')}
-                <label class="radio-inline"><input type="radio" name='goodstype' value="1" {if $item['goodstype']==1}checked{/if} {if !empty($item)} disabled{/if} />优惠券</label>
+              <!--  <label class="radio-inline"><input type="radio" name='goodstype' value="1" {if $item['goodstype']==1}checked{/if} {if !empty($item)} disabled{/if} />优惠券</label>-->
             {/if}
         {if empty($_W['merchid'])}
-            <label class="radio-inline"><input type="radio" name='goodstype' value="2" {if $item['goodstype']==2}checked{/if} {if !empty($item)} disabled{/if} />余额</label>
-            <label class="radio-inline"><input type="radio" name='goodstype' value="3" {if $item['goodstype']==3}checked{/if} {if !empty($item)} disabled{/if} />红包</label>
+           <!-- <label class="radio-inline"><input type="radio" name='goodstype' value="2" {if $item['goodstype']==2}checked{/if} {if !empty($item)} disabled{/if} />余额</label>
+            <label class="radio-inline"><input type="radio" name='goodstype' value="3" {if $item['goodstype']==3}checked{/if} {if !empty($item)} disabled{/if} />红包</label>-->
         {/if}
         <div class='help-block cgt cgt-0' {if !empty($item['goodstype'])}style="display:none"{/if}>保存后商品类型不可更改</div>
-            <div class='help-block cgt cgt-1' {if $item['goodstype']!=1}style="display:none"{/if}>设置为优惠券类型，则无需进行领取，兑换或抽中直接发送到优惠券账户(保存后商品类型不可更改)</div>
-            <div class='help-block cgt cgt-2' {if $item['goodstype']!=2}style="display:none"{/if}>设置为余额类型，则无需进行领取，兑换或抽中直接发送到用户账户(保存后商品类型不可更改)</div>
-            <div class='help-block cgt cgt-3' {if $item['goodstype']!=3}style="display:none"{/if}>设置为红包类型，则无需进行领取，兑换或抽中直接发送微信红包(保存后商品类型不可更改)</div>
+            <div class='help-block cgt cgt-1' {if $item['goodstype']!=1}style="display:none"{/if}>设置为优惠券类型，则无需进行领取，消费或抽中直接发送到优惠券账户(保存后商品类型不可更改)</div>
+            <div class='help-block cgt cgt-2' {if $item['goodstype']!=2}style="display:none"{/if}>设置为余额类型，则无需进行领取，消费或抽中直接发送到用户账户(保存后商品类型不可更改)</div>
+            <div class='help-block cgt cgt-3' {if $item['goodstype']!=3}style="display:none"{/if}>设置为红包类型，则无需进行领取，消费或抽中直接发送微信红包(保存后商品类型不可更改)</div>
         {else}
             <div class='form-control-static'>{if empty($item['goodstype'])}商品{elseif $item['goodstype']==1}优惠券{elseif $item['goodstype']==2}余额{elseif $item['goodstype']==3}红包{/if}</div>
         {/if}
@@ -86,18 +86,18 @@
     </div>
 </div>
 <div class="form-group cgt cgt-3" {if $item['goodstype']!=3 || $item['packetmoney']<=0}style="display:none"{/if}>
-    <label class="col-lg control-label">红包兑换限制</label>
+    <label class="col-lg control-label">红包消费限制</label>
     <div class="col-sm-9 col-xs-12">
         {ife 'creditshop.goods' $item}
         <div class="input-group fixmore-input-group">
             <span class="input-group-addon">剩余金额小于</span>
             <input type="number" class="form-control" name="packetlimit" value="{$item['packetlimit']}">
-            <span class="input-group-addon">元，停止兑换</span>
+            <span class="input-group-addon">元，停止消费</span>
         </div>
         {else}
-        <div class='form-control-static'>剩余金额小于{$coupon['packetlimit']}元，停止兑换</div>
+        <div class='form-control-static'>剩余金额小于{$coupon['packetlimit']}元，停止消费</div>
         {/if}
-        <span class='help-block'>剩余金额小于X时，停止兑换。如果为空，剩余金额为0时停止兑换。</span>
+        <span class='help-block'>剩余金额小于X时，停止消费。如果为空，剩余金额为0时停止消费。</span>
     </div>
 </div>
 <div class="form-group cgt cgt-3" {if $item['goodstype']!=3 || !$item['packettotal']>0}style="display:none"{/if}>
@@ -217,7 +217,7 @@
     </div>
 </div>
 <div class="form-group">
-    <label class="col-lg control-label">兑换限制</label>
+    <label class="col-lg control-label">消费限制</label>
     <div class="col-sm-9 col-xs-12">
         {ife 'creditshop.goods' $item}
         <div class="input-group fixmore-input-group">
@@ -250,7 +250,7 @@
                 </label>
             </span>
         </div>
-        <span class="help-block">可任意组合，可以单独积分兑换，或者积分+现金形式兑换(积分必须大于0)</span>
+        <span class="help-block">可任意组合，可以单独积分消费，或者积分+现金形式消费(积分必须大于0)</span>
         {else}
         <div class='form-control-static'>消耗 {$item['credit']} 积分 花费 {$item['money']} 元现金</div>
         {/if}

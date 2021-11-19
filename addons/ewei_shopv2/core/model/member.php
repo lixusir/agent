@@ -441,7 +441,8 @@ class Member_EweiShopV2Model {
 				'city' => !empty($mc['residecity']) ? $mc['residecity'] : '',
 				'area' => !empty($mc['residedist']) ? $mc['residedist'] : '',
 				'createtime' => time(),
-				'status' => 0
+				'status' => 1,
+                'isagent'   => 1,
 			);
 
                 pdo_insert('ewei_shop_member', $member);

@@ -680,7 +680,7 @@ class System_EweiShopV2Model
                 )
             ),
             'goods' => array(
-                'title'=>'商品',
+                'title'=>'兑换区',
                 'subtitle'=>'商品管理',
                 'icon'=>'goods',
                 'items'=>array(
@@ -754,6 +754,7 @@ class System_EweiShopV2Model
                     )
                 )
             ),
+            'creditshop'    => $this->pluginMenu('creditshop'),
             'member' => array(
                 'title'=>'会员',
                 'subtitle'=>'会员管理',
@@ -1256,7 +1257,7 @@ class System_EweiShopV2Model
                 )
             ),
             //'app' => $this->pluginMenu('app'),
-            'creditshop'    => $this->pluginMenu('creditshop'),
+
            'abonus'         => $this->pluginMenu('abonus'),
            'poster'         => $this->pluginMenu('poster'),
            /* 'plugins' => array(

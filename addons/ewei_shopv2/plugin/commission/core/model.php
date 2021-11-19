@@ -1537,15 +1537,15 @@ if (!class_exists('CommissionModel')) {
             global $_W, $_GPC;
 
             $set = $this->getSet();
-            if (empty($set['level'])) {
+            /*if (empty($set['level'])) {
                 return;
-            }
+            }*/
             if (empty($openid)) {
                 return;
             }
-            if(p('globonus')){
+            /*if(p('globonus')){
                 p('globonus')->upgradeLevelByAgent($m);
-            }
+            }*/
             $member = m('member')->getMember($openid);
             if (empty($member)) {
                 return;
@@ -1553,9 +1553,14 @@ if (!class_exists('CommissionModel')) {
 
             $parent = false;
             $mid = intval($_GPC['mid']);
+
             if (!empty($mid)) {
                 $parent = m('member')->getMember($mid);
+
+                pdo_update('ewei_shop_member',array('agentid'=>$parent['id']),array('openid'=>$openid));
+
             }
+            return;
             $parent_is_agent = !empty($parent) && $parent['isagent'] == 1 && $parent['status'] == 1;
 
             if ($parent_is_agent) {
@@ -1581,9 +1586,6 @@ if (!class_exists('CommissionModel')) {
                         }
                     }
                 }
-            }
-            if ($member['isagent'] == 1) {
-                return; //已经是分销商或准分销商，则跳过
             }
 
             //第一个用户自动注册分销

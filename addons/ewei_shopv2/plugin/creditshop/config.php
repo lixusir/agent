@@ -21,10 +21,10 @@ return array(
                 'title'=>'分类管理',
                 "route"=>'category'
             ),
-            array(
+           /* array(
                 'title'=>'幻灯片管理',
                 "route"=>'adv'
-            ),
+            ),*/
             array(
                 'title'=>'参与记录', 
                 "route"=>'log',
@@ -34,10 +34,10 @@ return array(
                         "route"=>'exchange',
                         'extend'=>'creditshop.log.detail'
                     ),
-                    array(
+                   /* array(
                         'title'=>'抽奖记录',
                         "route"=>'draw'
-                    )
+                    )*/
                 )
             ),
             array(
