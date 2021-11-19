@@ -1,0 +1,314 @@
+<template>
+    <div id="content">
+        <div class="page-header">
+            <div class="container-fluid">
+                <div class="pull-right"><a href="http://kkc.cloud.com/admin/index.php?route=sale/order/invoice&amp;user_token=43aa0cb51845dc0d42b785f8177d2b81&amp;order_id=1" target="_blank" data-toggle="tooltip" title="" class="btn btn-info" data-original-title="打印发票"><i class="fa fa-print"></i></a> <a href="http://kkc.cloud.com/admin/index.php?route=sale/order/shipping&amp;user_token=43aa0cb51845dc0d42b785f8177d2b81&amp;order_id=1" target="_blank" data-toggle="tooltip" title="" class="btn btn-info" data-original-title="打印发货单"><i class="fa fa-truck"></i></a> <a href="http://kkc.cloud.com/admin/index.php?route=sale/order/edit&amp;user_token=43aa0cb51845dc0d42b785f8177d2b81&amp;order_id=1" data-toggle="tooltip" title="" class="btn btn-primary" data-original-title="编辑"><i class="fa fa-pencil"></i></a> <a href="http://kkc.cloud.com/admin/index.php?route=sale/order&amp;user_token=43aa0cb51845dc0d42b785f8177d2b81" data-toggle="tooltip" title="" class="btn btn-default" data-original-title="取消"><i class="fa fa-reply"></i></a></div>
+                <h1>订单管理</h1>
+                <ul class="breadcrumb">
+                    <li><a href="http://kkc.cloud.com/admin/index.php?route=common/dashboard&amp;user_token=43aa0cb51845dc0d42b785f8177d2b81">首页</a></li>
+                    <li><a href="http://kkc.cloud.com/admin/index.php?route=sale/order&amp;user_token=43aa0cb51845dc0d42b785f8177d2b81">订单管理</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h3 class="panel-title"><i class="fa fa-shopping-cart"></i> 订单详情</h3>
+                        </div>
+                        <table class="table">
+                            <tbody>
+                            <tr>
+                                <td style="width: 1%;"><button data-toggle="tooltip" title="" class="btn btn-info btn-xs" data-original-title="商店"><i class="fa fa-shopping-cart fa-fw"></i></button></td>
+                                <td><a href="http://kkc.cloud.com/" target="_blank">OpenCart 开源免费PHP商城</a></td>
+                            </tr>
+                            <tr>
+                                <td><button data-toggle="tooltip" title="" class="btn btn-info btn-xs" data-original-title="生成日期："><i class="fa fa-calendar fa-fw"></i></button></td>
+                                <td>2019-06-01 12:51:05</td>
+                            </tr>
+                            <tr>
+                                <td><button data-toggle="tooltip" title="" class="btn btn-info btn-xs" data-original-title="支付方式："><i class="fa fa-credit-card fa-fw"></i></button></td>
+                                <td>货到付款</td>
+                            </tr>
+                            <tr>
+                                <td><button data-toggle="tooltip" title="" class="btn btn-info btn-xs" data-original-title="配送方式："><i class="fa fa-truck fa-fw"></i></button></td>
+                                <td>免费配送</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h3 class="panel-title"><i class="fa fa-user"></i> 客户明细</h3>
+                        </div>
+                        <table class="table">
+                            <tbody><tr>
+                                <td style="width: 1%;"><button data-toggle="tooltip" title="" class="btn btn-info btn-xs" data-original-title="客户名称："><i class="fa fa-user fa-fw"></i></button></td>
+                                <td>                  cloud
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><button data-toggle="tooltip" title="" class="btn btn-info btn-xs" data-original-title="客户组："><i class="fa fa-group fa-fw"></i></button></td>
+                                <td>普通用户组</td>
+                            </tr>
+                            <tr>
+                                <td><button data-toggle="tooltip" title="" class="btn btn-info btn-xs" data-original-title="E-Mail："><i class="fa fa-envelope-o fa-fw"></i></button></td>
+                                <td><a href="mailto:792724991@qq.com">792724991@qq.com</a></td>
+                            </tr>
+                            <tr>
+                                <td><button data-toggle="tooltip" title="" class="btn btn-info btn-xs" data-original-title="联系电话："><i class="fa fa-phone fa-fw"></i></button></td>
+                                <td>15212341234</td>
+                            </tr>
+                            </tbody></table>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h3 class="panel-title"><i class="fa fa-cog"></i> 选项</h3>
+                        </div>
+                        <table class="table">
+                            <tbody>
+                            <tr>
+                                <td>订单发票</td>
+                                <td id="invoice" class="text-right"></td>
+                                <td style="width: 1%;" class="text-center">                    <button id="button-invoice" data-loading-text="加载中..." data-toggle="tooltip" title="" class="btn btn-success btn-xs" data-original-title="生成"><i class="fa fa-cog"></i></button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>奖励积分</td>
+                                <td class="text-right">0</td>
+                                <td class="text-center">                    <button disabled="disabled" class="btn btn-success btn-xs"><i class="fa fa-plus-circle"></i></button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>联盟会员
+                                </td>
+                                <td class="text-right">￥0.00</td>
+                                <td class="text-center">                    <button disabled="disabled" class="btn btn-success btn-xs"><i class="fa fa-plus-circle"></i></button>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title"><i class="fa fa-info-circle"></i> 订单 (#1)</h3>
+                </div>
+                <div class="panel-body">
+                    <table class="table table-bordered">
+                        <thead>
+                        <tr>
+                            <td style="width: 50%;" class="text-left">配送地址</td>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td class="text-left">asd()<br>江苏省asddasd</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <table class="table table-bordered">
+                        <thead>
+                        <tr>
+                            <td class="text-left">商品名称</td>
+                            <td class="text-left">型号</td>
+                            <td class="text-right">数量</td>
+                            <td class="text-right">价格</td>
+                            <td class="text-right">总计</td>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td class="text-left"><a href="http://kkc.cloud.com/admin/index.php?route=catalog/product/edit&amp;user_token=43aa0cb51845dc0d42b785f8177d2b81&amp;product_id=50">test</a>
+                            </td>
+                            <td class="text-left"></td>
+                            <td class="text-right">1</td>
+                            <td class="text-right">￥10.00</td>
+                            <td class="text-right">￥10.00</td>
+                        </tr>
+                        <tr>
+                            <td colspan="4" class="text-right">商品总额</td>
+                            <td class="text-right">￥10.00</td>
+                        </tr>
+                        <tr>
+                            <td colspan="4" class="text-right">免费配送</td>
+                            <td class="text-right">￥0.00</td>
+                        </tr>
+                        <tr>
+                            <td colspan="4" class="text-right">订单总额</td>
+                            <td class="text-right">￥10.00</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title"><i class="fa fa-comment-o"></i> 添加订单记录</h3>
+                </div>
+                <div class="panel-body">
+                    <ul class="nav nav-tabs">
+                        <li class="active"><a href="#tab-history" data-toggle="tab">历史</a></li>
+                        <li><a href="#tab-additional" data-toggle="tab">附加</a></li>
+                    </ul>
+                    <div class="tab-content">
+                        <div class="tab-pane active" id="tab-history">
+                            <div id="history"><div class="table-responsive">
+                                <table class="table table-bordered">
+                                    <thead>
+                                    <tr>
+                                        <td class="text-left">生成日期</td>
+                                        <td class="text-left">订单附言</td>
+                                        <td class="text-left">状态</td>
+                                        <td class="text-left">通知客户</td>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr>
+                                        <td class="text-left">2019-06-01 12:51:07</td>
+                                        <td class="text-left"></td>
+                                        <td class="text-left">待处理</td>
+                                        <td class="text-left">否</td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                                <div class="row">
+                                    <div class="col-sm-6 text-left"></div>
+                                    <div class="col-sm-6 text-right">显示 1 - 1 / 合计 1（共 1 页）</div>
+                                </div>
+                            </div>
+                            <br>
+                            <fieldset>
+                                <legend>添加订单历史</legend>
+                                <form class="form-horizontal">
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label" for="input-order-status">状态</label>
+                                        <div class="col-sm-10">
+                                            <select name="order_status_id" id="input-order-status" class="form-control">
+                                                <option value="9">取消撤回</option>
+                                                <option value="2">处理中</option>
+                                                <option value="10">失败</option>
+                                                <option value="3">已发货</option>
+                                                <option value="7">已取消</option>
+                                                <option value="15">已处理</option>
+                                                <option value="16">已失效</option>
+                                                <option value="5">已完成</option>
+                                                <option value="8">已拒绝</option>
+                                                <option value="12">已撤消</option>
+                                                <option value="13">已支付</option>
+                                                <option value="14">已过期</option>
+                                                <option value="11">已退款</option>
+                                                <option value="1" selected="selected">待处理</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label" for="input-override"><span data-toggle="tooltip" title="" data-original-title="反欺诈扩展可能造成订单状态覆盖，导致订单状态更改失败。">重写</span></label>
+                                        <div class="col-sm-10">
+                                            <div class="checkbox">
+                                                <input type="checkbox" name="override" value="1" id="input-override">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label" for="input-notify">通知客户</label>
+                                        <div class="col-sm-10">
+                                            <div class="checkbox">
+                                                <input type="checkbox" name="notify" value="1" id="input-notify">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label" for="input-comment">订单附言</label>
+                                        <div class="col-sm-10">
+                                            <textarea name="comment" rows="8" id="input-comment" class="form-control"></textarea>
+                                        </div>
+                                    </div>
+                                </form>
+                            </fieldset>
+                            <div class="text-right">
+                                <button id="button-history" data-loading-text="加载中..." class="btn btn-primary"><i class="fa fa-plus-circle"></i> 添加订单记录</button>
+                            </div>
+                        </div>
+                        <div class="tab-pane" id="tab-additional">                                     <div class="table-responsive">
+                            <table class="table table-bordered">
+                                <thead>
+                                <tr>
+                                    <td colspan="2">浏览器</td>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td>IP 地址</td>
+                                    <td>127.0.0.1</td>
+                                </tr>
+                                <tr>
+                                    <td>操作系统</td>
+                                    <td>Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.169 Safari/537.36</td>
+                                </tr>
+                                <tr>
+                                    <td>系统语言</td>
+                                    <td>zh-CN,zh;q=0.9,und;q=0.8,en;q=0.7</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>
+
+<script>
+    export default {
+        name: "order_edit",
+
+        data:function(){
+
+            return{
+
+                order_id:0,
+            }
+        },
+
+        methods:{
+
+            order_info:function(){
+                var url = this.config.web_url + '/admin.php?r=order/info';
+                url += '&order_id='+ this.order_id;
+                var t = this;
+
+                this.axios.get( url ).then(function( res ){
+
+                    t.order_list = res.data;
+
+                });
+            }
+
+        },
+
+        created:function(){
+
+            var params = this.$route.params;
+            if( params.order_id == undefined ){
+                this.order_id = 0;
+            }else{
+                this.order_id = params.order_id;
+                this.order_info();
+            }
+        }
+    }
+</script>
+
+<style scoped>
+
+</style>

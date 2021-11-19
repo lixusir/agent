@@ -1,0 +1,13 @@
+.spec-table {
+  text-align: center;
+  border-spacing: 10px;
+  border-padding: 10px;
+  border-collapse: unset;
+}
+.spec-table thead {
+  background-color: rgba(200, 200, 200, 0.5);
+}
+.spec-table tr {
+  margin: 5px;
+}
+/*# sourceMappingURL=goods.css.map */

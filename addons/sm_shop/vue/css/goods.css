@@ -1,0 +1,201 @@
+.goods-option {
+  position: fixed;
+  z-index: 101;
+  width: 100%;
+  height: 400px;
+  padding: 20px 20px;
+  background-color: #fff;
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+  box-shadow: 5px 0px 3px #aaa;
+  bottom: -400px;
+  transition: bottom 0.4s;
+}
+.goods-option.active {
+  bottom: 0;
+}
+.goods-option .picker-goods img,
+.goods-option .picker-goods .goods-img {
+  float: left;
+  width: 100px;
+  height: auto;
+  margin-right: 10px;
+  border-radius: 5px;
+}
+.goods-option .picker-goods .price {
+  font-size: 20px;
+  color: #ff3c29;
+}
+.goods-option .picker-goods .stock {
+  font-size: 12px;
+  color: #969696;
+  margin-top: 5px;
+}
+.goods-option .picker-goods::after {
+  content: "";
+  clear: both;
+  display: block;
+}
+.goods-option .option-field {
+  overflow-y: auto;
+  height: 100%;
+}
+.goods-option .option-list .spec {
+  margin-bottom: 20px;
+}
+.goods-option .option-list .spec .spec-name {
+  margin-top: 10px;
+  font-size: 14px;
+}
+.goods-option .option-list .spec .spec-values {
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
+.goods-option .option-list .spec .spec-values .value-item {
+  display: inline-block;
+  height: 22px;
+  line-height: 22px;
+  padding: 0 20px;
+  margin-right: 10px;
+  border: solid 1px #969696;
+  border-radius: 20px;
+}
+.goods-option .option-list .spec .spec-values .value-item.active {
+  border-color: #ff3c29;
+  color: #ff3c29;
+}
+.goods-option .pick-number {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.goods-option .pick-number .cart-quantity-wrapper {
+  width: 80px;
+}
+.goods-option .pick-number .cart-quantity-wrapper input {
+  height: 28px;
+  padding: 6px 1px;
+  text-align: center;
+}
+.goods-option .pick-number .cart-quantity-wrapper .btn {
+  padding: 0 8px;
+  height: 28px;
+}
+.goods-option .pick-number .sub-number-add {
+  display: flex;
+  align-items: center;
+}
+.goods-option .pick-number .sub-number-add .sub,
+.goods-option .pick-number .sub-number-add .add {
+  font-size: 18px;
+}
+.goods-option .pick-number .sub-number-add input {
+  text-align: center;
+  width: 25px;
+}
+.goods-option .btn-check {
+  width: 100%;
+  padding: 0 20px;
+  position: absolute;
+  left: 0;
+  bottom: 10px;
+}
+.goods-option .btn-check a {
+  display: block;
+  background: linear-gradient(90deg, #ff3c29, #ff6f29);
+  border-radius: 20px;
+  width: 100%;
+  height: 40px;
+  line-height: 40px;
+  color: #fff;
+  text-align: center;
+  font-size: 14px;
+}
+.comment {
+  margin-bottom: 75px;
+}
+.comment .item {
+  padding: 20px 0 ;
+  border-bottom: solid 1px #cdcdcd;
+}
+.comment .item:last-child {
+  border-bottom: none;
+}
+.comment .item .author-date {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 13px;
+  line-height: 2;
+}
+.comment .item .author-date .avatar {
+  display: flex;
+  align-items: center;
+}
+.comment .item .author-date .avatar img {
+  width: 45px;
+  height: 45px;
+  overflow: hidden;
+  border-radius: 23px;
+}
+.comment .item .author-date .avatar .author {
+  margin-left: 10px;
+}
+.comment .item .score {
+  width: 60px;
+  height: 12px;
+  margin-top: 10px;
+  background-image: url("../image/star_gray.png");
+  background-size: 100% auto;
+}
+.comment .item .score .star {
+  width: 0;
+  height: 100%;
+  line-height: 12px;
+  overflow: hidden;
+  vertical-align: unset;
+}
+.comment .item .score .star.one {
+  width: 20%;
+}
+.comment .item .score .star.two {
+  width: 40%;
+}
+.comment .item .score .star.three {
+  width: 60%;
+}
+.comment .item .score .star.four {
+  width: 80%;
+}
+.comment .item .score .star.five {
+  width: 100%;
+}
+.comment .item .score img {
+  vertical-align: unset;
+  width: 60px;
+  height: 100%;
+}
+.comment .item .content {
+  margin-top: 10px;
+  color: #33331c;
+  font-size: 14px;
+}
+.comment .item .img-show {
+  display: flex;
+  justify-content: flex-start;
+  margin: 10px 0 0;
+}
+.comment .item .img-show a {
+  display: block;
+  flex: none;
+  width: 33%;
+  box-sizing: border-box;
+  padding: 0 5px 0 0;
+}
+.comment .item .img-show a image {
+  width: 100%;
+}
+.tab-content {
+  margin-bottom: 50px;
+}
+/*# sourceMappingURL=goods.css.map */

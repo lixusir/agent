@@ -1,0 +1,21 @@
+-- 所有相关平台表 添加uniacid :解决微擎多开问题 --
+ALTER TABLE sh_banner ADD `uniacid` INT(10) UNSIGNED NOT NULL DEFAULT 0 AFTER `banner_id`;
+ALTER TABLE sh_brand ADD `uniacid` INT(10) UNSIGNED NOT NULL DEFAULT 0 AFTER `id`;
+ALTER TABLE sh_cart ADD `uniacid` INT(10) UNSIGNED NOT NULL DEFAULT 0 AFTER `id`;
+ALTER TABLE sh_category ADD `uniacid` INT(10) UNSIGNED NOT NULL DEFAULT 0 AFTER `id`;
+ALTER TABLE sh_category_path ADD `uniacid` INT(10) UNSIGNED NOT NULL DEFAULT 0 AFTER `path_id`;
+ALTER TABLE sh_customer_group ADD `uniacid` INT(10) UNSIGNED NOT NULL DEFAULT 0 AFTER `id`;
+ALTER TABLE sh_goods ADD `uniacid` INT(10) UNSIGNED NOT NULL DEFAULT 0 AFTER `id`;
+ALTER TABLE sh_goods_comment ADD `uniacid` INT(10) UNSIGNED NOT NULL DEFAULT 0 AFTER `goods_id`;
+ALTER TABLE sh_goods_pindan ADD `uniacid` INT(10) UNSIGNED NOT NULL DEFAULT 0 AFTER `goods_id`;
+ALTER TABLE sh_module ADD `uniacid` INT(10) UNSIGNED NOT NULL DEFAULT 0 AFTER `module_id`;
+ALTER TABLE sh_order ADD `uniacid` INT(10) UNSIGNED NOT NULL DEFAULT 0 AFTER `id`;
+ALTER TABLE sh_order_goods ADD `uniacid` INT(10) UNSIGNED NOT NULL DEFAULT 0 AFTER `id`;
+ALTER TABLE sh_order_history ADD `uniacid` INT(10) UNSIGNED NOT NULL DEFAULT 0 AFTER `id`;
+ALTER TABLE sh_order_package ADD `uniacid` INT(10) UNSIGNED NOT NULL DEFAULT 0 AFTER `id`;
+ALTER TABLE sh_order_pickup ADD `uniacid` INT(10) UNSIGNED NOT NULL DEFAULT 0 AFTER `id`;
+ALTER TABLE sh_order_pindan ADD `uniacid` INT(10) UNSIGNED NOT NULL DEFAULT 0 AFTER `order_id`;
+ALTER TABLE sh_order_pindan_info ADD `uniacid` INT(10) UNSIGNED NOT NULL DEFAULT 0 AFTER `order_id`;
+ALTER TABLE sh_order_total ADD `uniacid` INT(10) UNSIGNED NOT NULL DEFAULT 0 AFTER `order_id`;
+ALTER TABLE sh_pick_up ADD `uniacid` INT(10) UNSIGNED NOT NULL DEFAULT 0 AFTER `id`;
+ALTER TABLE sh_poster ADD `uniacid` INT(10) UNSIGNED NOT NULL DEFAULT 0 AFTER `id`;
