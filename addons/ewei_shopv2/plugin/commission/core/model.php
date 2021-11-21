@@ -1554,10 +1554,12 @@ if (!class_exists('CommissionModel')) {
             $parent = false;
             $mid = intval($_GPC['mid']);
 
-            if (!empty($mid)) {
+            if (!empty($mid) && $mid != $member['id'] && empty($member['childtime'])) {
                 $parent = m('member')->getMember($mid);
 
-                pdo_update('ewei_shop_member',array('agentid'=>$parent['id']),array('openid'=>$openid));
+                $chain = $parent['chain'].','.$parent['id'];
+
+                pdo_update('ewei_shop_member',array('agentid'=>$parent['id'],'chain'=>$chain,'childtime'=>time()),array('openid'=>$openid));
 
             }
             return;

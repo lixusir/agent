@@ -426,7 +426,11 @@ class Goods_EweiShopV2Page extends PluginWebPage {
 				'followtext' => trim($_GPC['followtext']),
 				'share_title' => trim($_GPC['share_title']),
 				'share_icon' => save_media($_GPC['share_icon']),
-				'share_desc' => trim($_GPC['share_desc'])
+				'share_desc' => trim($_GPC['share_desc']),
+                'total_score'   => floatval($_GPC['total_score']),
+                'one_score'     => floatval($_GPC['one_score']),
+                'three_score'   => floatval($_GPC['three_score']),
+                'bargain_day'   => intval($_GPC['bargain_day']),
 			);
 			if (isset($id) && $id > 0 )
             {

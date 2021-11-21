@@ -164,7 +164,7 @@ class Index_EweiShopV2Page extends MobilePage
 			$endtime = 60 - (time() - $sendtime);
 		}
 
-
+		$backurl = $_GPC['backurl'];
 
 		$set = $this->getWapSet();
 		include $this->template('rf', NULL, true);
