@@ -21,10 +21,10 @@ return array(
                 'title'=>'分类管理',
                 "route"=>'category'
             ),
-           /* array(
+            /*array(
                 'title'=>'幻灯片管理',
                 "route"=>'adv'
-            ),*/
+            ),
             array(
                 'title'=>'参与记录', 
                 "route"=>'log',
@@ -34,10 +34,10 @@ return array(
                         "route"=>'exchange',
                         'extend'=>'creditshop.log.detail'
                     ),
-                   /* array(
+                    array(
                         'title'=>'抽奖记录',
                         "route"=>'draw'
-                    )*/
+                    )
                 )
             ),
             array(
@@ -50,6 +50,20 @@ return array(
                     array(
                         'title'=>'待审核',
                         "route"=>'comment.check'
+                    )
+                )
+            ),*/
+            array(
+                'title'=>'释放管理',
+                "route"=>'team',
+                'items'=>array(
+                    array(
+                        'title'=>'待释放',
+                        "route"=>'release_1',
+                    ),
+                    array(
+                        'title'=>'已释放',
+                        "route"=>'release_2'
                     )
                 )
             ),
@@ -70,7 +84,7 @@ return array(
                     )
                 )
             ),
-            array(
+           /* array(
                 'title'=>'核销管理',
                 'items'=>array(
                     array(
@@ -86,7 +100,7 @@ return array(
                         "route"=>'log.verifyover'
                     )
                 )
-            ),
+            ),*/
             array(
                 'title'=>'设置',
                 'items'=>array(

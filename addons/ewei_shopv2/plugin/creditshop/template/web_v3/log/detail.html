@@ -3,7 +3,7 @@
     .label-weight{font-weight:normal;text-align: left;padding:0;}
 </style>
 <div class="page-header">
-    当前位置：<span class="text-primary">{if $goods['type']==1}抽奖{else}兑换{/if}记录详细信息</span>
+    当前位置：<span class="text-primary">{if $goods['type']==1}抽奖{else}消费{/if}记录详细信息</span>
 </div>
 <div class="page-content">
     <form class='form-horizontal'>
@@ -14,7 +14,7 @@
                     {if $goods['type']==1}
                         <span class='label label-danger'>抽奖</span>
                     {else}
-                        <span class='label label-primary'>兑换</span>
+                        <span class='label label-primary'>消费</span>
                     {/if}
                 </div>
             </div>
@@ -74,7 +74,7 @@
                                 {if $log['status'] ==3}<span class='label label-danger'>已完成</span>{/if}
                              {/if}
                          {else}
-                             {if $log['status'] ==2 && $log['addressid'] == 0 }<span class='label label-warning'>{if $goods['type']==0}已兑换{else}已中奖{/if}</span>{/if}
+                             {if $log['status'] ==2 && $log['addressid'] == 0 }<span class='label label-warning'>{if $goods['type']==0}已消费{else}已中奖{/if}</span>{/if}
                              {if $log['status'] ==2 && $log['addressid'] > 0 && $log['time_send'] == 0}<span class='label label-default'>待发货</span>{/if}
                              {if $log['status'] ==3 && $log['time_send'] > 0 && $log['time_finish'] ==0 }<span class='label label-success'>已发货</span>{/if}
                              {if $set['isreply'] == 1}
@@ -162,23 +162,23 @@
                  <div class="form-group">
                         <label class="col-lg control-label"></label>
                         <div class="col-sm-9 col-xs-12">
-                            <div class='form-control-static'>还未填写联系人及选择兑换门店</div>
+                            <div class='form-control-static'>还未填写联系人及选择消费门店</div>
                         </div>
                     </div>
                 {else}
                     <div class="form-group">
-                        <label class="col-lg control-label">兑换人信息</label>
+                        <label class="col-lg control-label">消费人信息</label>
                         <div class="col-sm-9 col-xs-12">
                             <div class='form-control-static'>
-                                <label class="col-lg label-weight">兑换人：</label>{$log['realname']} / {$log['mobile']}
+                                <label class="col-lg label-weight">消费人：</label>{$log['realname']} / {$log['mobile']}
                             </div>
                             {if !empty($verifys)}
                             {loop $verifys $item}
                             <div class='form-control-static'>
                                 {if $item['verifier']=='system'}
-                                <label class="col-lg label-weight">兑换门店：</label> 系统兑换
+                                <label class="col-lg label-weight">消费门店：</label> 系统消费
                                 {else}
-                                <label class="col-lg label-weight">兑换门店：</label>{$item['storename']} / {$item['address']} / {if !empty($item['realname'])}{$item['realname']}{else}{$item['nickname']}{/if} / {$item['mobile']}
+                                <label class="col-lg label-weight">消费门店：</label>{$item['storename']} / {$item['address']} / {if !empty($item['realname'])}{$item['realname']}{else}{$item['nickname']}{/if} / {$item['mobile']}
                                 {/if}
                             </div>
                             {/loop}
@@ -234,7 +234,7 @@
                     <div class="col-sm-9 col-xs-12">
                          {ifp 'creditshop.log.doexchange'}
                             {if $log['canexchange']}
-                                    <a class='btn btn-primary' data-toggle='ajaxModal' href="{php echo webUrl('creditshop/log/doexchange',array('id' => $log['id'],'type'=>$goods['type']));}" title='确认兑换' >确认兑换</a>
+                                    <a class='btn btn-primary' data-toggle='ajaxModal' href="{php echo webUrl('creditshop/log/doexchange',array('id' => $log['id'],'type'=>$goods['type']));}" title='确认消费' >确认消费</a>
                             {/if}
                         {/if}
                     <input type="button" class="btn btn-default" name="submit" onclick="history.go(-1)" value="返回列表"  {ifp 'creditshop.log.doexchange'}{if $log['canexchange']}style='margin-left:10px;'{/if}{/if}  />

@@ -58,26 +58,26 @@ class Log_EweiShopV2Page extends PluginMobileLoginPage
 		$merchid = intval($_W['merchid']);
 		$pindex = max(1, intval($_GPC['page']));
 		$psize = 10;
-		$condition = ' and log.openid=:openid and  log.uniacid = :uniacid and log.status>0';
+		$condition = ' and log.openid=:openid and  log.uniacid = :uniacid ';
 		if (0 < $merchid) 
 		{
 			$condition .= ' and log.merchid = ' . $merchid . ' ';
 		}
 		$params = array(':uniacid' => $_W['uniacid'], ':openid' => $openid);
-		if ($status == 1) 
+		if ($status == 2)
 		{
-			$condition .= ' and g.type = 0 ';
+			$condition .= ' and log.status = 2 ';
 		}
-		else if ($status == 2) 
+		else if ($status == 3)
 		{
-			$condition .= ' and g.type = 1 ';
+			$condition .= ' and log.status = 3 ';
 		}
 		$sql = 'SELECT COUNT(*) FROM ' . tablename('ewei_shop_creditshop_log') . ' log' . "\r\n" . '                left join ' . tablename('ewei_shop_creditshop_goods') . ' g on log.goodsid = g.id' . "\r\n" . '                where 1 ' . $condition;
 		$total = pdo_fetchcolumn($sql, $params);
 		$list = array();
 		if (!(empty($total))) 
 		{
-			$sql = 'SELECT log.id,log.logno,log.goodsid,log.goods_num,log.status,log.eno,log.paystatus,g.title,g.type,g.thumb,log.credit,log.money,log.dispatch,g.isverify,g.goodstype,log.addressid,log.storeid,' . 'g.goodstype,log.time_send,log.time_finish,log.iscomment,op.title as optiontitleg,g.merchid ' . ' FROM ' . tablename('ewei_shop_creditshop_log') . ' log ' . ' left join ' . tablename('ewei_shop_creditshop_goods') . ' g on log.goodsid = g.id ' . ' left join ' . tablename('ewei_shop_creditshop_option') . ' op on op.id = log.optionid ' . ' where 1 ' . $condition . ' ORDER BY log.createtime DESC LIMIT ' . (($pindex - 1) * $psize) . ',' . $psize;
+			$sql = 'SELECT log.end_time,log.id,log.logno,log.goodsid,log.goods_num,log.status,log.eno,log.paystatus,g.title,g.type,g.thumb,log.credit,log.money,log.dispatch,g.isverify,g.goodstype,log.addressid,log.storeid,' . 'g.goodstype,log.time_send,log.time_finish,log.iscomment,op.title as optiontitleg,g.merchid ' . ' FROM ' . tablename('ewei_shop_creditshop_log') . ' log ' . ' left join ' . tablename('ewei_shop_creditshop_goods') . ' g on log.goodsid = g.id ' . ' left join ' . tablename('ewei_shop_creditshop_option') . ' op on op.id = log.optionid ' . ' where 1 ' . $condition . ' ORDER BY log.createtime DESC LIMIT ' . (($pindex - 1) * $psize) . ',' . $psize;
 			$list = pdo_fetchall($sql, $params);
 			$list = set_medias($list, 'thumb');
 			foreach ($list as &$row ) 
@@ -103,6 +103,15 @@ class Log_EweiShopV2Page extends PluginMobileLoginPage
 					$row['money'] = intval($row['money']);
 				}
 				$row['isreply'] = $set['isreply'];
+
+				if($row['end_time'] < TIMESTAMP){
+
+				    $row['is_end'] = 1;
+
+                }else{
+
+				    $row['is_end'] = 0;
+                }
 			}
 			unset($row);
 		}

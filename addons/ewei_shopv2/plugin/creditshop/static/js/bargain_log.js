@@ -57,7 +57,7 @@ define(['core', 'tpl'], function(core, tpl) {
         }, true, true)
     };
     modal.getList = function() {
-        core.json('creditshop/log/getlist', {
+        core.json('creditshop/bargain_log', {
             page: modal.page,
             status: modal.status
         }, function(ret) {

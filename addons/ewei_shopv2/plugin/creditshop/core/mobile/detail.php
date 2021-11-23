@@ -339,6 +339,7 @@ class Detail_EweiShopV2Page extends CreditshopMobilePage
 		$log = array('uniacid' => $uniacid, 'merchid' => intval($goods['merchid']), 'openid' => $openid, 'logno' => m('common')->createNO('creditshop_log', 'logno', ($goods['type'] == 0 ? 'EE' : 'EL')), 'goodsid' => $id, 'storeid' => $storeid, 'optionid' => $optionid, 'addressid' => $addressid, 'address' => iserializer($address), 'status' => 0, 'paystatus' => (0 < $goods['money'] ? 0 : -1), 'dispatchstatus' => $dispatchstatus, 'createtime' => time(), 'realname' => trim($_GPC['realname']), 'mobile' => trim($_GPC['mobile']), 'goods_num' => $num);
 		$log['total_score'] = $goods['total_score'];
 		$log['bargain_day'] = $goods['bargain_day'];
+		$log['end_time']    = time() + 24*60*60*$goods['bargain_day'];
 		pdo_insert('ewei_shop_creditshop_log', $log);
 		$logid = pdo_insertid();
 		if (!(empty($log['realname'])) && !(empty($log['mobile']))) 
@@ -813,6 +814,7 @@ class Detail_EweiShopV2Page extends CreditshopMobilePage
 			}
 			$update['status'] = $status;
 			pdo_update('ewei_shop_creditshop_log', $update, array('id' => $logid));
+			pdo_update('ewei_shop_member',array('effective'=>1),array('openid'=>$member['openid']));
 			$this->model->sendMessage($logid);
 			if ($status == 3) 
 			{

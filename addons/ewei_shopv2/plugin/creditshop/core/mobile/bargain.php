@@ -69,7 +69,7 @@ class Bargain_EweiShopV2Page extends PluginMobileLoginPage {
             //消费者
             $order_user = pdo_get('ewei_shop_member',array('openid'=>$res['openid']),array('id'));
 
-            $get_user = pdo_get('ewei_shop_member',array('openid'=>$_W['openid']),array('chain'));
+            $get_user = pdo_get('ewei_shop_member',array('openid'=>$_W['openid']));
 
             $chain = explode(',',$get_user['chain']);
 
@@ -88,19 +88,36 @@ class Bargain_EweiShopV2Page extends PluginMobileLoginPage {
         $res2['end_time'] = date('Y-m-d H:i:s',$res['createtime'] + ($res['bargain_day']*24*60*60));
 
         $time2 = strtotime($res2['end_time']);
+
         $time3 = $time2 - time();
+
+        $twi_score = bcsub($res['total_score'],$res['get_score'],2);
+
         $start_time = strtotime($res2['start_time']) - time();
-        $type = $res['type'];
 
         $year = substr($res2['end_time'],0,4);
+
         $month = substr($res2['end_time'],5,2);
+
         $day = substr($res2['end_time'],8,2);
+
         $hour = substr($res2['end_time'],11,2);
+
         $minute = substr($res2['end_time'],14,2);
+
         $second = substr($res2['end_time'],17,2);
 
         $status = 3;
 
+        //亲友团
+        $res3 = pdo_fetchall('select m.avatar,m.nickname,cb.* from '.tablename('ewei_shop_creditshop_bargain')." as cb join ".tablename('ewei_shop_member')." as m on m.openid=cb.openid where cb.oid=:oid order by cb.createtime desc ",array(':oid'=>$res['id']));
+
+        foreach($res3 as $ks=>$vs){
+
+            $res3[$ks]['avatar'] = !empty($vs['avatar'])?$vs['avatar']:'../addons/ewei_shopv2/static/images/noface.png';
+
+            $res3[$ks]['createtime'] = date('Y-m-d H:i:s',$vs['createtime']);
+        }
 
         if ($ajax == 151) {
 
@@ -171,7 +188,7 @@ class Bargain_EweiShopV2Page extends PluginMobileLoginPage {
      * @param $goods 商品信息
      * @return string
      */
-        public function cut($res2,$end_time,$swi,$layer,$goods){
+    public function cut($res2,$end_time,$swi,$layer,$goods){
         global $_GPC,$_W;
 
         $sum = 1;
@@ -187,29 +204,48 @@ class Bargain_EweiShopV2Page extends PluginMobileLoginPage {
             $record_where = " and state = 0 ";
 
 
-        }else{
+        }else if($info['effective'] ==1 && $layer < 1){
+
+            //判断是否首次砍过该商品，首次没看过砍价无效
+            $is_record = pdo_getcolumn('ewei_shop_creditshop_bargain',['oid'=>$res2['id'],'state'=>0,'openid'=>$_W['openid']],['count(id)']);
+
+            if(empty($is_record)){
+
+                return '您无砍价权限';
+
+            }
 
             $record_where = " and state = 1 ";
 
             $state = 1;
+
+        }else{
+
+            return '砍价机会已用完！';
+
         }
 
-        $record_res = pdo_fetchcolumn("SELECT count(1) FROM ". tablename('ewei_shop_credit_bargain') ." WHERE oid=:oid AND openid= :openid ".$record_where,array(':oid'=>$res2['id'],':openid'=>$_W['openid']));
-
+        $record_res = pdo_fetchcolumn("SELECT count(1) FROM ". tablename('ewei_shop_creditshop_bargain') ." WHERE oid=:oid AND openid= :openid ".$record_where,array(':oid'=>$res2['id'],':openid'=>$_W['openid']));
 
         if (empty($res2) || $swi != 222) {
+
             return "砍价失败！";
+
         } elseif ($end_time <= 0) {
+
             return "砍价已结束！";
-        }
-        elseif($record_res >= $sum ){
-            return "砍价机会已用完！若您成为有效会员还可以再砍一刀";
+
+        } elseif($record_res >= $sum ){
+
+            return "砍价机会已用完";
+
         }
 
         if ($res2['total_score'] <= 0) {
-            return "积分已经看到底啦,该套餐砍价结束了哟";
-        }
 
+            return "积分已经看到底啦,该套餐砍价结束了哟";
+
+        }
 
         if($layer == 0){
             //直推砍价
@@ -240,13 +276,43 @@ class Bargain_EweiShopV2Page extends PluginMobileLoginPage {
 
         $get_score = bcadd($res2['get_score'],$bargain_price,2);
 
+        //更新砍价
         $upd_id = pdo_update('ewei_shop_creditshop_log',['total_score'=>$total_score,'get_score'=>$get_score],array('id'=>$res2['id']));
 
-        //给上级积分
+        //赠送购物券
+        $coupon = pdo_fetch('SELECT * FROM ' . tablename('ewei_shop_coupon') . ' WHERE id=:id and uniacid=:uniacid and merchid=0', array(':id' => 1, ':uniacid' => $_W['uniacid']));
 
-        if(!empty($res_id) && !$upd_id){
+        //增加优惠券日志
+        $log = array(
+            'uniacid' => $_W['uniacid'],
+            'merchid' => $coupon['merchid'],
+            'openid' => $_W['openid'],
+            'logno' => m('common')->createNO('coupon_log', 'logno', 'CC'),
+            'couponid' => $coupon['id'],
+            'status' => 1,
+            'paystatus' => -1,
+            'creditstatus' => -1,
+            'createtime' => TIMESTAMP,
+            'getfrom' => 0
+        );
+        pdo_insert('ewei_shop_coupon_log', $log);
 
-            return "成功砍掉{$bargain_price}元";
+        $logid = pdo_insertid();
+
+        $data = array(
+            'uniacid' => $_W['uniacid'],
+            'merchid' => $coupon['merchid'],
+            'openid' => $_W['openid'],
+            'couponid' => $coupon['id'],
+            'gettype' => 0,
+            'gettime' => TIMESTAMP,
+            'senduid' => $_W['uid']
+        );
+        $cid = pdo_insert('ewei_shop_coupon_data', $data);
+
+        if(!empty($res_id) && $upd_id && $logid && $cid){
+
+            return "成功砍掉{$bargain_price}积分,并赠予您购物券！";
 
         }else{
 
@@ -414,4 +480,6 @@ class Bargain_EweiShopV2Page extends PluginMobileLoginPage {
         }
         return $str;
     }
+
+
 }

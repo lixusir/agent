@@ -266,7 +266,6 @@ class Member_EweiShopV2Model {
                 $newcredit = 0;
             }
             pdo_update('ewei_shop_member', array($credittype => $newcredit), array('uniacid' => $_W['uniacid'], 'openid' => $openid));
-            $log_data['remark'] = $log_data['remark']. " OPENID: ".$openid;
             $log_data['remark'] = $log_data['remark']. " 剩余: ".$newcredit;
             $a = $newcredit;
             $log_data['presentcredit'] = $a;

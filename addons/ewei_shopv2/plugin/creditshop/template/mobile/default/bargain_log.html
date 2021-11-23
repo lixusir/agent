@@ -21,7 +21,7 @@
         <div class="fui-header-left">
             <a class="back"></a>
         </div>
-        <div class="title">我的</div>
+        <div class="title">参与砍价列表</div>
         <div class="fui-header-right"></div>
     </div>
     <div id="tab" class="fui-tab fui-tab-danger">
@@ -228,16 +228,14 @@
                             <%/if%>
                         <%/if%>
                     <%/if%>
-                    <%if item.is_end==0%>
                     <a class="btn btn-sm btn-default" href="{php echo mobileUrl('creditshop/bargain')}&id=<%item.id%>">分享砍价</a>
-                    <%/if%>
                 </div>
             </div>
         </div>
         <%/each%>
     </script>
     <script language="javascript">
-        require(['../addons/ewei_shopv2/plugin/creditshop/static/js/log.js'],function(modal){
+        require(['../addons/ewei_shopv2/plugin/creditshop/static/js/bargain_log.js'],function(modal){
             modal.init({shine: "{$_GPC['shine']}"});
         });
     </script>

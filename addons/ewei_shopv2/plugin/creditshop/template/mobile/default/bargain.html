@@ -132,15 +132,15 @@
               {loop $res3 $key $value}
               <div class='fui-cell'>
                 <div class='fui-cell-label'>
-                  <img src="{$value['head_image']}" alt="">
+                  <img src="{$value['avatar']}" alt="">
                 </div>
                 <div class='fui-cell-info'>
                   <div class='title'>{$value['nickname']}</div>
-                  <div class='text'>{php echo date('m/d  H:i',strtotime($value['bargain_time']));}</div>
+                  <div class='text' ><b>{$value['createtime']}</b></div>
                 </div>
                 <div class='fui-cell-remark noremark danger'>
-                  {if $value['bargain_price'] <= 0}{$value['bargain_price']}{/if}
-                  {if $value['bargain_price'] > 0} <font color="green">+{$value['bargain_price']}</font>{/if}
+                  {if $value['state'] == 0}首砍{else}复砍{/if}
+                  {if $value['score'] > 0} <font color="green">+{$value['score']}</font>{/if}
                 </div>
               </div>
               {/loop}
@@ -183,23 +183,27 @@
       </div>
       {if $swi === 111}
       <div class="fui-navbar flex">
-        {if $trade_swi==0}<a href="{php echo mobileUrl('order/create',array('bargainid'=>$res['id'],))}" class="left" data-nocache="">立即购买</a>{/if}
-        {if $trade_swi==1}<a href="#" class="left " style="background-color:#ccc;" data-nocache="true">已经下单</a>{/if}
-        {if $trade_swi==2}<a href="#" class="left " style="background-color:#ccc;" data-nocache="true">已经结束</a>{/if}
-        {if $trade_swi==3}<a href="#" class="left " style="background-color:#ccc;" data-nocache="true">库存不足</a></span>{/if}
-        {if $trade_swi==4}<a href="#" class="left " style="background-color:#ccc;" data-nocache="true">没到底价</a>{/if}
-        {if $trade_swi==1}<a href="{php echo mobileUrl('order/detail',array('id'=>$res['order']));}" class="right " data-nocache="true"><i class="icon icon-cart"></i> 查看订单</a>{/if}
-        {if $myself_swi && $trade_swi!=1}<a onclick="bargain()" class="right" id="fuceng"><i class="fu"></i>砍一刀</a>{/if}
-        {if !$myself_swi && $trade_swi!=1 && $endStauts == 0}
-        <a href="javascript:void(0)" onclick="$('#share').show()" class="right "><i class="fu"></i>找人帮砍</a>
-        {else if $endStauts == 1}
-        <a href="javascript:;" class="right "><i class="fu"></i>已到底价</a>
-        {/if}
+        {if $time3 >0 && $twi_score >0} <a href="javascript:;" class="left" data-nocache="">进行中</a>{/if}
+
+        {if $time3 <= 0}<a href="#" class="right " style="background-color:#ccc;" data-nocache="true">已经结束</a>{/if}
+
+        {if $twi_score >0 && $time3 > 0}<a href="javascript:void(0)" onclick="$('#share').show()" class="right "><i class="fu"></i>找人帮砍</a>{/if}
+
+        {if $twi_score <=0}<a href="javascript:;" class="right "><i class="fu"></i>已到底价</a>{/if}
+
       </div>
       {else if $swi === 222}
         <div class="fui-navbar flex">
-          <a href="javascript:void(0)" onclick="$('#share').show()" class="left "><i class="fu"></i>找人帮砍</a>
-          <a onclick="bargain()" id="fuceng"  class="right "><i class="fu"></i>帮砍一刀</a>
+          {if $time3 <= 0}
+            <a href="#" class="right " style="background-color:#ccc;" data-nocache="true">已经结束</a>
+          {else}
+              {if $twi_score <=0}
+                 <a href="javascript:;" class="right "><i class="fu"></i>已到底价</a>
+              {else}
+                <a href="javascript:void(0)" onclick="$('#share').show()" class="left "><i class="fu"></i>找人帮砍</a>
+                <a onclick="bargain()" id="fuceng"  class="right "><i class="fu"></i>帮砍一刀</a>
+              {/if}
+          {/if}
         </div>
       {/if}
       {template '_copyright'}

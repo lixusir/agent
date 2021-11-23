@@ -1279,6 +1279,10 @@ class System_EweiShopV2Model
                                 'route'=>'shop'
                             ),
                             array(
+                                'title'=>'平台设置',
+                                'route'=>'shopset'
+                            ),
+                           /* array(
                                 'title'=>'关注及分享',
                                 'route'=>'follow'
                             ),
@@ -1289,7 +1293,7 @@ class System_EweiShopV2Model
                             array(
                                 'title'=>'模板设置',
                                 'route'=>'templat'
-                            ),
+                            ),*/
                             array(
                                 'title'=>'全网通设置',
                                 'route'=>'wap',
@@ -1376,22 +1380,22 @@ class System_EweiShopV2Model
                     array(
                         'title'=>'其他',
                         'items'=>array(
-                            array(
+                           /* array(
                                 'title'=>'会员设置',
                                 'route'=>'member'
                             ),
                             array(
                                 'title'=>'分类层级',
                                 'route'=>'category'
-                            ),
+                            ),*/
                             array(
                                 'title'=>'联系方式',
                                 'route'=>'contact'
                             ),
-                            array(
+                            /*array(
                                 'title'=>'地址库设置',
                                 'route'=>'area'
-                            ),
+                            ),*/
                             array(
                                 'title'=>'物流信息接口',
                                 'route'=>'express'
@@ -1401,7 +1405,7 @@ class System_EweiShopV2Model
                     array(
                         'title'=>'工具',
                         'items'=>array(
-                            array(
+                            /*array(
                                 'title'=>'七牛存储',
                                 'route'=>'qiniu',
                                 'iscom'=>'qiniu',
@@ -1413,7 +1417,7 @@ class System_EweiShopV2Model
                             array(
                                 'title'=>'模板消息修复',
                                 'route'=>'templatetool'
-                            ),
+                            ),*/
                             array(
                                 'title' => '清空海报缓存',
                                 'route' => 'postertool'
@@ -1422,14 +1426,14 @@ class System_EweiShopV2Model
                                 'title'=>'快捷导航管理',
                                 'route'=>'funbar'
                             )*/,
-                            array(
+                            /*array(
                                 'title'=>'支付证书验证',
                                 'route'=>'wxpaycert'
                             ),
                             array(
                                 'title'=>'七牛修复',
                                 'route'=>'fixQiniu'
-                            )
+                            )*/
                         )
                     ),
                     array(
