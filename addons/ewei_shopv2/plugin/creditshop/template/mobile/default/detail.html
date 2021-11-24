@@ -113,13 +113,13 @@
                     <span class="price" style="text-align: left;">
                         {if $goods['hasoption']>0}
                             <span class="big" style="font-weight: bold;font-size: 0.8rem">{if $goods['mincredit'] == $goods['maxcredit']}{$goods['mincredit']}{else}{$goods['mincredit']}~{$goods['maxcredit']}{/if}</span>
-                            <span style="font-weight: bold;font-size: 0.6rem">{$_W['shopset']['trade']['credittext']}</span>
+                            <span style="font-weight: bold;font-size: 0.6rem">余额</span>
                             {if $goods['money'] > 0}
                                 + <span style="font-size: 0.8rem;font-weight: bold;padding-right: 0.1rem;"><span style="font-size: 0.7rem">&yen;</span>{if $goods['minmoney'] == $goods['maxmoney']}{$goods['minmoney']}{else}{$goods['minmoney']}`{$goods['maxmoney']}{/if}</span>
                             {/if}
                         {else}
                             <span class="big" style="font-weight: bold;font-size: 0.8rem">{$goods['credit']}</span>
-                            <span style="font-weight: bold;font-size: 0.6rem">{$_W['shopset']['trade']['credittext']}</span>
+                            <span style="font-weight: bold;font-size: 0.6rem">余额</span>
                             {if $goods['money'] > 0}
                                 + <span style="font-size: 0.8rem;font-weight: bold;padding-right: 0.1rem;"><span style="font-size: 0.7rem">&yen;</span>{$goods['money']}</span>
                             {/if}
@@ -385,7 +385,7 @@
     <div class="fui-footer {if $goods['canbuy']}btn-danger{else}btn-disabled{/if}">
         <div id="openActionSheet">
             {if $goods['canbuy']}
-                {if $goods['type']==1}立即抽奖{else}立即兑换{/if}
+               立即购买
             {else}
                 {$goods['buymsg']}
             {/if}

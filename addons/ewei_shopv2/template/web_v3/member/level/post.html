@@ -32,125 +32,101 @@
                 </div>
             </div>
         {/if}
-        <div class="form-group">
-            <label class="col-lg control-label must"> {if $id=='default'}默认{/if}等级名称</label>
-            <div class="col-sm-9 col-xs-12">
-                {ife 'member.level' $level}
-                <input type="text" name="levelname" class="form-control" value="{$level['levelname']}" data-rule-required="true" />
-                {else}
-                <div class='form-control-static'>{$level['levelname']}</div>
-                {/if}
-            </div>
-        </div>
-        {if $id!='default'}
-            <div class="form-group" {if $id=='default'}style="display: none;"{/if}>
-            <label class="col-lg control-label">升级条件</label>
-            <div class="col-sm-9 col-xs-12">
-                {ife 'shop.adv' $item}
-                <label class='radio-inline'>
-                    <input type='radio' name='buygoods' value='0' onclick="chose(0)" {if $level['buygoods']==0}checked{/if} /> 订单金额/数量
-                </label>
-                <label class='radio-inline'>
-                    <input type='radio' name='buygoods' value='1' onclick="chose(1)"  {if $level['buygoods']==1}checked{/if} /> 购买指定商品
-                </label>
-                {else}
-                <div class='form-control-static'>{if empty($item['enabled'])}隐藏{else}显示{/if}</div>
-                {/if}
-            </div>
-        </div>
-            <div class="form-group" >
-                <label class="col-lg control-label"></label>
-                <div class="col-sm-9 col-xs-12" id="typeone" {if $level['buygoods']=='1'}style="display:none"{/if} >
+            <div class="form-group">
+                <label class="col-lg control-label must"> {if $id=='default'}默认{/if}等级名称</label>
+                <div class="col-sm-9 col-xs-12">
                     {ife 'member.level' $level}
-                        <div class='input-group fixsingle-input-group'>
-                            {if empty($set['shop']['leveltype'])}
-                                <span class='input-group-addon'>完成订单金额满</span>
-                                <input type="text" name="ordermoney" class="form-control" value="{$level['ordermoney']}" />
-                                <span class='input-group-addon'>元</span>
-                            {/if}
-                            {if $set['shop']['leveltype']==1}
-                                <span class='input-group-addon'>完成订单数量满</span>
-                                <input type="text" name="ordercount" class="form-control" value="{$level['ordercount']}" />
-                                <span class='input-group-addon'>个</span>
-                            {/if}
-                        </div>
-                        <span class='help-block'>会员升级条件，不填写默认为不自动升级, 设置<a href="{php echo webUrl('sysset/member')}">【会员升级依据】</a> </span>
+                    <input type="text" name="levelname" class="form-control" value="{$level['levelname']}" data-rule-required="true" />
                     {else}
-                        <div class='form-control-static'>
-                            {if empty($shopset['leveltype'])}
-                            {if $level['ordermoney']>0}
-                            完成订单金额满 {$level['ordermoney']}元
-                            {else}
-                            不自动升级
-                            {/if}
-                            {/if}
-                            {if $shopset['leveltype']==1}
-                            {if $level['ordercount']>0}
-                            完成订单数量满 {$level['ordercount']}个
-                            {else}
-                            不自动升级
-                            {/if}
-                            {/if}
-                        </div>
+                    <div class='form-control-static'>{$level['levelname']}</div>
                     {/if}
                 </div>
-                <div class="col-sm-9 col-xs-12" id="typetwo" {if $level['buygoods']!='1'}style="display:none"{/if}>
-                    <div class=' fixsingle-input-group' style="width: 800px;">
-                        <div class="col-sm-9 col-xs-12">
-                            <?php echo tpl_selector('goodsids',array(
-                             'preview'=>true,
-                            'multi'=>1,
-                            'nokeywords'=>true,
-                            'autosearch'=>1,
-                            'value'=>$item['title'],
-                            'url'=>webUrl('goods/query'),
-                            'items'=>$goods,
-                            'buttontext'=>'选择商品',
-                            'placeholder'=>'请选择商品')
-                            )
-                            ?>
-                        </div>
-                    </div>
-
-                </div>
             </div>
-        {/if}
 
+        <div class='form-group-title right'>条件一</div>
         <div class="form-group">
-            <label class="col-lg control-label">折扣</label>
+            <label class="col-lg control-label">自消费</label>
             <div class="col-sm-9 col-xs-12">
-                {ife 'member.level' $level}
-                    <div class="input-group fixsingle-input-group">
-                        <input type="text" name="discount" class="form-control" value="{$level['discount']}" />
-                        <div class="input-group-addon">折</div>
-                    </div>
-                    <span class='help-block'>请输入0.1~10之间的数字,值为空代表不设置折扣</span>
-                {else}
-                    <div class='form-control-static'>
-                        {if empty($level['discount'])}
-                        不打折
-                        {else}
-                        {$level['discount']}折
-                        {/if}
-                    </div>
-                {/if}
+                <div class="input-group fixsingle-input-group">
+                    <input type="number" name="u_number" class="form-control" value="{$level['u_number']}" />
+                    <div class="input-group-addon">次</div>
+                </div>
+                <span class='help-block'></span>
             </div>
         </div>
-        <div class="form-group" {if $id=='default'}style="display: none;"{/if}>
-            <label class="col-lg control-label">状态</label>
+        <div class="form-group">
+            <label class="col-lg control-label">直推有效会员</label>
             <div class="col-sm-9 col-xs-12">
-                {ife 'shop.adv' $item}
-                    <label class='radio-inline'>
-                        <input type='radio' name='enabled' value='1' {if $level['enabled']==1}checked{/if} /> 启用
-                    </label>
-                    <label class='radio-inline'>
-                        <input type='radio' name='enabled' value='0' {if $level['enabled']==0}checked{/if} /> 禁用
-                    </label>
-                {else}
-                    <div class='form-control-static'>{if empty($item['enabled'])}隐藏{else}显示{/if}</div>
-                {/if}
+                <div class="input-group fixsingle-input-group">
+                    <input type="number" name="push_num" class="form-control" value="{$level['push_num']}" />
+                    <div class="input-group-addon">个</div>
+                </div>
+                <span class='help-block'></span>
             </div>
         </div>
+        <div class="form-group">
+            <label class="col-lg control-label">团队有效会员</label>
+            <div class="col-sm-9 col-xs-12">
+                <div class="input-group fixsingle-input-group">
+                    <input type="number" name="team_num" class="form-control" value="{$level['team_num']}" />
+                    <div class="input-group-addon">个</div>
+                </div>
+                <span class='help-block'></span>
+            </div>
+        </div>
+        <div class='form-group-title right'>条件二</div>
+        <div class="form-group">
+            <label class="col-lg control-label">直推业绩</label>
+            <div class="col-sm-9 col-xs-12">
+                <div class="input-group fixsingle-input-group">
+                    <input type="number" name="push_price" class="form-control" value="{$level['push_price']}" />
+                    <div class="input-group-addon">元</div>
+                </div>
+                <span class='help-block'></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-lg control-label">团队业绩</label>
+            <div class="col-sm-9 col-xs-12">
+                <div class="input-group fixsingle-input-group">
+                    <input type="number" name="team_price" class="form-control" value="{$level['team_price']}" />
+                    <div class="input-group-addon">元</div>
+                </div>
+                <span class='help-block'></span>
+            </div>
+        </div>
+        <div class='form-group-title right'>等级奖励</div>
+        <div class="form-group">
+            <label class="col-lg control-label">奖金池分红</label>
+            <div class="col-sm-9 col-xs-12">
+                <div class="input-group fixsingle-input-group">
+                    <input type="number" name="pool_rate" class="form-control" value="{$level['pool_rate']}" />
+                    <div class="input-group-addon">%</div>
+                </div>
+                <span class='help-block'></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-lg control-label">级差奖</label>
+            <div class="col-sm-9 col-xs-12">
+                <div class="input-group fixsingle-input-group">
+                    <input type="number" name="level_rate" class="form-control" value="{$level['level_rate']}" />
+                    <div class="input-group-addon">%</div>
+                </div>
+                <span class='help-block'></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-lg control-label">同级奖</label>
+            <div class="col-sm-9 col-xs-12">
+                <div class="input-group fixsingle-input-group">
+                    <input type="number" name="flat_rate" class="form-control" value="{$level['flat_rate']}" />
+                    <div class="input-group-addon">%</div>
+                </div>
+                <span class='help-block'></span>
+            </div>
+        </div>
+
         <div class="form-group"></div>
         <div class="form-group">
             <label class="col-lg control-label"></label>

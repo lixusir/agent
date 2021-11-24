@@ -39,6 +39,14 @@ class Credit_EweiShopV2Page extends WebPage
             $params[':endtime'] = $endtime;
         }
 
+        if(!empty($_GPC['change_type'])){
+
+            $condition .= " and log.change_type=:change_type ";
+
+            $params[':change_type'] = $_GPC['change_type'];
+
+        }
+
         if (!empty($_GPC['level'])) {
             $condition .= ' and m.level=' . intval($_GPC['level']);
             $condition1 .= ' and m.level=' . intval($_GPC['level']);
@@ -208,7 +216,9 @@ class Credit_EweiShopV2Page extends WebPage
         }
 
         $pager = pagination2($total, $pindex, $psize);
-        $groups = m('member')->getGroups();
+
+        $groups = m('levelrate')->assets_type();
+
         $levels = m('member')->getLevels();
         include $this->template('finance/credit');
     }

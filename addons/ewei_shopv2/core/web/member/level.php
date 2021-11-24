@@ -80,6 +80,14 @@ class Level_EweiShopV2Page extends WebPage
 			$enabled = intval($_GPC['enabled']);
 			$data = array('uniacid' => $_W['uniacid'], 'level' => intval($_GPC['level']), 'levelname' => trim($_GPC['levelname']), 'ordercount' => intval($_GPC['ordercount']), 'ordermoney' => $_GPC['ordermoney'], 'discount' => trim($_GPC['discount']), 'enabled' => $enabled);
 			$goodsids = iserializer($_GPC['goodsids']);
+			$data['u_number'] = intval($_GPC['u_number']);
+			$data['push_num'] = intval($_GPC['push_num']);
+			$data['team_num'] = intval($_GPC['team_num']);
+			$data['push_price'] = floatval($_GPC['push_price']);
+			$data['team_price'] = floatval($_GPC['team_price']);
+			$data['pool_rate'] = floatval($_GPC['pool_rate']);
+			$data['level_rate'] = floatval($_GPC['level_rate']);
+			$data['flat_rate'] = floatval($_GPC['flat_rate']);
 			$buygoods = intval($_GPC['buygoods']);
 
 			if (!empty($id)) {

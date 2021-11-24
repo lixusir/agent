@@ -240,16 +240,67 @@
     <div class="col-sm-10 col-xs-12">
 
         <div class="input-group fixmore-input-group">
-            <span class="input-group-addon" style="border-right: 0;">总共</span>
-            <input type='text' class='form-control' value="{$item['total_score']}" name='total_score' />
-            <span class="input-group-addon">积分，一级砍</span>
-            <input type='text' class='form-control' value="{$item['one_score']}" name="one_score" />
-            <span class="input-group-addon">积分，二级砍</span>
-            <input type='text' class='form-control' value="{$item['three_score']}" name="three_score" />
+            <span class="input-group-addon" style="border-right: 0;">封顶</span>
+            <input type='text' class='form-control' value="{$item['total_score']}" name='total_score' required />
             <span class="input-group-addon">积分</span>
         </div>
-        <span class="help-block">空为不限制</span>
+        <span class="help-block"></span>
 
+    </div>
+</div>
+<div class="form-group">
+    <label class="col-lg control-label">砍价规则(直推)</label>
+    <div class="col-sm-10 col-xs-12">
+
+        <div class="input-group fixmore-input-group">
+            <span class="input-group-addon" style="border-right: 0;">直推首款</span>
+            <input type='text' class='form-control' value="{$item['one_score_0']}" name='one_score_0' />
+            <span class="input-group-addon">积分，复砍</span>
+            <input type='text' class='form-control' value="{$item['one_score_1']}" name="one_score_1" />
+            <span class="input-group-addon">积分</span>
+        </div>
+        <span class="help-block"></span>
+
+    </div>
+</div>
+<div class="form-group">
+    <label class="col-lg control-label">砍价规则(间推)</label>
+    <div class="col-sm-10 col-xs-12">
+
+        <div class="input-group fixmore-input-group">
+            <span class="input-group-addon" style="border-right: 0;">间推首款</span>
+            <input type='text' class='form-control' value="{$item['three_score_0']}" name='three_score_0' />
+            <span class="input-group-addon">积分，复砍</span>
+            <input type='text' class='form-control' value="{$item['three_score_1']}" name="three_score_1" />
+            <span class="input-group-addon">积分</span>
+        </div>
+        <span class="help-block"></span>
+
+    </div>
+</div>
+<div class="form-group" >
+    <label class="col-lg control-label">抽出奖金池</label>
+    <div class="col-sm-9 col-xs-12">
+        <div class="input-group fixsingle-input-group">
+            <input type="text" name="pool_price" id="pool_price" class="form-control" value="{$item['pool_price']}" />
+            <span class="input-group-addon">元</span>
+        </div>
+        <span class='help-block'></span>
+    </div>
+</div>
+<div class="form-group" >
+    <label class="col-lg control-label">区域奖励</label>
+    <div class="col-sm-9 col-xs-12">
+        {loop $abonus_levels $l}
+        <div class="input-group fixsingle-input-group">
+                <span class="input-group-addon" style="border-right: 0;">{$l['levelname']}</span>
+                <input type='text' class='form-control' value="{$item['abonus_rate'][$l['id']]}" name='abonus_rate[{$l['id']}]' />
+                <span class="input-group-addon">元</span>
+            <span class="help-block"></span>
+
+        </div>
+        {/loop}
+        <span class='help-block'></span>
     </div>
 </div>
 <div class="form-group" >
@@ -269,7 +320,7 @@
         <div class="input-group fixmore-input-group">
             <span class="input-group-addon">消耗</span>
             <input type='text' class='form-control' value="{$item['credit']}" name='credit'/>
-            <span class="input-group-addon">积分</span>
+            <span class="input-group-addon">余额</span>
            <!-- <input type='text' class='form-control' value="{$item['money']}" name='money'/>
             <span class="input-group-addon">元&nbsp;&nbsp;
                 <label class="checkbox-inline" style='margin-top:-8px;display:none;'>
@@ -277,7 +328,7 @@
                 </label>
             </span>-->
         </div>
-        <span class="help-block">可任意组合，可以单独积分消费，或者积分+现金形式消费(积分必须大于0)</span>
+        <span class="help-block"></span>
         {else}
         <div class='form-control-static'>消耗 {$item['credit']} 积分 花费 {$item['money']} 元现金</div>
         {/if}

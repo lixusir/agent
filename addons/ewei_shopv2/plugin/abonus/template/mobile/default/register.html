@@ -13,21 +13,8 @@
     {/if}
     <div class='fui-content'>
         <img style='width:100%;position: relative' src="{if empty($set['regbg'])}../addons/ewei_shopv2/plugin/abonus/template/mobile/default/static/images/bg.png{else}{php echo tomedia($set['regbg'])}{/if}" />
-        {if empty($set['become'])}
-        <div class='content-empty' >
-            <i class='icon icon-money text-warning'></i>
-            <br/><span class="text-default">{if empty($set['noregdesc'])}
-			想成为区域代理商吗？请立即联系我们！
-			{else}
-			{$set['noregdesc']}
-			{/if}
-			<br/>
 
-		</span>
-            <br/><a class="btn btn-warning" href="{php echo mobileUrl()}">去商城逛逛</a>
-        </div>
 
-        {else}
 
 
         {if $member['aagentblack']}
@@ -42,14 +29,7 @@
         {if $member['aagentstatus']==1 && $member['isaagent']==1}
         <div class='content-info'>
             <i class='icon icon-roundcheck text-success'></i>
-            <br/><span class="text-success">您的申请已经审核通过！</span>
-            <br/><a class="btn btn-danger" href="{php echo mobileUrl()}">去商城逛逛</a>
-        </div>
-        {/if}
-        {if $member['aagentstatus']==0 && $member['isaagent']==1}
-        <div class='content-info' >
-            <i class='icon icon-time'></i>
-            <br/><span class="">谢谢您的支持，我们会尽快联系您!</span>
+            <br/><span class="text-success">您已成为代理！</span>
             <br/><a class="btn btn-danger" href="{php echo mobileUrl()}">去商城逛逛</a>
         </div>
         {/if}
@@ -61,25 +41,29 @@
                 欢迎加入<span class='text-danger'>{$_W['shopset']['shop']['name']}</span>，请填写申请信息
             </div>
 
-            {if $template_flag}
 
-            {template 'diyform/formfields'}
-
-            {else}
-
-            <div class='fui-cell must'>
-                <div class='fui-cell-label'>姓名</div>
-                <div class='fui-cell-info'><input type="text" class='fui-input' id='realname' placeholder="请填写真实姓名，用于结算" value="{$member['realname']}" /></div>
-            </div>
 
             <div class='fui-cell must'>
                 <div class='fui-cell-label'>手机号</div>
                 <div class='fui-cell-info'><input type="tel" class='fui-input' id='mobile' placeholder="请填写手机号码方便联系" value="{$member['mobile']}" /></div>
             </div>
 
+            <div class='fui-cell must'>
+                <div class='fui-cell-label'>代理等级</div>
+                <div class='fui-cell-info'>
+                    <select name="fui-input" id="level_id">
+                        {loop $levels $k $l}
+                            <option value="{$l['id']}" data-money="{$l['money']}" data-num="{php echo $k+1}">{$l['levelname']}</option>
+                        {/loop}
+                    </select>
+                </div>
+            </div>
+
+
             <div class='fui-cell'>
-                <div class='fui-cell-label'>微信号</div>
-                <div class='fui-cell-info'><input type="text" class='fui-input' id='weixin' placeholder="请填写微信号" value="{$member['weixin']}" /></div>
+                <div class='fui-cell-label'>需支付</div>
+                <div class='fui-cell-info'><input type="text" class='fui-input' id='money' readonly value="" />
+                </div>
             </div>
 
             <div class='fui-cell'>
@@ -119,7 +103,6 @@
             </div>
 
 
-            {/if}
 
             {if $set['open_protocol'] == 1}
             <div class="fui-cell-group">
@@ -214,7 +197,7 @@
 
 
 
-        {/if}
+
 
         {/if}
 

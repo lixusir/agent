@@ -237,6 +237,10 @@ if ($_W['ispost']) {
     , 'video'=>trim($_GPC['video'])
     );
 
+    /**两级分销设置**/
+    $data['push_price'] = floatval($_GPC['push_price']);
+
+    $data['inter_price'] = floatval($_GPC['inter_price']);
 
 
     if(p('offic')){

@@ -32,10 +32,10 @@
                     {php echo tpl_daterange('time', array('sm'=>true,'placeholder'=>'操作时间'),true);}
                 </span>
                 <span class="input-group-select">
-                    <select name="groupid" class="form-control" style="width:100px;float: left;"  >
-                        <option value="">会员分组</option>
+                    <select name="change_type" class="form-control" style="width:100px;float: left;"  >
+                        <option value="">流水类型</option>
                         {loop $groups $group}
-                        <option value="{$group['id']}" {if $_GPC['groupid']==$group['id']}selected{/if}>{$group['groupname']}</option>
+                        <option value="{$group['change_type']}" {if $_GPC['change_type']==$group['change_type'] && $_GPC['change_type'] != ''}selected{/if}>{$group['change_name']}</option>
                         {/loop}
                     </select>
                 </span>

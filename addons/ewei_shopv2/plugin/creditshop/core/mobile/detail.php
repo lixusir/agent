@@ -285,7 +285,7 @@ class Detail_EweiShopV2Page extends CreditshopMobilePage
 		$goods = $this->model->getGoods($id, $member, $optionid, $num);
 		$credit = $member['credit1'];
 		$money = $member['credit2'];
-		$paytype = $_GPC['paytype'];
+		$paytype = $_GPC['paytype']?$_GPC['paytype']:'balance';
 		$addressid = intval($_GPC['addressid']);
 		$storeid = intval($_GPC['storeid']);
 		$paystatus = 0;
@@ -308,7 +308,8 @@ class Detail_EweiShopV2Page extends CreditshopMobilePage
 			show_json(0, $goods['buymsg']);
 		}
 		$needpay = false;
-		if ((0 < $goods['money']) || $goods['dispatch']) 
+
+		if ((0 < $goods['credit']) || $goods['dispatch'])
 		{
 			pdo_delete('ewei_shop_creditshop_log', array('goodsid' => $id, 'openid' => $openid, 'status' => 0, 'paystatus' => 0));
 			$needpay = true;
@@ -683,7 +684,7 @@ class Detail_EweiShopV2Page extends CreditshopMobilePage
 		{
 			if ((0 < $goods['credit']) && ($credit < $goods['credit'])) 
 			{
-				show_json(0, array('status' => '-1', 'message' => '积分不足!'));
+				show_json(0, array('status' => '-1', 'message' => '余额不足!'));
 			}
 			if ((0 < $goods['money']) && ($money < $goods['money']) && ($log['paytype'] == 0)) 
 			{
@@ -721,8 +722,9 @@ class Detail_EweiShopV2Page extends CreditshopMobilePage
 		}
 		if ((0 < $goods['credit']) && empty($log['creditpay'])) 
 		{
+		    /**修改**/
 			$update['credit'] = $goods['credit'];
-			m('member')->setCredit($openid, 'credit1', -$goods['credit'], '积分商城扣除积分 ' . $goods['credit']);
+			m('member')->setCredit($openid, 'credit2', -$goods['credit'], '商城消费扣除 ' . $goods['credit']);
 			$update['creditpay'] = 1;
 			pdo_query('update ' . tablename('ewei_shop_creditshop_goods') . ' set joins=joins+1 where id=' . $log['goodsid']);
 		}

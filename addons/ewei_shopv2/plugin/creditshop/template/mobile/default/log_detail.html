@@ -66,7 +66,7 @@
                         {/if}
                     </div>
                     <div class='text'>
-                        商品总额: {$ordercredit}{$_W['shopset']['trade']['credittext']}
+                        商品总额: {$ordercredit}余额
                         {if $ordermoney > 0} + &yen; {$ordermoney}{/if}
                         {if $goods['goodstype']==0 && $goods['isverify']==0}
                             {if $goods['dispatch'] > 0}运费：&yen; {$goods['dispatch']}{else}免运费{/if}
@@ -183,7 +183,7 @@
                     </div>
                     <div class='fui-list-angle'>
                         <span class='marketprice'>
-                            {$goods['credit']}{$_W['shopset']['trade']['credittext']}{if $goods['money']>0}<br />&yen;{$goods['money']}{/if}
+                            {$goods['credit']}余额{if $goods['money']>0}<br />&yen;{$goods['money']}{/if}
 				            <br/>   x {$log['goods_num']}
                         </span>
                     </div>
@@ -318,7 +318,7 @@
             <div class="fui-cell">
                 <div class="fui-cell-label">商品小计</div>
                 <div class="fui-cell-info"></div>
-                <div class="fui-cell-remark noremark">{$ordercredit}{$_W['shopset']['trade']['credittext']} + &yen;{$ordermoney}</div>
+                <div class="fui-cell-remark noremark">{$ordercredit}余额 </div>
             </div>
             {if $goods['goodstype']==0 && $goods['isverify']==0}
             <div class="fui-cell">
@@ -334,7 +334,7 @@
                 <div class="fui-cell-info"></div>
                 <div class="fui-cell-remark noremark">
                     <span class='text-danger2'>
-                        {$ordercredit}{$_W['shopset']['trade']['credittext']}{if ($ordermoney + $goods['dispatch']) >0} + &yen; {php echo number_format($ordermoney + $goods['dispatch'],2)}{/if}
+                        {$ordercredit}余额{if ($ordermoney + $goods['dispatch']) >0} + &yen; {php echo number_format($ordermoney + $goods['dispatch'],2)}{/if}
                     </span>
                 </div>
             </div>

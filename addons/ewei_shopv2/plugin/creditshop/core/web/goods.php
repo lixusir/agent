@@ -74,6 +74,8 @@ class Goods_EweiShopV2Page extends PluginWebPage {
 		$id = intval($_GPC['id']);
 
 		$item = pdo_fetch("SELECT * FROM " . tablename('ewei_shop_creditshop_goods') . " WHERE id =:id and uniacid=:uniacid limit 1", array(':uniacid' => $_W['uniacid'], ':id' => $id));
+		$item['abonus_rate'] = unserialize($item['abonus_rate']);
+
 		$merchid = intval($_W['merchid']);
 		if(!empty($item)){
 			$url = mobileUrl('creditshop/detail',array('id'=>$item['id']), true);
@@ -134,6 +136,10 @@ class Goods_EweiShopV2Page extends PluginWebPage {
 			$s['items'] = pdo_fetchall("select a.id,a.specid,a.title,a.thumb,a.show,a.displayorder,a.valueId,a.virtual,b.title as title2 from " . tablename('ewei_shop_creditshop_spec_item') . " a left join " . tablename('ewei_shop_virtual_type') . " b on b.id=a.virtual  where a.specid=:specid order by a.displayorder asc", array(":specid" => $s['id']));
 		}
 		unset($s);
+
+		/**区域奖励**/
+        $abonus_levels = p('abonus')->getLevels();
+
 
 		//处理规格项
 		$html = "";
@@ -428,10 +434,15 @@ class Goods_EweiShopV2Page extends PluginWebPage {
 				'share_icon' => save_media($_GPC['share_icon']),
 				'share_desc' => trim($_GPC['share_desc']),
                 'total_score'   => floatval($_GPC['total_score']),
-                'one_score'     => floatval($_GPC['one_score']),
-                'three_score'   => floatval($_GPC['three_score']),
+                'one_score_0'     => floatval($_GPC['one_score_0']),
+                'three_score_0'   => floatval($_GPC['three_score_0']),
+                'one_score_1'     => floatval($_GPC['one_score_1']),
+                'three_score_1'   => floatval($_GPC['three_score_1']),
+                'pool_price'   => floatval($_GPC['pool_price']),
                 'bargain_day'   => intval($_GPC['bargain_day']),
+                'abonus_rate'   => serialize($_GPC['abonus_rate'])
 			);
+
 			if (isset($id) && $id > 0 )
             {
                 unset($data['maxpacketmoney']);

@@ -52,13 +52,13 @@
             <table class="table table-hover table-responsive">
                 <thead>
                     <tr>
-                        <th style="width:25px;"></th>
-                        <th style="width:60px;">等级</th>
-                        <th>等级名称</th>
-                        <th style="width:80px;">折扣</th>
-                        <th>升级条件</th>
-                        <th style="width:80px;">状态</th>
-                        <th style="width: 95px">操作</th>
+                        <th style="width:25%;"></th>
+                        <th style="width:20%;">等级</th>
+                        <th style="width:20%;">等级名称</th>
+                        <th style="width:20%;">等级奖</th>
+                        <th style="width:30%;">升级条件</th>
+                        <th style="width:20%;"></th>
+                        <th style="width:20%">操作</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -67,43 +67,26 @@
                             <td>{if $row['id']!='default'}<input type='checkbox'   value="{$row['id']}"/>{/if}</td>
                             <td>{if $row['id']=='default'}--{else}{$row['level']}{/if}</td>
                             <td>{$row['levelname']}</td>
-                            <td>{$row['discount']}</td>
+                            <td>
+                                {if $row['id']=='default'}--{else}奖金池分红:{$row['pool_rate']}%{/if}<br/>
+                                {if $row['id']=='default'}--{else}   级差奖:{$row['level_rate']}%{/if}<br/>
+                                {if $row['id']=='default'}--{else}   同级奖:{$row['flat_rate']}%{/if}
+                            </td>
                             <td>
                                 {if $row['id']=='default'}
-                                默认等级
+                                    默认等级
                                 {else}
-                                {if $row['buygoods'] ==0}
-                                    {if empty($shopset['leveltype'])}
-                                        {if $row['ordermoney']>0}
-                                        完成订单金额满 {$row['ordermoney']}元
-                                        {else}
-                                        不自动升级
-                                        {/if}
-                                    {/if}
-                                    {if $shopset['leveltype']==1}
-                                        {if $row['ordercount']>0}
-                                        完成订单数量满 {$row['ordercount']}个
-                                        {else}
-                                        不自动升级
-                                        {/if}
-                                    {/if}
-                                {else}
-                                 购买产品
-                                {/if}
+                                    条件一<br/>
+                                       自费次数:{$row['u_number']}次<br/>
+                                    直推有效会员:{$row['push_num']}个<br/>
+                                    团队有效会员:{$row['team_num']}个<br/>
+                                    条件二<br/>
+                                        直推业绩:{$row['push_price']}<br/>
+                                        团队业绩:{$row['team_price']}<br/>
                                 {/if}
                             </td>
                             <td>
-                                {if $row['id']!='default'}
-                                <span class='label {if $row['enabled']==1}label-primary{else}label-default{/if}'
-                                {ifp 'member.level.edit'}
-                                data-toggle='ajaxSwitch'
-                                data-switch-value='{$row['enabled']}'
-                                data-switch-value0='0|禁用|label label-default|{php echo webUrl('member/level/enabled',array('enabled'=>1,'id'=>$row['id']))}'
-                                data-switch-value1='1|启用|label label-primary|{php echo webUrl('member/level/enabled',array('enabled'=>0,'id'=>$row['id']))}'
-                                {/if}
-                                >
-                                {if $row['enabled']==1}启用{else}禁用{/if}</span>
-                                {/if}
+
                             </td>
                             <td>
                                 {ifp 'member.list'}

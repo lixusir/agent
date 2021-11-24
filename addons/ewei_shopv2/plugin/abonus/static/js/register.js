@@ -3,6 +3,27 @@ define(['core', 'tpl', 'biz/plugin/diyform', 'foxui.picker'], function (core, tp
     modal.init = function (params) {
         modal.params = $.extend(modal.params, params || {});
 
+        var level_money = $('#level_id option:selected').attr('data-money');
+
+        var level_id = $('#level_id option:selected').val();
+
+        var level_num = $('#level_id option:selected').attr('data-num');
+
+        $('#money').val(level_money);
+
+        $('#level_id').change(function (){
+
+            var level_money = $('#level_id option:selected').attr('data-money');
+
+            $('#money').val(level_money);
+
+            level_id = $('#level_id option:selected').val();
+
+            level_num = $('#level_id option:selected').attr('data-num');
+
+        })
+
+
         if ($(".diyform-container").length <= 0) {
 
 
@@ -19,6 +40,12 @@ define(['core', 'tpl', 'biz/plugin/diyform', 'foxui.picker'], function (core, tp
 
                 $("#div_province,#div_city,#div_area").hide();
                 var type = $(this).val();
+
+                if(type != level_num){
+
+                    FoxUI.toast.show('请填写符合您等级的代理!');
+                    return
+                }
                 if (type == '1') {
                     $("#div_province").show();
                 } else if (type == '2') {
@@ -43,10 +70,7 @@ define(['core', 'tpl', 'biz/plugin/diyform', 'foxui.picker'], function (core, tp
                 }
                 data = {memberdata: diyformdata}
             } else {
-                if ($('#realname').isEmpty()) {
-                    FoxUI.toast.show('请填写您的姓名!');
-                    return
-                }
+
                 if (!$('#mobile').isMobile()) {
                     FoxUI.toast.show('请填写正确手机号!');
                     return
@@ -86,7 +110,8 @@ define(['core', 'tpl', 'biz/plugin/diyform', 'foxui.picker'], function (core, tp
                     'aagenttype': type,
                     'province': $('#citypicker1').val(),
                     'city': $('#citypicker2').val(),
-                    'area': $('#citypicker3').val()
+                    'area': $('#citypicker3').val(),
+                    'level_id':level_id,
                 }
             }
 
@@ -108,7 +133,7 @@ define(['core', 'tpl', 'biz/plugin/diyform', 'foxui.picker'], function (core, tp
                 var result = pjson.result;
                 FoxUI.message.show({
                     icon: 'icon icon-info text-warning',
-                    content: "您的申请已经提交，我们会尽快联系您!",
+                    content: "申请成功!",
                     buttons: [{
                         text: '先去商城逛逛', extraClass: 'btn-danger', onclick: function () {
                             location.href = core.getUrl('')

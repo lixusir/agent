@@ -197,33 +197,44 @@ class Bargain_EweiShopV2Page extends PluginMobileLoginPage {
 
         $record_where = '';
 
-        if($info['effective'] == 0){
+        if($layer > 1){
 
-            $state = 0;
+            return '无砍价资格';
 
-            $record_where = " and state = 0 ";
+        }
 
+        //直推砍价
+        if($layer == 0){
 
-        }else if($info['effective'] ==1 && $layer < 1){
+            $state = intval($info['effective']);//0=首次砍价，1=重复砍价
 
-            //判断是否首次砍过该商品，首次没看过砍价无效
-            $is_record = pdo_getcolumn('ewei_shop_creditshop_bargain',['oid'=>$res2['id'],'state'=>0,'openid'=>$_W['openid']],['count(id)']);
+            $record_where = " and state = ".$state;
 
-            if(empty($is_record)){
+            //直推砍价
+            $bargain_price = $goods['one_score_'.$state];
+
+        }
+
+        //间推砍价
+        if($layer == 1){
+
+            //查询上级是否为有效会员，否则不可以砍了
+            $agent_user = pdo_get('ewei_shop_member',array('id'=>$info['agentid']),array('id','effective'));
+
+            if($agent_user['effective'] == 1){
 
                 return '您无砍价权限';
 
             }
 
-            $record_where = " and state = 1 ";
+            $state = intval($info['effective']);//0=首次砍价，1=重复砍价
 
-            $state = 1;
+            $record_where = " and state = ".$state;
 
-        }else{
-
-            return '砍价机会已用完！';
-
+            //间推砍价
+            $bargain_price = $goods['three_score_'.$state];
         }
+
 
         $record_res = pdo_fetchcolumn("SELECT count(1) FROM ". tablename('ewei_shop_creditshop_bargain') ." WHERE oid=:oid AND openid= :openid ".$record_where,array(':oid'=>$res2['id'],':openid'=>$_W['openid']));
 
@@ -247,19 +258,6 @@ class Bargain_EweiShopV2Page extends PluginMobileLoginPage {
 
         }
 
-        if($layer == 0){
-            //直推砍价
-            $bargain_price = $goods['one_score'];
-
-        }else if($layer == 1){
-            //间推砍价
-            $bargain_price = $goods['three_score'];
-
-        }else{
-
-            return '无砍价资格';
-
-        }
 
         $bargain_data = [
             'uniacid'   => $_W['uniacid'],

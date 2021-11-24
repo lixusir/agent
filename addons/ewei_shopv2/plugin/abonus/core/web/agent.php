@@ -60,17 +60,22 @@ class Agent_EweiShopV2Page extends PluginWebPage
 		{
 			$condition .= ' and dm.aagentstatus=' . intval($_GPC['aagentstatus']);
 		}
-		$sql = 'select dm.*,dm.nickname,dm.avatar,l.levelname,p.nickname as parentname,p.avatar as parentavatar from ' . tablename('ewei_shop_member') . ' dm ' . ' left join ' . tablename('ewei_shop_member') . ' p on p.id = dm.agentid ' . ' left join ' . tablename('ewei_shop_abonus_level') . ' l on l.id = dm.aagentlevel' . ' where dm.uniacid = ' . $_W['uniacid'] . ' and dm.isaagent =1  ' . $condition . ' ORDER BY dm.aagenttime desc';
+		$sql = 'select dm.*,dm.nickname,dm.avatar,l.id as lid,l.levelname,p.nickname as parentname,p.avatar as parentavatar from ' . tablename('ewei_shop_member') . ' dm ' . ' left join ' . tablename('ewei_shop_member') . ' p on p.id = dm.agentid ' . ' left join ' . tablename('ewei_shop_abonus_level') . ' l on l.id = dm.aagentlevel' . ' where dm.uniacid = ' . $_W['uniacid'] . ' and dm.isaagent =1  ' . $condition . ' ORDER BY dm.aagenttime desc';
 		if (empty($_GPC['export'])) 
 		{
 			$sql .= ' limit ' . (($pindex - 1) * $psize) . ',' . $psize;
 		}
 		$list = pdo_fetchall($sql, $params);
 		$total = pdo_fetchcolumn('select count(dm.id) from' . tablename('ewei_shop_member') . ' dm  ' . ' left join ' . tablename('ewei_shop_member') . ' p on p.id = dm.agentid ' . ' left join ' . tablename('ewei_shop_abonus_level') . ' l on l.id = dm.aagentlevel' . ' where dm.uniacid =' . $_W['uniacid'] . ' and dm.isaagent =1  ' . $condition, $params);
+
+		$change_type = [1=>401,2=>402,3=>403];
 		foreach ($list as &$row ) 
 		{
-			$bonus = $this->model->getBonus($row['openid'], array('ok'));
-			$row['bonus'] = $bonus['ok'];
+
+			$row['bonus'] = round(pdo_getcolumn('ewei_shop_member_credit_record',array('openid'=>$row['openid'],'change_type'=>$change_type[$row['lid']]),array('sum(num)')),2);
+
+			$row['change_type'] = $change_type[$row['lid']];
+
 			$row['followed'] = m('user')->followed($row['openid']);
 		}
 		unset($row);

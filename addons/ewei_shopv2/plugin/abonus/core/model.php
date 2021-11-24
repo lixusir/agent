@@ -28,7 +28,7 @@ if (!(class_exists('AbonusModel'))) {
 			global $_W;
 
 			if ($all) {
-				$levels = pdo_fetchall('select * from ' . tablename('ewei_shop_abonus_level') . ' where uniacid=:uniacid order by id asc', array(':uniacid' => $_W['uniacid']));
+				$levels = pdo_fetchall('select * from ' . tablename('ewei_shop_abonus_level') . ' where uniacid=:uniacid order by id desc', array(':uniacid' => $_W['uniacid']));
 			}
 			 else {
 				$levels = pdo_fetchall('select * from ' . tablename('ewei_shop_abonus_level') . ' where uniacid=:uniacid and (ordermoney>0 or bonusmoney>0) order by bonus asc', array(':uniacid' => $_W['uniacid']));

@@ -754,43 +754,8 @@ class System_EweiShopV2Model
                     )
                 )
             ),
-            'creditshop'    => $this->pluginMenu('creditshop'),
-            'member' => array(
-                'title'=>'会员',
-                'subtitle'=>'会员管理',
-                'icon'=>'member',
-                'items'=>array(
-                    array(
-                        'title'=>'会员列表',
-                        'route'=>'list',
-                        'route_in'=>true
-                    ),
-                    array(
-                        'title'=>'会员等级',
-                        'route'=>'level'
-                    ),
-                    array(
-                        'title'=>'标签组',
-                        'route'=>'group'
-                    ),
-                    array(
-                        'title'=>'排行榜设置',
-                        'route'=>'rank',
-                        'desc'=>'会员积分/消费排行榜设置'
-                    ),
-                    array(
-                        'title'=>'微信会员卡',
-                        'route'=>'card',
-                        'iscom'=>'wxcard',
-                        'extends'=>array(   // 继承路由
-                            'member.card.post',
-                            'member.card.activationset'
-                        )
-                    )
-                )
-            ),
             'order' => array(
-                'title' => '订单',
+                'title' => '兑换订单',
                 'subtitle' => '订单管理',
                 'icon' => 'order',
                 'items'=> array(
@@ -858,6 +823,42 @@ class System_EweiShopV2Model
                     )
                 )
             ),
+            'member' => array(
+                'title'=>'会员',
+                'subtitle'=>'会员管理',
+                'icon'=>'member',
+                'items'=>array(
+                    array(
+                        'title'=>'会员列表',
+                        'route'=>'list',
+                        'route_in'=>true
+                    ),
+                    array(
+                        'title'=>'会员等级',
+                        'route'=>'level'
+                    ),
+                    array(
+                        'title'=>'标签组',
+                        'route'=>'group'
+                    ),
+                    array(
+                        'title'=>'排行榜设置',
+                        'route'=>'rank',
+                        'desc'=>'会员积分/消费排行榜设置'
+                    ),
+                    array(
+                        'title'=>'微信会员卡',
+                        'route'=>'card',
+                        'iscom'=>'wxcard',
+                        'extends'=>array(   // 继承路由
+                            'member.card.post',
+                            'member.card.activationset'
+                        )
+                    )
+                )
+            ),
+
+            'creditshop'    => $this->pluginMenu('creditshop'),
             /*'store' => array(
                 'title'=>'门店',
                 'subtitle'=>'门店',

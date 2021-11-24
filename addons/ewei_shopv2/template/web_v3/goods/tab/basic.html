@@ -339,6 +339,21 @@
 </div>
 </div>
 
+<div class="form-group price" >
+    <label class="col-sm-2 control-label">两级分销</label>
+    <div class="col-sm-9 col-xs-12">
+
+        <div class="input-group">
+            <span class="input-group-addon">直推</span>
+            <input type="text" name="push_price" id="push_price" class="form-control" value="{$item['push_price']}" />
+            <span class="input-group-addon">元 间推</span>
+            <input type="text" name="inter_price" id="inter_price" class="form-control" value="{$item['inter_price']}" />
+            <span class="input-group-addon">元</span>
+        </div>
+        <span class='help-block'>尽量填写完整，有助于于商品销售的数据分析</span>
+
+    </div>
+</div>
 
 <div class="form-group interval"  {if $item['type']!=4}  style="display: none"{/if} >
 <label class="col-sm-2 control-label" >批发价格</label>

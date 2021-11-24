@@ -13,12 +13,8 @@ class Register_EweiShopV2Page extends AbonusMobileLoginPage
 		$openid = $_W['openid'];
 		$set = set_medias($this->set, 'regbg');
 		$member = m('member')->getMember($openid);
-		if (($member['isaagent'] == 1) && ($member['aagentstatus'] == 1)) 
-		{
-			header('location: ' . mobileUrl('abonus'));
-			exit();
-		}
-		if ($member['agentblack'] || $member['aagentblack']) 
+
+		if ($member['agentblack'] || $member['aagentblack'])
 		{
 			include $this->template();
 			exit();
@@ -52,55 +48,96 @@ class Register_EweiShopV2Page extends AbonusMobileLoginPage
 				}
 			}
 		}
+
+		$levels = $this->model->getLevels();
+
 		if ($_W['ispost']) 
 		{
 			if ($set['become'] != '1') 
 			{
 				show_json(0, '未开启' . $set['texts']['agent'] . '注册!');
 			}
-			if ($template_flag == 1) 
-			{
-				$memberdata = $_GPC['memberdata'];
-				$insert_data = $diyform_plugin->getInsertData($fields, $memberdata);
-				$data = $insert_data['data'];
-				$m_data = $insert_data['m_data'];
-				$mc_data = $insert_data['mc_data'];
-				$m_data['diyaagentid'] = $diyform_id;
-				$m_data['diyaagentfields'] = iserializer($fields);
-				$m_data['diyaagentdata'] = $data;
-				$m_data['isaagent'] = 1;
-				$m_data['aagentstatus'] = 0;
-				$m_data['aagenttime'] = 0;
-				unset($m_data['credit1']);
-				unset($m_data['credit2']);
-				pdo_update('ewei_shop_member', $m_data, array('id' => $member['id']));
-				if (!(empty($member['uid']))) 
-				{
-					if (!(empty($mc_data))) 
-					{
-						unset($mc_data['credit1']);
-						unset($mc_data['credit2']);
-						m('member')->mc_update($member['uid'], $mc_data);
-					}
-				}
-			}
-			else 
-			{
-				$province = trim(str_replace(' ', '', $_GPC['province']));
-				$provinces = ((!(empty($province)) ? iserializer(array($province)) : iserializer(array())));
-				$city = trim(str_replace(' ', '', $_GPC['city']));
-				$citys = ((!(empty($city)) ? iserializer(array(str_replace(' ', '', $city))) : iserializer(array())));
-				$area = trim(str_replace(' ', '', $_GPC['area']));
-				$areas = ((!(empty($area)) ? iserializer(array($area)) : iserializer(array())));
-				$data = array('isaagent' => 1, 'aagentstatus' => 0, 'realname' => trim($_GPC['realname']), 'mobile' => trim($_GPC['mobile']), 'weixin' => trim($_GPC['weixin']), 'aagenttime' => 0, 'aagenttype' => intval($_GPC['aagenttype']), 'aagentprovinces' => $provinces, 'aagentcitys' => $citys, 'aagentareas' => $areas);
-				pdo_update('ewei_shop_member', $data, array('id' => $member['id']));
-				if (!(empty($member['uid']))) 
-				{
-					m('member')->mc_update($member['uid'], array('realname' => $data['realname'], 'mobile' => $data['mobile']));
-				}
-			}
+
+			$level_id = $_GPC['level_id']?$_GPC['level_id']:show_json(0,'参数错误');
+
+			$level = pdo_get('ewei_shop_abonus_level',array('id'=>$level_id));
+
+            //需要支付金额
+            $money = $level['money'];
+
+            if($member['credit2'] <=0 || $member['credit2'] < $money){
+
+                show_json(0,'余额不足,无法购买');
+
+            }
+
+            $province = trim(str_replace(' ', '', $_GPC['province']));
+            $provinces = ((!(empty($province)) ? iserializer(array($province)) : iserializer(array())));
+            $city = trim(str_replace(' ', '', $_GPC['city']));
+            $citys = ((!(empty($city)) ? iserializer(array(str_replace(' ', '', $city))) : iserializer(array())));
+            $area = trim(str_replace(' ', '', $_GPC['area']));
+            $areas = ((!(empty($area)) ? iserializer(array($area)) : iserializer(array())));
+
+            $where = ' uniacid=:uniacid ';
+
+            $params = [':uniacid'=>$_W['uniacid']];
+
+            if($_GPC['aagenttype'] == 1){
+
+                $where .= " and aagentprovinces like :keyword ";
+
+                $params[':keyword'] = '%'.$provinces.'%';
+
+            }
+
+            if($_GPC['aagenttype'] == 2){
+
+                $where .= " and aagentcitys like :keyword ";
+
+                $params[':keyword'] = '%'.$citys.'%';
+
+            }
+
+            if($_GPC['aagenttype'] == 3){
+
+                $where .= " and aagentareas like :keyword ";
+
+                $params[':keyword'] = '%'.$areas.'%';
+
+            }
+
+            $is_abonus = pdo_fetchcolumn('select count(id) from '.tablename('ewei_shop_member')." where ".$where,$params);
+
+            if(!empty($is_abonus)){
+
+                show_json(0,'该区域已存在代理,请选择其他地区或联系平台');
+            }
+
+            $data = array(
+                'isaagent' => 1,
+                'aagentstatus' => 1,
+                'mobile' => trim($_GPC['mobile']),
+                'weixin' => trim($_GPC['weixin']),
+                'aagenttime' => 0,
+                'aagentlevel'  => $level_id,
+                'aagenttype' => intval($_GPC['aagenttype']),
+                'aagentprovinces' => $provinces,
+                'aagentcitys' => $citys,
+                'aagentareas' => $areas
+            );
+
+            pdo_update('ewei_shop_member', $data, array('id' => $member['id']));
+
+            m('member')->setCredit($member['openid'],'credit2',$money,[$_W['uid'],'申请代理消费'],400);
+
+            if (!(empty($member['uid'])))
+            {
+                m('member')->mc_update($member['uid'], array('mobile' => $data['mobile']));
+            }
+
 			show_json(1);
 		}
+
 		include $this->template();
 	}
 }

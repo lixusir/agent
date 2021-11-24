@@ -109,7 +109,7 @@ define(['core', 'tpl'], function (core, tpl) {
             modal.chance = Number(modal.chance);
             changed_num =  Number(changed_num);
             if ( modal.chance>0 && changed_num > modal.chance) {
-                FoxUI.toast.show('每人限兑'+modal.chance+'件!');
+                FoxUI.toast.show('每人限'+modal.chance+'件!');
                 return
             }
             if (!changed_num > 0) {
@@ -184,7 +184,7 @@ define(['core', 'tpl'], function (core, tpl) {
                 return
             }
             if ( modal.chance>0 && changed_num > modal.chance) {
-                FoxUI.toast.show('每人限兑'+modal.chance+'件!');
+                FoxUI.toast.show('每人限'+modal.chance+'件!');
                 return
             }
             modal.num = changed_num;
@@ -304,7 +304,7 @@ define(['core', 'tpl'], function (core, tpl) {
                         return
                     }
                     if (modal.storeid == 0) {
-                        FoxUI.toast.show('请选择兑换门店!');
+                        FoxUI.toast.show('请选择支付门店!');
                         return
                     }
                 } else if ((goods.isverify == 0 && goods.goodstype == 0)) {
@@ -314,7 +314,7 @@ define(['core', 'tpl'], function (core, tpl) {
                     }
                 }
                 FoxUI.message.show({
-                    title: "确认要兑换吗？",
+                    title: "确认要支付吗？",
                     icon: 'icon icon-information',
                     content: '',
                     buttons: [{
@@ -548,6 +548,7 @@ define(['core', 'tpl'], function (core, tpl) {
         }
     };
     modal.pay = function () {
+
         core.json('creditshop/detail/pay', {
             id: modal.goods.id,
             optionid: modal.optionid,
@@ -684,7 +685,7 @@ define(['core', 'tpl'], function (core, tpl) {
                 if (result.status == 2) {
                     setTimeout(function () {
                         FoxUI.message.show({
-                            title: "恭喜您，兑换成功!",
+                            title: "恭喜您，支付成功!",
                             icon: 'icon icon-success',
                             content: '',
                             buttons: [{
@@ -705,7 +706,7 @@ define(['core', 'tpl'], function (core, tpl) {
                     }
                     ;setTimeout(function () {
                         FoxUI.message.show({
-                            title: "恭喜您，" + str + "兑换成功!",
+                            title: "恭喜您，" + str + "支付成功!",
                             icon: 'icon icon-success',
                             content: '',
                             buttons: [{

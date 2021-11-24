@@ -185,7 +185,7 @@ class Member_EweiShopV2Model {
     }
 
     //处理积分或余额
-    public function setCredit($openid = '', $credittype = 'credit1', $credits = 0, $log = array()) {
+    public function setCredit($openid = '', $credittype = 'credit1', $credits = 0, $log = array(),$change_type=0) {
 
         global $_W;
         load()->model('mc');
@@ -282,6 +282,7 @@ class Member_EweiShopV2Model {
         //新增商城积分(余额)记录表
         $log_data['openid'] = $openid;
         $log_data['presentcredit'] = $a;
+        $log_data['change_type'] = $change_type;
         pdo_insert('ewei_shop_member_credit_record', $log_data);
 
 

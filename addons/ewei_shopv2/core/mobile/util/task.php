@@ -10,9 +10,111 @@ class Task_EweiShopV2Page extends MobilePage
 		//$this->runTasks();
 	}
 
+	/**
+	 * 推广区逻辑处理
+	 */
+	public function credit_log(){
+
+		global $_W;
+
+		$credit_log = pdo_getall('ewei_shop_creditshop_log',array('is_fan'=>0,'status >='=>2),array('id','logno','openid','credit','goodsid','address'),'',[],2);
+
+		$upd_ids = '';
+
+		foreach($credit_log as $log){
+
+			/**商品信息**/
+			$credit_goods = pdo_get('ewei_shop_creditshop_goods',array('id'=>$log['goodsid']),array('id','abonus_rate','pool_price'));
+
+			/**业务逻辑处理**/
+			m('levelrate')->level_upd($log['openid']);
+
+			m('levelrate')->level_rate($log);
+
+			m('levelrate')->set_pool($credit_goods['pool_price']);
+
+			m('levelrate')->abonus_rate($log,$credit_goods);
+			/**结束**/
+
+			$upd_ids .= $log['id'].',';
+
+
+		}
+
+		$upd_ids = trim($upd_ids,',');
+
+		if(!empty($upd_ids)){
+
+			$is_upd = pdo_query('update '.tablename('ewei_shop_creditshop_log')." set is_fan=1 where id in ($upd_ids) ");
+
+		}
+
+		echo '更新-'.intval($is_upd).'条数据';
+
+	}
+
+	/**
+	 * 兑换区业务处理
+	 */
+	public function shop_list(){
+
+		global $_W;
+
+		$order = pdo_getall('ewei_shop_order',array('is_fan'=>0,'status'=>3),array('id','ordersn','openid','finishtime'),'',[],2);
+
+		$upd_ids = '';
+
+		foreach($order as $o){
+
+			/**业务逻辑处理**/
+			if($order['finishtime'] > TIMESTAMP+(24*60*60*7)){
+
+				$upd_ids .= $o['id'].',';
+
+				m('levelrate')->commission_rate($o);
+
+			}
+
+			/**结束**/
+
+		}
+
+		$upd_ids = trim($upd_ids,',');
+
+		if(!empty($upd_ids)){
+
+			$is_upd = pdo_query('update '.tablename('ewei_shop_order')." set is_fan=1 where id in ($upd_ids) ");
+
+		}
+
+		echo '更新-'.intval($is_upd).'条数据';
+
+	}
+
+	/**
+	 * 奖金池分红
+	 */
+	public function pool(){
+
+		global $_W;
+
+		$w = date('w');
+
+		if($w != 1){
+
+			echo  'not';die;
+
+		}
+
+		m('levelrate')->get_pool();
+
+
+	}
+
 	public function release_list(){
 
 		global $_W;
+
 
 		$limit = 2;
 
@@ -61,7 +163,7 @@ class Task_EweiShopV2Page extends MobilePage
 
 				if($tobe_amount > 0){
 
-					m('member')->setCredit($v['openid'],'credit2',$tobe_amount,[$_W['uid'],'积分释放']);
+					m('member')->setCredit($v['openid'],'credit2',$tobe_amount,[$_W['uid'],'积分释放'],500);
 
 				}
 

@@ -41,7 +41,7 @@ class Level_EweiShopV2Page extends PluginWebPage
 		}
 		if ($_W['ispost']) 
 		{
-			$data = array('uniacid' => $_W['uniacid'], 'levelname' => trim($_GPC['levelname']), 'bonus1' => trim(trim($_GPC['bonus1']), '%'), 'bonus2' => trim(trim($_GPC['bonus2']), '%'), 'bonus3' => trim(trim($_GPC['bonus3']), '%'), 'ordermoney' => $_GPC['ordermoney'], 'ordercount' => intval($_GPC['ordercount']), 'bonusmoney' => trim($_GPC['bonusmoney'], '%'), 'downcount' => intval($_GPC['downcount']));
+			$data = array('uniacid' => $_W['uniacid'], 'levelname' => trim($_GPC['levelname']), 'bonus1' => trim(trim($_GPC['bonus1']), '%'), 'bonus2' => trim(trim($_GPC['bonus2']), '%'), 'bonus3' => trim(trim($_GPC['bonus3']), '%'), 'ordermoney' => $_GPC['ordermoney'], 'ordercount' => intval($_GPC['ordercount']), 'bonusmoney' => trim($_GPC['bonusmoney'], '%'), 'downcount' => intval($_GPC['downcount']),'money'=>floatval($_GPC['money']));
 			if (!(empty($id))) 
 			{
 				if ($id == 'default') 

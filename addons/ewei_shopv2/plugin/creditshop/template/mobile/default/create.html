@@ -89,7 +89,7 @@
                     </div>
                     <div class='fui-list-angle'>
                         <span class='marketprice'>
-                            {$goods['credit']}{$_W['shopset']['trade']['credittext']}{if $goods['money']>0}<br />&yen;{$goods['money']}{/if}
+                            {$goods['credit']}余额{if $goods['money']>0}<br />&yen;{$goods['money']}{/if}
 				            {if $goods['type'] == 1}<br/>   x 1{/if}
                         </span>
                     </div>
@@ -154,8 +154,8 @@
                 <div class="fui-cell-label">商品小计</div>
                 <div class="fui-cell-info"></div>
                 <div class="fui-cell-remark noremark">
-                    <span id="showcredit">{$goods['credit']}</span>{$_W['shopset']['trade']['credittext']}
-                    + &yen;<span id="showmoney">{$goods['money']}</span>
+                    <span id="showcredit">{$goods['credit']}</span>余额
+                    <!--+ &yen;<span id="showmoney">{$goods['money']}</span>-->
                 </div>
             </div>
             {if $goods['goodstype']==0 && $goods['type']==0 && $goods['isverify']==0}
@@ -178,7 +178,7 @@
         <p class="nav-item" style="width:10%;text-align: left;padding:0.3rem;font-size:0.7rem;">
             需付{if $goods['isverify'] == 0 && $goods['goodstype']==0 && $goods['type']==0 && $goods['dispatch'] > 0}(含运费){/if}：
             <span class="text-danger2" style="background: none;">
-                <span id="realcredit">{$goods['credit']}</span>{$_W['shopset']['trade']['credittext']}
+                <span id="realcredit">{$goods['credit']}</span>余额
                 {if $goods['money'] > 0 || $goods['dispatch'] >0}+
                     {if is_array($goods['dispatch'])}
                         &yen;<span class="moneydispatch">{php echo number_format($goods['money'] + $goods['dispatch']['max'],2)}</span>

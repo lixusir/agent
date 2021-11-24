@@ -198,7 +198,7 @@
 					{elseif $row['dispatchstatus']==0}<span class='text-default'>未支付运费</span>
 					{elseif $row['dispatchstatus']==1}<span class='text-primary'>已支付运费</span> {/if}
 				</td>
-				<td>{if $row['credit']>0}-{php echo $row['credit']*$row['goods_num']}积分<br/>{/if} {if $row['money']>0 || $row['dispatch'] > 0} -{php echo number_format($row['money']*$row['goods_num'] + $row['dispatch'],2)}现金 {/if}
+				<td>{if $row['credit']>0}-{php echo $row['credit']*$row['goods_num']}余额<br/>{/if} {if $row['money']>0 || $row['dispatch'] > 0} -{php echo number_format($row['money']*$row['goods_num'] + $row['dispatch'],2)}现金 {/if}
 				</td>
 				{if $type == 5 || $type == 6 || $type == 7}
 				<td>

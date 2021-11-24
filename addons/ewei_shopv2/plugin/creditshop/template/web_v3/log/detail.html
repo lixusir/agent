@@ -46,7 +46,7 @@
             <label class="col-lg control-label">消耗</label>
             <div class="col-sm-9 col-xs-12">
                 <div class='form-control-static'>
-                {if $goods['credit']>0}-{$goods['credit']}积分<br/>{/if}
+                {if $goods['credit']>0}-{$goods['credit']}余额<br/>{/if}
                 {if $goods['money'] > 0} -{php echo number_format($goods['money'] + $log['dispatch'],2)}现金
                     {if $log['dispatch']>0}（含运费:{php echo number_format($log['dispatch'],2)}）{/if}<br />{/if}
                 <!--{if $log['dispatch'] > 0}{/if}-->
