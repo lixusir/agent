@@ -25,6 +25,24 @@ if (!function_exists('m')) {
     }
 }
 
+if(!function_exists('invete_code')){
+
+    function invete_code($length){
+
+        $rand = '123456789QWERTYUIOPASDFGHJKLZXCVBNMqwertyuiopasdfghjklzxcvbnm';
+
+        $str = '';
+
+        for($i=0;$i<$length;$i++){
+
+            $str .= $rand[rand(0,strlen($rand)-1)];
+
+        }
+
+        return $str;
+    }
+}
+
 //加载数据缓存模型
 if (!function_exists('d')) {
     function d($name = '')

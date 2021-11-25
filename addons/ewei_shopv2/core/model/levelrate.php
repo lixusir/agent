@@ -100,7 +100,7 @@ class Levelrate_EweiShopV2Model{
         //团队有效会员+业绩
         $this->team_user($v['id'],$team_data);
 
-        $team_num = !empty($team_data)?count($team_data):0;
+        $team_num = !empty($team_data)?count($team_data):0;unset($team_data);
 
         if(!empty($team_data)){
 

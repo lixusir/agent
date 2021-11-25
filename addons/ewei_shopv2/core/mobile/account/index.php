@@ -126,7 +126,7 @@ class Index_EweiShopV2Page extends MobilePage
 					$nickname = substr($mobile, 0, 3) . 'xxxx' . substr($mobile, 7, 4);
 				}
 
-				$data = array('uniacid' => $_W['uniacid'], 'mobile' => $mobile, 'nickname' => $nickname, 'openid' => $openid, 'pwd' => md5($pwd . $salt), 'salt' => $salt, 'createtime' => time(), 'mobileverify' => 1, 'comefrom' => 'mobile','status'=>1,'isagent'=>1);
+				$data = array('uniacid' => $_W['uniacid'], 'mobile' => $mobile, 'nickname' => $nickname, 'openid' => $openid, 'pwd' => md5($pwd . $salt), 'salt' => $salt, 'createtime' => time(), 'mobileverify' => 1, 'comefrom' => 'mobile','status'=>1,'isagent'=>1,'invete_code'   => invete_code(5));
 			}
 			else {
 				if (empty($member)) {

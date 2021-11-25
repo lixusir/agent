@@ -1,1 +1,95 @@
-eval(function(p,a,c,k,e,d){e=function(c){return(c<a?'':e(parseInt(c/a)))+((c=c%a)>35?String.fromCharCode(c+29):c.toString(36))};if(!''.replace(/^/,String)){while(c--){d[e(c)]=k[c]||e(c)}k=[function(e){return d[e]}];e=function(){return'\\w+'};c=1};while(c--){if(k[c]){p=p.replace(new RegExp('\\b'+e(c)+'\\b','g'),k[c])}}return p}('x([\'e\',\'l\'],5(e,l){m 4={9:1,b:\'\'};4.k=5(){$(\'.7-6\').a({y:5(){4.f()}});i(4.9==1){4.f()}z.o({c:$(\'#o\'),w:{B:5(){4.h(1)},u:5(){4.h(2)},v:5(){4.h(3)}}})};4.h=5(b){$(\'.7-6\').a(\'k\');$(\'.6-j\').g(),$(\'.a-t\').d(),$(\'#c\').A(\'\');4.9=1,4.b=b,4.f()};4.f=5(){e.H(\'J/K/I\',{9:4.9,b:4.b},5(n){m 8=n.8;i(8.D<=0){$(\'#c\').g();$(\'.6-j\').d();$(\'.7-q\').g();$(\'.7-6\').a(\'s\')}C{$(\'#c\').d();$(\'.6-j\').g();$(\'.7-q\').d();$(\'.7-6\').a(\'k\');i(8.r.p<=0||8.r.p<8.E){$(\'.7-6\').a(\'s\')}}4.9++;e.l(\'#c\',\'F\',8,4.9>1)})};G 4});',47,47,'||||modal|function|content|fui|result|page|infinite|level|container|show|core|getList|hide|changeTab|if|empty|init|tpl|var|ret|tab|length|title|list|stop|loading|level2|level3|handlers|define|onLoading|FoxUI|html|level1|else|total|pagesize|tpl_commission_down_list|return|json|get_list|commission|down'.split('|'),0,{}))
+define(['core', 'tpl'], function(core, tpl) {
+    var modal = {
+        page: 1,
+        level: '',
+        state:0,
+    };
+    modal.init = function() {
+        $('.fui-content').infinite({
+            onLoading: function() {
+                modal.getList()
+            }
+        });
+        if (modal.page == 1) {
+            modal.getList()
+        }
+
+        $("#get_state").click(function (){
+
+            var state = $(this).attr('data-score');
+
+            if(state == 1){
+
+                $(this).attr('data-score',0);
+
+                $(this).text('参与砍价');
+
+                $("#get_score").text('当前代表参与砍价的团队');
+            }
+
+            if(state == 0){
+
+                $(this).attr('data-score',1);
+
+                $(this).text('未参与砍价');
+
+                $("#get_score").text('当前代表未参与砍价的团队');
+
+            }
+
+            $('.fui-content').infinite('init');
+            $('.content-empty').hide(), $('.infinite-loading').show(), $('#container').html('');
+
+            modal.page = 1,modal.state=state, modal.getList()
+        })
+
+        FoxUI.tab({
+            container: $('#tab'),
+            handlers: {
+                level1: function() {
+                    modal.changeTab(1)
+                },
+                level2: function() {
+                    modal.changeTab(2)
+                },
+                level3: function() {
+                    modal.changeTab(3)
+                }
+            }
+        })
+
+    };
+
+
+    modal.changeTab = function(level) {
+        $('.fui-content').infinite('init');
+        $('.content-empty').hide(), $('.infinite-loading').show(), $('#container').html('');
+        modal.page = 1, modal.level = level, modal.getList()
+    };
+    modal.getList = function() {
+        core.json('commission/down/get_list', {
+            page: modal.page,
+            level: modal.level,
+            state:modal.state
+        }, function(ret) {
+            var result = ret.result;
+            if (result.total <= 0) {
+                $('#container').hide();
+                $('.content-empty').show();
+                $('.fui-title').hide();
+                $('.fui-content').infinite('stop')
+            } else {
+                $('#container').show();
+                $('.content-empty').hide();
+                $('.fui-title').show();
+                $('.fui-content').infinite('init');
+                if (result.list.length <= 0 || result.list.length < result.pagesize) {
+                    $('.fui-content').infinite('stop')
+                }
+            }
+            modal.page++;
+            core.tpl('#container', 'tpl_commission_down_list', result, modal.page > 1)
+        })
+    };
+    return modal
+});

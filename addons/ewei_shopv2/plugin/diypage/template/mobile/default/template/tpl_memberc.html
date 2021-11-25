@@ -43,20 +43,15 @@
         <div class="child">
             <div class="title" style="color: {$diyitem['style']['textcolor']};">{$diyitem['params']['textsuccesswithdraw']}</div>
             <div class="num" style="color: {$diyitem['style']['textlight']};">{$diyitem['params']['successwithdraw']}</div>
-            {if !empty($diyitem['params']['leftnav'])}
             <a class="btn" style="color: {$diyitem['style']['textcolor']}; border-color: {$diyitem['style']['textcolor']};" href="{$diyitem['params']['leftnavlink']}" data-nocache="true">{$diyitem['params']['leftnav']}</a>
-            {/if}
         </div>
         <div class="child userinfo" style="color: {$diyitem['style']['textcolor']};">
-            <div class="face {$diyitem['style']['headstyle']}"><img src="{$diyitem['params']['avatar']}"></div>
+            <div class="face {$diyitem['style']['headstyle']}"><img src="{$diyitem['params']['avatar']}" onerror="this.src='../addons/ewei_shopv2/static/images/noface.png'"></div>
             <div class="name">{$diyitem['params']['nickname']}</div>
             <div class="level">[{$diyitem['params']['levelname']}]</div>
-            {if empty($diyitem['params']['hideup'])}
-            <div class="level">{$diyitem['params']['upname']}: {$diyitem['params']['upmember']}</div>
-            {/if}
-            {if $diyitem['params']['hideicode'] == '0'}
-            <div class="text" style="color: {$diyitem['style']['textcolor']};">{$diyitem['params']['texticode']}：{if p("offic")}{$diyitem['params']['mobile']}{else}{$diyitem['params']['mid']}{/if}</div>
-            {/if}
+            <div class="level">[{$diyitem['params']['aagentlevelname']}]</div>
+            <div class="text" style="color: {$diyitem['style']['textcolor']};">{$diyitem['params']['texticode']}：{$diyitem['params']['hideicode']}</div>
+
         </div>
         <div class="child">
             <div class="title" style="color: {$diyitem['style']['textcolor']};">{$diyitem['params']['textcanwithdraw']}</div>

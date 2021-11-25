@@ -442,7 +442,7 @@ class Index_EweiShopV2Page extends WebPage {
 			}
 
             if (is_null($data['invoice_entity'])){
-			    show_json(0,'请至少选择一种发票类型');
+			   // show_json(0,'请至少选择一种发票类型');
             }
             rsort($data['invoice_entity']);
             $data['invoice_entity'] = implode('',$data['invoice_entity']);

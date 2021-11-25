@@ -322,7 +322,7 @@
             <input type="checkbox" name="data[withdrawcashcard]" value="1" id="withdrawcashcard" {if !empty($data['withdrawcashcard'])}checked="true"{/if} /> 手动提现到银行卡
         </label>
 
-        <div class='help-block'>支持的银行请到<a href='{php echo webUrl('commission/bank')}' target='_blank'>【银行设置】</a>进行设置,使用手动提现到银行卡必须设置支持的银行</div>
+        <div class='help-block'>支持的银行请到<a href='{php echo webUrl('system/bank')}' target='_blank'>【银行设置】</a>进行设置,使用手动提现到银行卡必须设置支持的银行</div>
 
         <div class='help-block'>提示: 提现方式支持多选</div>
         {else} <div class='form-control-static'>

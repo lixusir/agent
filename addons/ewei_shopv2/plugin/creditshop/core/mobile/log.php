@@ -71,7 +71,11 @@ class Log_EweiShopV2Page extends PluginMobileLoginPage
 		else if ($status == 3)
 		{
 			$condition .= ' and log.status = 3 ';
-		}
+		}else if($status == 4){
+
+		    $condition .= " and log.status = 3 and log.time_finish > 0 ";
+
+        }
 		$sql = 'SELECT COUNT(*) FROM ' . tablename('ewei_shop_creditshop_log') . ' log' . "\r\n" . '                left join ' . tablename('ewei_shop_creditshop_goods') . ' g on log.goodsid = g.id' . "\r\n" . '                where 1 ' . $condition;
 		$total = pdo_fetchcolumn($sql, $params);
 		$list = array();

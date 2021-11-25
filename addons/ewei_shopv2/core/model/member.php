@@ -252,7 +252,6 @@ class Member_EweiShopV2Model {
             if ($newcredit <= 0) {
                 $newcredit = 0;
             }
-            $log_data['remark'] = $log_data['remark']. " 剩余: ".$newcredit;
             pdo_update('mc_members', array($credittype => $newcredit), array('uid' => $uid));
             $a = $newcredit;
             $log_data['presentcredit'] = $a;
@@ -266,7 +265,6 @@ class Member_EweiShopV2Model {
                 $newcredit = 0;
             }
             pdo_update('ewei_shop_member', array($credittype => $newcredit), array('uniacid' => $_W['uniacid'], 'openid' => $openid));
-            $log_data['remark'] = $log_data['remark']. " 剩余: ".$newcredit;
             $a = $newcredit;
             $log_data['presentcredit'] = $a;
             pdo_insert('mc_credits_record', $log_data);
@@ -443,6 +441,7 @@ class Member_EweiShopV2Model {
 				'createtime' => time(),
 				'status' => 1,
                 'isagent'   => 1,
+                'invete_code'   => invete_code(5)
 			);
 
                 pdo_insert('ewei_shop_member', $member);
@@ -584,134 +583,8 @@ class Member_EweiShopV2Model {
         return $data;
     }
 
-    /**
-     * 会员升级
-     *
-     * @param type $mid
-     * @param $orderid
-     * @param $status int 3-订单完成 1-订单付款后 增加了一个付款后和订单完成后升级的选项,所以增加了一个status的状态显示
-     */
-    function upgradeLevel($openid, $orderid = 0, $status = 3) {
-        global $_W;
-        if (empty($openid)) {
-            return;
-        }
 
-        $shopset = m('common')->getSysset('shop');
-        $leveltype = intval($shopset['leveltype']);
-        $member = m('member')->getMember($openid);
-        if (empty($member)) {
-            return;
-        }
 
-        //查找符合条件的新等级
-        $level = false;
-        if (empty($leveltype)) {
-            /*$ordermoney = pdo_fetchcolumn('select ifnull( sum(og.realprice),0) from ' . tablename('ewei_shop_order_goods') . ' og '
-                . ' left join ' . tablename('ewei_shop_order') . ' o on o.id=og.orderid '
-                . ' where o.openid=:openid and o.status=3 and o.uniacid=:uniacid ', array(':uniacid' => $_W['uniacid'], ':openid' => $member['openid']));*/
-            //根据订单支付金额来判断   -- yqj --
-            $ordermoney = pdo_fetchcolumn('select sum(price) from ' . tablename('ewei_shop_order') . " where uniacid=:uniacid and openid=:openid and status=:status limit 1", array(':uniacid' => $_W['uniacid'], ':openid' => $member['openid'], ':status' => $status));
-            $ordermoney = floatval($ordermoney);
-            $level = pdo_fetch('select * from ' . tablename('ewei_shop_member_level') . " where uniacid=:uniacid  and enabled=1 and {$ordermoney} >= ordermoney and ordermoney>0  order by level desc limit 1", array(':uniacid' => $_W['uniacid']));
-        } else if ($leveltype == 1) {
-            $ordercount = pdo_fetchcolumn('select count(*) from ' . tablename('ewei_shop_order') . ' where openid=:openid and status=:status and uniacid=:uniacid ', array(':uniacid' => $_W['uniacid'], ':openid' => $member['openid'],':status' => $status));
-            $level = pdo_fetch('select * from ' . tablename('ewei_shop_member_level') . " where uniacid=:uniacid and enabled=1 and {$ordercount} >= ordercount and ordercount>0  order by level desc limit 1", array(':uniacid' => $_W['uniacid']));
-        }
-
-        //购买特定商品达到的会员级别
-        if (!empty($orderid)) {
-            $goods_level = $this->getGoodsLevel($openid, $orderid);
-            if (empty($level)) {
-                $level = $goods_level;
-            } else {
-                if (!empty($goods_level)) {
-                    if ($goods_level['level'] > $level['level']) {
-                        $level = $goods_level;
-                    }
-                }
-            }
-        }
-
-        if (empty($level)) {
-            return;
-        }
-        if ($level['id'] == $member['level']) {
-            return;
-        }
-        //旧等级
-        $oldlevel = $this->getLevel($openid);
-        $canupgrade = false;  //是否可以升级
-
-        if (empty($oldlevel['id'])) {
-            //用户没有等级
-            $canupgrade = true;
-        } else {
-            if ($level['level'] > $oldlevel['level']) {
-                //新等级权重较大
-                $canupgrade = true;
-            }
-        }
-        if ($canupgrade) {
-            //会员升级
-            pdo_update('ewei_shop_member', array('level' => $level['id']), array('id' => $member['id']));
-
-            //com('wxcard')->updateMemberCardByOpenid($openid);
-            com_run('wxcard::updateMemberCardByOpenid',$openid);
-
-            //模板消息
-            m('notice')->sendMemberUpgradeMessage($openid, $oldlevel, $level);
-        }
-    }
-
-    /**
-     * 根据会员等级ID升级会员
-     * @param type $mid
-     */
-    function upgradeLevelByLevelId($openid, $LevelID) {
-        global $_W;
-        if (empty($openid)) {
-            return;
-        }
-
-        $member = m('member')->getMember($openid);
-        if (empty($member)) {
-            return;
-        }
-
-        $level = pdo_fetch('select *  from ' . tablename('ewei_shop_member_level') . " where uniacid=:uniacid and enabled=1 and id=:id",  array(':uniacid' => $_W['uniacid'],':id' =>$LevelID));
-
-        if (empty($level)) {
-            return;
-        }
-        if ($level['id'] == $member['level']) {
-            return;
-        }
-
-        //旧等级
-        $oldlevel = $this->getLevel($openid);
-        $canupgrade = false;  //是否可以升级
-
-        if (empty($oldlevel['id'])) {
-            //用户没有等级
-            $canupgrade = true;
-        } else {
-            if ($level['level'] > $oldlevel['level']) {
-                //新等级权重较大
-                $canupgrade = true;
-            }
-        }
-        if ($canupgrade) {
-            //会员升级
-            pdo_update('ewei_shop_member', array('level' => $level['id']), array('id' => $member['id']));
-
-            //com('wxcard')->updateMemberCardByOpenid($openid);
-            com_run('wxcard::updateMemberCardByOpenid',$openid);
-
-            //模板消息
-            m('notice')->sendMemberUpgradeMessage($openid, $oldlevel, $level);
-        }
-    }
 
     /**
      * 获取所有会员分组
@@ -1128,4 +1001,27 @@ class Member_EweiShopV2Model {
     }
 
 
+    /**
+     * 推广区数据
+     */
+    public function member_credit($openid){
+
+        global $_W;
+
+        $credit_log = pdo_fetch('select sum(credit+get_score) as get_score,sum(release_score) as release_score from '.tablename('ewei_shop_creditshop_log')." where openid=:openid and status >=2 and uniacid=:uniacid ",array(':openid'=>$openid,':uniacid'=>$_W['uniacid']));
+
+        if(empty($credit_log)){
+
+            return [
+                'get_score'     => 0,
+                'release_score' => 0
+            ];
+        }else{
+
+            return [
+                'get_score'     => bcsub($credit_log['get_score'],$credit_log['release_score'],2),
+                'release_score' => $credit_log['release_score'],
+            ];
+        }
+    }
 }

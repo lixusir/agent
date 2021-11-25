@@ -62,7 +62,7 @@
                                         <label style="background-color: {$diyitem['style']['buybtncolor']}; padding: 0px 2px; color: #fff; font-size: 0.6rem">砍价</label>
                                     {/if}
                                     {if !empty($diyitem['params']['goodstype']) && $diyitem['params']['showtag']>0}
-                                        <label style="background-color: {$diyitem['style']['tagbackground']}; padding: 0px 2px; color: #fff; font-size: 0.6rem">{if $diyitem['params']['showtag']==1&&$goodsitem['productprice']>0}&yen{$goodsitem['productprice']}{elseif $diyitem['params']['showtag']==2}{if $goodsitem['gtype']==0}商品{elseif $goodsitem['gtype']==1}优惠券{elseif $goodsitem['gtype']==2}余额{elseif $goodsitem['gtype']==3}红包{/if}{elseif $diyitem['params']['showtag']==3}{if $goodsitem['ctype']==1}抽奖{else}兑换{/if}{/if}</label>
+                                        <label style="background-color: {$diyitem['style']['tagbackground']}; padding: 0px 2px; color: #fff; font-size: 0.6rem">{if $diyitem['params']['showtag']==1&&$goodsitem['productprice']>0}&yen{$goodsitem['productprice']}{elseif $diyitem['params']['showtag']==2}{if $goodsitem['gtype']==0}商品{elseif $goodsitem['gtype']==1}优惠券{elseif $goodsitem['gtype']==2}余额{elseif $goodsitem['gtype']==3}红包{/if}{elseif $diyitem['params']['showtag']==3}{if $goodsitem['ctype']==1}抽奖{else}购买{/if}{/if}</label>
                                     {/if}
 
                                     {if $goodsitem['ctype']==9}
@@ -118,7 +118,7 @@
                                     {if !empty($goodsitem['ctype'])}
                                         <span class="buy buybtn-2" style="background-color: {$diyitem['style']['buybtncolor']};">抽奖</span>
                                     {else}
-                                    <span class="buy buybtn-3" style="background-color: {$diyitem['style']['buybtncolor']};">兑换</span>
+                                    <span class="buy buybtn-3" style="background-color: {$diyitem['style']['buybtncolor']};">购买</span>
                                     {/if}
                                     {elseif $goodsitem['ctype']==9}
                                         <span class="cycelbuy" style="border-color: {$diyitem['style']['buybtncolor']};color:  {$diyitem['style']['buybtncolor']}">详情</span>
@@ -191,7 +191,7 @@
                                         <label style="background-color: {$diyitem['style']['buybtncolor']}; padding: 0px 2px; color: #fff; font-size: 0.6rem">砍价</label>
                                         {/if}
                                         {if !empty($diyitem['params']['goodstype']) && $diyitem['params']['showtag']>0}
-                                            <label style="background-color: {$diyitem['style']['tagbackground']}; padding: 0px 2px; color: #fff; font-size: 0.6rem">{if $diyitem['params']['showtag']==1&&$goodsitem['productprice']>0}&yen{$goodsitem['productprice']}{elseif $diyitem['params']['showtag']==2}{if $goodsitem['gtype']==0}商品{elseif $goodsitem['gtype']==1}优惠券{elseif $goodsitem['gtype']==2}余额{elseif $goodsitem['gtype']==3}红包{/if}{elseif $diyitem['params']['showtag']==3}{if $goodsitem['ctype']==1}抽奖{else}兑换{/if}{/if}</label>
+                                            <label style="background-color: {$diyitem['style']['tagbackground']}; padding: 0px 2px; color: #fff; font-size: 0.6rem">{if $diyitem['params']['showtag']==1&&$goodsitem['productprice']>0}&yen{$goodsitem['productprice']}{elseif $diyitem['params']['showtag']==2}{if $goodsitem['gtype']==0}商品{elseif $goodsitem['gtype']==1}优惠券{elseif $goodsitem['gtype']==2}余额{elseif $goodsitem['gtype']==3}红包{/if}{elseif $diyitem['params']['showtag']==3}{if $goodsitem['ctype']==1}抽奖{else}购买{/if}{/if}</label>
                                         {/if}
 
                                         {if $goodsitem['ctype']==9}
@@ -246,7 +246,7 @@
                                         {if !empty($goodsitem['ctype'])}
                                         <span class="buy buybtn-3" style="background-color: {$diyitem['style']['buybtncolor']};">抽奖</span>
                                        {else}
-                                    <span class="buy buybtn-3" style="background-color: {$diyitem['style']['buybtncolor']};">兑换</span>
+                                    <span class="buy buybtn-3" style="background-color: {$diyitem['style']['buybtncolor']};">购买</span>
                                         {/if}
                                         {elseif $goodsitem['ctype']==9}
                                         <span class="cycelbuy" style="border-color: {$diyitem['style']['buybtncolor']};color:  {$diyitem['style']['buybtncolor']}">详情</span>

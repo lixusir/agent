@@ -265,7 +265,8 @@ class Bargain_EweiShopV2Page extends PluginMobileLoginPage {
             'oid'       => $res2['id'],
             'score'     => $bargain_price,
             'createtime'=> TIMESTAMP,
-            'state'     => $state
+            'state'     => $state,
+            'get_openid'=> $res2['openid']
         ];
 
         $res_id = pdo_insert('ewei_shop_creditshop_bargain',$bargain_data);

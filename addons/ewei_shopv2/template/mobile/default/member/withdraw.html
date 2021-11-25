@@ -142,6 +142,7 @@
         </div>
         {/if}
         <a id='btn-next' class='btn btn-danger block disabled '>提现</a>
+        <a href="{php echo mobileUrl('member/log',array('type'=>1))}" class='btn btn-warning block'>提现记录</a>
         <div class='fui-cell-group' style="background: transparent;padding: .4rem 0;margin: 0;{if empty($withdrawcharge)}display: none;{/if}  ">
             <div class='fui-cell no-border'>
                 <div class='fui-cell-info' id="chargeinfo">详细说明</div>

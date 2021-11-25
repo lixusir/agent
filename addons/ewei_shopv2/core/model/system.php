@@ -1307,6 +1307,10 @@ class System_EweiShopV2Model
                         'title'=>'交易',
                         'items'=>array(
                             array(
+                                'title'=>'银行卡',
+                                'route'=>'bank'
+                            ),
+                            array(
                                 'title'=>'交易设置',
                                 'route'=>'trade'
                             ),

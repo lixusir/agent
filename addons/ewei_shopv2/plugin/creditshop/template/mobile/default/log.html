@@ -26,8 +26,9 @@
     </div>
     <div id="tab" class="fui-tab fui-tab-danger">
         <a data-tab="tab0"  class="external {if $_GPC['status']=='0'|| empty($_GPC['status'])}active{/if}" data-status='0'>全部记录</a>
-        <a data-tab="tab1"  class="external {if $_GPC['status']=='2'}active{/if}" data-status='2'>待收货</a>
-        <a data-tab="tab2"  class="external {if $_GPC['status']=='3'}active{/if}" data-status='3'>已完成</a>
+        <a data-tab="tab1"  class="external {if $_GPC['status']=='2'}active{/if}" data-status='2'>待发货</a>
+        <a data-tab="tab2"  class="external {if $_GPC['status']=='3'}active{/if}" data-status='3'>待收货</a>
+        <a data-tab="tab2"  class="external {if $_GPC['status']=='3'}active{/if}" data-status='4'>已完成</a>
 <!--        <a data-tab="tab2" class="external {if $_GPC['status']=='2'}active{/if}"  data-status='2'>中奖记录</a>-->
     </div>
 

@@ -27,11 +27,11 @@ class Qrcode_EweiShopV2Page extends CommissionMobileLoginPage
 			$this->message('没有开启推广二维码!', mobileUrl('commission'), 'info');
 		}
 
-		if (empty($set['become_reg'])) {
+		/*if (empty($set['become_reg'])) {
 			if (empty($member['realname'])) {
 				$this->message('需要您完善资料才能继续操作!', mobileUrl('member/info', array('returnurl' => $returnurl)), 'info');
 			}
-		}
+		}*/
 
 		$myshop = $this->model->getShop($member['id']);
 		$share_goods = false;

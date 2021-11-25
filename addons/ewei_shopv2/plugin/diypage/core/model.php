@@ -1041,21 +1041,25 @@ class DiypageModel extends PluginModel
                     } elseif ($item['id'] == 'memberc') {
                         $member = $this->member;
                         $commission = $this->commission;
-
                         $item['params']['mid'] = $member['id'];
                         $item['params']['mobile'] = $member['mobile'];
                         $item['params']['avatar'] = $member['avatar'];
                         $item['params']['nickname'] = $member['nickname'];
-                        $item['params']['levelname'] = $member['commissionlevelname'];
+                        $item['params']['levelname'] = m('member')->getlevel($member['openid'])['levelname'];
+                        $item['params']['aagentlevelname'] = p('abonus')->getlevel($member['openid'])['levelname'];
                         $item['params']['textyaun'] = $commission['set']['texts']['yuan'];
-                        $item['params']['textsuccesswithdraw'] = $commission['set']['texts']['commission_pay'];
-                        $item['params']['textcanwithdraw'] = $commission['set']['texts']['commission_ok'];
-                        $item['params']['successwithdraw'] = number_format($member['commission_pay'], 2);
-                        $item['params']['canwithdraw'] = number_format($member['commission_ok'], 2);
+                        $item['params']['textsuccesswithdraw'] = '待释放总积分';
+                        $item['params']['textcanwithdraw'] = '已释放总积分';
+                        $item['params']['leftnavlink'] = mobileUrl('member/release_log');
+                        $item['params']['rightnavlink'] = mobileUrl('member/log_credit',['type'=>500]);
+                        $item['params']['leftnav'] = '明细';
+                        $item['params']['rightnav'] = '明细';
+                        $item['params']['successwithdraw'] = $member['credit_log']['get_score'];
+                        $item['params']['canwithdraw'] = $member['credit_log']['release_score'];
                         $item['params']['upname'] = $commission['set']['texts']['up'];
                         $item['params']['upmember'] = empty($member['up']) ? "总店" : $member['up']['nickname'];
                         $item['params']['texticode'] = $commission['set']['texts']['icode'];
-                        $item['params']['hideicode'] = $commission['set']['hideicode'];
+                        $item['params']['hideicode'] = $member['invete_code'];
                     } elseif ($item['id'] == 'commission_sharecode') {
                         $item['params']['icode'] = p("offic") ? $member['mobile'] : $member['id'];
                         $item['params']['texticode'] = $commission['set']['texts']['icode'];
@@ -1920,6 +1924,21 @@ class DiypageModel extends PluginModel
             $member['levelname'] = $level['levelname'];
         }
 
+        $member['credit_log'] = m('member')->member_credit($member['openid']);
+
+        $member['withdraw'] = floatval(pdo_getcolumn('ewei_shop_member_log',array('type'=>1,'openid'=>$this->member['openid'],'status'=>1),array('sum(money)')));
+
+        //分销佣金
+        $member['commission_price'] = pdo_fetchcolumn('select sum(num) from '.tablename('ewei_shop_member_credit_record')." where change_type in (600,700) and openid=:o ",array(':o'=>$member['openid']));
+
+        //区域分红
+        $member['abonus_price'] = pdo_fetchcolumn('select sum(num) from '.tablename('ewei_shop_member_credit_record')." where change_type in (401,402,403) and openid=:o ",array(':o'=>$member['openid']));
+
+        //团队分红
+        $member['team_price'] = pdo_fetchcolumn('select sum(num) from '.tablename('ewei_shop_member_credit_record')." where change_type in (100,200) and openid=:o ",array(':o'=>$member['openid']));
+
+
+
         $this->member = $member;
 
         // 判断 处理 订单数量信息
@@ -2028,9 +2047,18 @@ class DiypageModel extends PluginModel
             }
             return 0;
         } elseif ($type == 'tipnum') {
-            if (strexists($str, "r=commission.withdraw")) {
-                return $this->commission['commission_total'];
-            } elseif (strexists($str, "r=commission.order")) {
+            if (strexists($str, "r=member.log_credit")) {
+                return $this->member['credit2'];
+            }
+            if (strexists($str, "r=member.withdraw")) {
+                return $this->member['withdraw'];
+            } if (strexists($str, "r=member.commission")) {
+                return $this->member['commission_price'];
+            }if (strexists($str, "r=member.team_rate")) {
+                return $this->member['team_price'];
+            }if (strexists($str, "r=member.abonus")) {
+                return $this->member['abonus_price'];
+            }elseif (strexists($str, "r=commission.order")) {
                 return $this->commission['ordercount0'];
             } elseif (strexists($str, "r=commission.log")) {
                 return $this->commission['applycount'];
@@ -2039,7 +2067,17 @@ class DiypageModel extends PluginModel
             }
             return "";
         } elseif ($type == 'tiptext') {
-            if (strexists($str, "r=commission.withdraw")) {
+            if (strexists($str, "r=member.log_credit")) {
+                return '元';
+            }
+            if (strexists($str, "r=member.commission")) {
+                return '元';
+            }if (strexists($str, "r=member.team_rate")) {
+                return '元';
+            }if (strexists($str, "r=member.abonus")) {
+                return '元';
+            }
+            if (strexists($str, "r=member.withdraw")) {
                 return $this->commission['set']['texts']['yuan'];
             } elseif (strexists($str, "r=commission.order") || strexists($str, "r=commission.log")) {
                 return "笔";

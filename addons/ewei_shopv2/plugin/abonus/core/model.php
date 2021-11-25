@@ -541,7 +541,7 @@ if (!(class_exists('AbonusModel'))) {
 			$member = m('member')->getMember($openid);
 
 			if (empty($member['aagentlevel'])) {
-				return false;
+				return ['levelname'=>'无代理'];
 			}
 
 

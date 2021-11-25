@@ -31,10 +31,11 @@ define(['core', 'tpl'], function (core, tpl) {
         }
     };
     modal.changeTab = function (type) {
-        $('.container').html(''), $('.infinite-loading').show(), $('.content-empty').hide(), modal.page = 1, modal.type = type, modal.getList()
+        $('.container').html(''),
+            $('.infinite-loading').show(), $('.content-empty').hide(), modal.page = 1, modal.type = type, modal.getList()
     };
     modal.getList = function () {
-        core.json('member/log/get_list', {page: modal.page, type: modal.type}, function (ret) {
+        core.json('member/log_credit/get_list', {page: modal.page, type: modal.type}, function (ret) {
             var result = ret.result;
             if (result.total <= 0) {
                 $('.container').hide();
@@ -49,7 +50,8 @@ define(['core', 'tpl'], function (core, tpl) {
                 }
             }
 
-            core.tpl('.container', 'tpl_member_log_list', result, modal.page > 1);
+            core.tpl('.container', 'tpl_member_log_list1', result, modal.page > 1);
+
             if($('.goods-item').length <= result.pagesize) {
                 modal.page++;
             }

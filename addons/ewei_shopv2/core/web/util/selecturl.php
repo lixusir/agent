@@ -114,30 +114,35 @@ class Selecturl_EweiShopV2Page extends WebPage
 					7  => array('name' => '我的收藏', 'url' => mobileUrl('member/favorite', array(), $full), 'url_wxapp' => '/pages/member/favorite/index'),
 					8  => array('name' => '我的足迹', 'url' => mobileUrl('member/history', array(), $full), 'url_wxapp' => '/pages/member/history/index'),
 					9  => array('name' => '会员充值', 'url' => mobileUrl('member/recharge', array(), $full), 'url_wxapp' => '/pages/member/recharge/index'),
-					10 => array('name' => '余额明细', 'url' => mobileUrl('member/log', array(), $full), 'url_wxapp' => '/pages/member/log/index'),
+					10 => array('name' => '充值记录', 'url' => mobileUrl('member/log', array(), $full), 'url_wxapp' => '/pages/member/log/index'),
 					11 => array('name' => '余额提现', 'url' => mobileUrl('member/withdraw', array(), $full), 'url_wxapp' => '/pages/member/withdraw/index'),
 					12 => array('name' => '我的资料', 'url' => mobileUrl('member/info', array(), $full), 'url_wxapp' => '/pages/member/info/index'),
-					13 => array('name' => '积分排行', 'url' => mobileUrl('member/rank', array(), $full), 'url_wxapp' => ''),
+					//13 => array('name' => '积分排行', 'url' => mobileUrl('member/rank', array(), $full), 'url_wxapp' => ''),
 					14 => array('name' => '消费排行', 'url' => mobileUrl('member/rank/order_rank', array(), $full), 'url_wxapp' => ''),
 					16 => array('name' => '收货地址管理', 'url' => mobileUrl('member/address', array(), $full), 'url_wxapp' => '/pages/member/address/index'),
-					18 => array('name' => '我的全返', 'url' => mobileUrl('member/fullback', array(), $full), 'url_wxapp' => ''),
-					19 => array('name' => '记次时商品', 'url' => mobileUrl('verifygoods', array(), $full), 'url_wxapp' => '')
+					19 => array('name' => '记次时商品', 'url' => mobileUrl('verifygoods', array(), $full), 'url_wxapp' => ''),
+					20 => array('name' => '资产流水', 'url' => mobileUrl('member/log_credit', array(), $full), 'url_wxapp' => '/pages/member/log/index'),
+					21 => array('name' => '我的团队', 'url' => mobileUrl('commission/down', NULL, $full), 'url_wxapp' => ''),
+					22 => array('name' => '区域分红', 'url' => mobileUrl('member/abonus', NULL, $full), 'url_wxapp' => ''),
+					24 => array('name' => '团队分红', 'url' => mobileUrl('member/team_rate', NULL, $full), 'url_wxapp' => ''),
+					25 => array('name' => '分销佣金', 'url' => mobileUrl('member/commission', NULL, $full), 'url_wxapp' => ''),
+					26 => array('name' => '退出登录', 'url' => mobileUrl('account/logout', NULL, $full), 'url_wxapp' => ''),
 				)
 			)
 		);
 
 		if ($platform) {
 			if (cv('creditshop') && p('creditshop')) {
-				$allUrls[0]['list'][] = array('name' => '积分商城', 'url' => mobileUrl(NULL, NULL, $full), 'url_wxapp' => '/pages/creditshop/index');
+				$allUrls[0]['list'][] = array('name' => '推广区', 'url' => mobileUrl(NULL, NULL, $full), 'url_wxapp' => '/pages/creditshop/index');
 			}
             $allUrls[0]["list"][] = array('name' => '店铺街', 'url_wxapp' => '/pages/changce/merch/index');
             $allUrls[0]['list'][] = array('name' => '店铺街入驻', 'url' => mobileUrl('', NULL, $full), 'url_wxapp' => '/pages/changce/merch/apply');
 			$allUrls[0]['list'][] = array('name' => '文章营销', 'url' => mobileUrl('', NULL, $full), 'url_wxapp' => '/pages/changce/article/list');
 			$allUrls[0]['list'][] = array('name' => '积分签到', 'url' => mobileUrl('', NULL, $full), 'url_wxapp' => '/pages/zy/sign/index');
 
-			if (cv('commission') && p('commission')) {
+			/*if (cv('commission') && p('commission')) {
 				$allUrls[0]['list'][] = array('name' => '分销中心', 'url' => mobileUrl('commission', NULL, $full), 'url_wxapp' => '/pages/transfer/commission/index');
-			}
+			}*/
 
 			$allUrls[2]['list'][] = array('name' => '我的全返', 'url' => mobileUrl('member/fullback', array(), $full), 'url_wxapp' => '/commission/pages/return/index');
 			$allUrls[2]['list'][] = array('name' => '记次时商品', 'url' => mobileUrl('verifygoods', array(), $full), 'url_wxapp' => '/pages/verifygoods/index');
@@ -147,7 +152,7 @@ class Selecturl_EweiShopV2Page extends WebPage
 				}
 			}
 
-			if (cv('groups') && p('groups')) {
+			/*if (cv('groups') && p('groups')) {
 				$allUrls[0]['list'][] = array('name' => '拼团首页', 'url' => mobileUrl('', NULL, $full), 'url_wxapp' => '/pages/transfer/groups/index');
 			}
 
@@ -157,7 +162,7 @@ class Selecturl_EweiShopV2Page extends WebPage
 
 			if (cv('groups') && p('bargain')) {
 				$allUrls[0]['list'][] = array('name' => '砍价首页', 'url' => mobileUrl('', NULL, $full), 'url_wxapp' => '/pages/transfer/bargain/index');
-			}
+			}*/
 		}
 
 		if (p('cycelbuy')) {
@@ -229,7 +234,7 @@ class Selecturl_EweiShopV2Page extends WebPage
 			}
 		}
 
-		if (cv('commission.agent.edit') && p('commission') && !$platform) {
+		/*if (cv('commission.agent.edit') && p('commission') && !$platform) {
 			$allUrls[] = array(
 				'name' => m('plugin')->getName('commission'),
 				'list' => array(
@@ -246,7 +251,7 @@ class Selecturl_EweiShopV2Page extends WebPage
 					array('name' => '自选商品', 'url' => mobileUrl('commission/myshop/select', NULL, $full), 'url_wxapp' => '')
 				)
 			);
-		}
+		}*/
 
 		if (cv('offic.system.edit') && p('offic') && !$platform) {
 			$allUrls[] = array(
@@ -277,7 +282,7 @@ class Selecturl_EweiShopV2Page extends WebPage
 				array('name' => '我的优惠券', 'url' => mobileUrl('sale/coupon/my', NULL, $full), 'url_wxapp' => '/pages/sale/coupon/my/index/index')
 			)
 		);
-		if (cv('groups.goods.edit') && p('groups') && !$platform) {
+		/*if (cv('groups.goods.edit') && p('groups') && !$platform) {
 			$allUrls[] = array(
 				'name' => m('plugin')->getName('groups'),
 				'list' => array(
@@ -287,7 +292,7 @@ class Selecturl_EweiShopV2Page extends WebPage
 					array('name' => '我的团', 'url' => mobileUrl('groups/team', NULL, $full), 'url_wxapp' => '')
 				)
 			);
-		}
+		}*/
 
 		if (cv('mr.goods.edit') && p('mr') && !$platform) {
 			$allUrls[] = array(
@@ -299,7 +304,7 @@ class Selecturl_EweiShopV2Page extends WebPage
 			);
 		}
 
-		if (cv('sns.adv.edit') && p('sns') && !$platform) {
+		/*if (cv('sns.adv.edit') && p('sns') && !$platform) {
 			$allUrls[] = array(
 				'name' => m('plugin')->getName('sns'),
 				'list' => array(
@@ -318,7 +323,7 @@ class Selecturl_EweiShopV2Page extends WebPage
 					array('name' => '签到排行', 'url' => mobileUrl('sign/rank', NULL, $full), 'url_wxapp' => '')
 				)
 			);
-		}
+		}*/
 
 		if (cv('qa.adv.edit') && p('qa') && !$platform) {
 			$allUrls[] = array(
@@ -331,7 +336,7 @@ class Selecturl_EweiShopV2Page extends WebPage
 			);
 		}
 
-		if (cv('bargain.react') && p('bargain') && !$platform) {
+		/*if (cv('bargain.react') && p('bargain') && !$platform) {
 			$allUrls[] = array(
 				'name' => m('plugin')->getName('bargain'),
 				'list' => array(
@@ -347,21 +352,24 @@ class Selecturl_EweiShopV2Page extends WebPage
 					array('name' => '首页', 'url' => mobileUrl('task', NULL, $full), 'url_wxapp' => '')
 				)
 			);
-		}
+		}*/
 
 		if (cv('creditshop.goods.edit') && p('creditshop') && !$platform) {
 			$allUrls[] = array(
-				'name' => m('plugin')->getName('creditshop'),
+				'name' => '推广区',
 				'list' => array(
 					array('name' => '商城首页', 'url' => mobileUrl('creditshop', NULL, $full), 'url_wxapp' => ''),
 					array('name' => '全部商品', 'url' => mobileUrl('creditshop/lists', NULL, $full), 'url_wxapp' => ''),
 					array('name' => '我的', 'url' => mobileUrl('creditshop/log', NULL, $full), 'url_wxapp' => ''),
-					array('name' => '参与记录', 'url' => mobileUrl('creditshop/creditlog', NULL, $full), 'url_wxapp' => '')
+					array('name' => '全部订单', 'url' => mobileUrl('creditshop/log',array('status'=>0), NULL, $full), 'url_wxapp' => ''),
+					array('name' => '待发货', 'url' => mobileUrl('creditshop/log',array('status'=>2), NULL, $full), 'url_wxapp' => ''),
+					array('name' => '待收货', 'url' => mobileUrl('creditshop/log',array('status'=>3), NULL, $full), 'url_wxapp' => ''),
+					array('name' => '已完成', 'url' => mobileUrl('creditshop/log',array('status'=>4), NULL, $full), 'url_wxapp' => '')
 				)
 			);
 		}
 
-		if (cv('seckill.task.edit') && p('seckill') && !$platform) {
+		/*if (cv('seckill.task.edit') && p('seckill') && !$platform) {
 			$allUrls[] = array(
 				'name' => m('plugin')->getName('seckill'),
 				'list' => array(
@@ -386,7 +394,7 @@ class Selecturl_EweiShopV2Page extends WebPage
 					array('name' => '股东首页', 'url' => mobileUrl('globonus', NULL, $full), 'url_wxapp' => '')
 				)
 			);
-		}
+		}*/
 
 		if (p('open_messikefu')) {
 			$key = pdo_fetch('SELECT id FROM ' . tablename('ewei_shop_open_plugin') . ' WHERE `status` =1 and plugin = :plugin', array(':plugin' => 'open_messikefu'));

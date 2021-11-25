@@ -15,14 +15,10 @@ class Down_EweiShopV2Page extends CommissionMobileLoginPage
 		$levelcount2 = $member['level2'];
 		$levelcount3 = $member['level3'];
 		$level1 = $level2 = $level3 = 0;
-		$level1 = pdo_fetchcolumn('select count(*) from ' . tablename('ewei_shop_member') . ' where agentid=:agentid and uniacid=:uniacid limit 1', array(':agentid' => $member['id'], ':uniacid' => $_W['uniacid']));
-		if ((2 <= $this->set['level']) && (0 < $levelcount1)) {
-			$level2 = pdo_fetchcolumn('select count(*) from ' . tablename('ewei_shop_member') . ' where agentid in( ' . implode(',', array_keys($member['level1_agentids'])) . ') and uniacid=:uniacid limit 1', array(':uniacid' => $_W['uniacid']));
-		}
 
-		if ((3 <= $this->set['level']) && (0 < $levelcount2)) {
-			$level3 = pdo_fetchcolumn('select count(*) from ' . tablename('ewei_shop_member') . ' where agentid in( ' . implode(',', array_keys($member['level2_agentids'])) . ') and uniacid=:uniacid limit 1', array(':uniacid' => $_W['uniacid']));
-		}
+		$level1 = pdo_fetchcolumn('select count(*) from ' . tablename('ewei_shop_member') . ' where agentid=:agentid and uniacid=:uniacid limit 1', array(':agentid' => $member['id'], ':uniacid' => $_W['uniacid']));
+
+		$level2 = pdo_fetchcolumn('select count(*) from ' . tablename('ewei_shop_member') . ' where agentid in( ' . implode(',', array_keys($member['level1_agentids'])) . ') and uniacid=:uniacid limit 1', array(':uniacid' => $_W['uniacid']));
 
 		$total = $level1 + $level2 + $level3;
 		include $this->template();
@@ -43,55 +39,64 @@ class Down_EweiShopV2Page extends CommissionMobileLoginPage
 		$levelcount3 = $member['level3'];
 		$pindex = max(1, intval($_GPC['page']));
 		$psize = 20;
+		$state = intval($_GPC['state']);//0 未参与砍价的团队,1=参与砍价的团队
+
+		$credit_log = pdo_getall('ewei_shop_creditshop_bargain',array('get_openid'=>$member['openid']),array('openid'));
+
+		$openids = '';
+
+		foreach($credit_log as $lo){
+
+			$openids .= "'".$lo['openid']."',";
+
+		}
+
+		if(!empty($state)){
+
+			$condition = " and openid in (".trim($openids,',').") ";
+
+		}else{
+
+			$condition = " and openid not in (".trim($openids,',').") ";
+
+		}
 
 		if ($level == 1) {
-			$condition = ' and agentid=' . $member['id'];
+
+
+			$condition .= ' and agentid=' . $member['id'];
+
 			$hasangent = true;
-			$total_level = pdo_fetchcolumn('select count(*) from ' . tablename('ewei_shop_member') . ' where agentid=:agentid and uniacid=:uniacid limit 1', array(':agentid' => $member['id'], ':uniacid' => $_W['uniacid']));
+
+			$total_level = pdo_fetchcolumn('select count(*) from ' . tablename('ewei_shop_member') . ' where 1 '.$condition.' and uniacid=:uniacid limit 1', array( ':uniacid' => $_W['uniacid']));
+
+
 		}
-		else if ($level == 2) {
+		if ($level == 2) {
+
 			if (empty($levelcount1)) {
-				show_json(1, array(
-	'list'     => array(),
-	'total'    => 0,
-	'pagesize' => $psize
-	));
-			}
-
-			$condition = ' and agentid in( ' . implode(',', array_keys($member['level1_agentids'])) . ')';
-			$hasangent = true;
-			$total_level = pdo_fetchcolumn('select count(*) from ' . tablename('ewei_shop_member') . ' where agentid in( ' . implode(',', array_keys($member['level1_agentids'])) . ') and uniacid=:uniacid limit 1', array(':uniacid' => $_W['uniacid']));
-		}
-		else {
-			if ($level == 3) {
-				if (empty($levelcount2)) {
 					show_json(1, array(
-	'list'     => array(),
-	'total'    => 0,
-	'pagesize' => $psize
-	));
-				}
-
-				$condition = ' and agentid in( ' . implode(',', array_keys($member['level2_agentids'])) . ')';
-				$hasangent = true;
-				$total_level = pdo_fetchcolumn('select count(*) from ' . tablename('ewei_shop_member') . ' where agentid in( ' . implode(',', array_keys($member['level2_agentids'])) . ') and uniacid=:uniacid limit 1', array(':uniacid' => $_W['uniacid']));
+						'list'     => array(),
+						'total'    => 0,
+						'pagesize' => $psize
+					)
+				);
 			}
+
+			$condition .= ' and agentid in( ' . implode(',', array_keys($member['level1_agentids'])) . ')';
+
+			$hasangent = true;
+
+			$total_level = pdo_fetchcolumn('select count(*) from ' . tablename('ewei_shop_member') . ' where 1 '.$condition.' and uniacid=:uniacid limit 1', array(':uniacid' => $_W['uniacid']));
+
 		}
 
-		$list = pdo_fetchall('select * from ' . tablename('ewei_shop_member') . ' where uniacid = ' . $_W['uniacid'] . ' ' . $condition . '  ORDER BY isagent desc,id desc limit ' . (($pindex - 1) * $psize) . ',' . $psize);
+		$list = pdo_fetchall('select id,avatar,nickname,mobile,createtime from ' . tablename('ewei_shop_member') . ' where uniacid = ' . $_W['uniacid'] . ' ' . $condition . '  ORDER BY isagent desc,id desc limit ' . (($pindex - 1) * $psize) . ',' . $psize);
 
 		foreach ($list as &$row) {
-			if ($member['isagent'] && $member['status']) {
-				$info = $this->model->getInfo($row['openid'], array('total'));
-				$row['commission_total'] = $info['commission_total'];
-				$row['agentcount'] = $info['agentcount'];
-				$row['agenttime'] = date('Y-m-d H:i', $row['agenttime']);
-			}
 
-			$ordercount = pdo_fetchcolumn('select count(id) from ' . tablename('ewei_shop_order') . ' where openid=:openid and uniacid=:uniacid limit 1', array(':uniacid' => $_W['uniacid'], ':openid' => $row['openid']));
-			$row['ordercount'] = number_format(intval($ordercount), 0);
-			$moneycount = pdo_fetchcolumn('select sum(og.realprice) from ' . tablename('ewei_shop_order_goods') . ' og ' . ' left join ' . tablename('ewei_shop_order') . ' o on og.orderid=o.id where o.openid=:openid  and o.status>=1 and o.uniacid=:uniacid limit 1', array(':uniacid' => $_W['uniacid'], ':openid' => $row['openid']));
-			$row['moneycount'] = number_format(floatval($moneycount), 2);
+			$row['avatar'] = $row['avatar']?tomedia($row['avatar']):'../addons/ewei_shopv2/static/images/noface.png';
+
 			$row['createtime'] = date('Y-m-d H:i', $row['createtime']);
 		}
 
