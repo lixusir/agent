@@ -838,6 +838,10 @@ class System_EweiShopV2Model
                         'route'=>'level'
                     ),
                     array(
+                        'title'=>'奖金池记录',
+                        'route'=>'pool_log'
+                    ),
+                   /* array(
                         'title'=>'标签组',
                         'route'=>'group'
                     ),
@@ -854,7 +858,7 @@ class System_EweiShopV2Model
                             'member.card.post',
                             'member.card.activationset'
                         )
-                    )
+                    )*/
                 )
             ),
 
