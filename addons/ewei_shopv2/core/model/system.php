@@ -839,7 +839,7 @@ class System_EweiShopV2Model
                     ),
                     array(
                         'title'=>'奖金池记录',
-                        'route'=>'pool_log'
+                        'route'=>'poollog'
                     ),
                    /* array(
                         'title'=>'标签组',
