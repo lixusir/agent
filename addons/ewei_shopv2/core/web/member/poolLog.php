@@ -1,6 +1,6 @@
 <?php
 
-class PoolLog_EweiShopV2Page extends PluginWebPage{
+class PoolLog_EweiShopV2Page extends WebPage {
 
     public function main(){
 
