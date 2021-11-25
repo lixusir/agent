@@ -127,6 +127,7 @@ class Selecturl_EweiShopV2Page extends WebPage
 					24 => array('name' => '团队分红', 'url' => mobileUrl('member/team_rate', NULL, $full), 'url_wxapp' => ''),
 					25 => array('name' => '分销佣金', 'url' => mobileUrl('member/commission', NULL, $full), 'url_wxapp' => ''),
 					26 => array('name' => '退出登录', 'url' => mobileUrl('account/logout', NULL, $full), 'url_wxapp' => ''),
+					27 => array('name' => '推广二维码', 'url' => mobileUrl('commission/qrcode', NULL, $full), 'url_wxapp' => ''),
 				)
 			)
 		);
@@ -245,7 +246,7 @@ class Selecturl_EweiShopV2Page extends WebPage
 					array('name' => '分销订单', 'url' => mobileUrl('commission/order', NULL, $full), 'url_wxapp' => ''),
 					array('name' => '我的下线', 'url' => mobileUrl('commission/down', NULL, $full), 'url_wxapp' => ''),
 					array('name' => '提现明细', 'url' => mobileUrl('commission/log', NULL, $full), 'url_wxapp' => ''),
-					array('name' => '推广二维码', 'url' => mobileUrl('commission/qrcode', NULL, $full), 'url_wxapp' => ''),
+
 					array('name' => '小店设置', 'url' => mobileUrl('commission/myshop/set', NULL, $full), 'url_wxapp' => ''),
 					array('name' => '佣金排名', 'url' => mobileUrl('commission/rank', NULL, $full), 'url_wxapp' => ''),
 					array('name' => '自选商品', 'url' => mobileUrl('commission/myshop/select', NULL, $full), 'url_wxapp' => '')
