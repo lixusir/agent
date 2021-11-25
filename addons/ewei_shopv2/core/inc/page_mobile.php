@@ -401,11 +401,11 @@ class MobilePage extends Page
 			}
 		}
 
-		if (!empty($diypagedata)) {
+		/*if (empty($diypagedata)) {
 			$diypageid = $diypagedata['page'][$type];
 
-			if (!empty($diypageid)) {
-				$page = p('diypage')->getPage($diypageid, true);
+			if (!empty($diypageid)) {*/
+				$page = p('diypage')->getPage(6, true);
 
 				if (!empty($page)) {
 					p('diypage')->setShare($page);
@@ -481,8 +481,8 @@ class MobilePage extends Page
 					include $this->template('diypage');
 					exit();
 				}
-			}
-		}
+			/*}
+		}*/
 	}
 
 	public function diyLayer($v = false, $diy = false, $merch = false, $goods = array(), $order = array())
