@@ -27,7 +27,7 @@
                                             <select name="type" class='form-control'>
                                                 <option value="" {if $_GPC['type'] == ''} selected{/if}>类型</option>
                                                 <option value="1" {if $_GPC['type'] == '1'} selected{/if}>商城</option>
-                                                <option value="2" {if $_GPC['type'] == '2'} selected{/if}>小店</option>
+                                                <option value="2" {if $_GPC['type'] == '2'} selected{/if}>分享</option>
                                                 <option value="3" {if $_GPC['type'] == '3'} selected{/if}>商品</option>
                                                 <option value="4" {if $_GPC['type'] == '4'} selected{/if}>关注</option>
                                             </select>
@@ -75,7 +75,7 @@
                             {if $row['type']==1}
                             <label class='label label-primary'>商城</label>
                             {elseif $row['type']==2}
-                            <label class='label label-success'>小店</label>
+                            <label class='label label-success'>分享</label>
                             {elseif $row['type']==3}
                             <label class='label label-warning'>商品</label>
                             {elseif $row['type']==4}

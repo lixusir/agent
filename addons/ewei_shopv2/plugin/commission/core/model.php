@@ -1273,7 +1273,7 @@ if (!class_exists('CommissionModel')) {
                 load()->func('file');
                 mkdirs($path);
             }
-            $url = mobileUrl('commission/myshop', array('mid' => $mid), true);
+            $url = mobileUrl('diypage/index', array('mid' => $mid,'id'=>5), true);
             if (!empty($posterid)) {
                 $url .= '&posterid=' . $posterid;
             }
