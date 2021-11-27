@@ -1,1 +1,572 @@
-eval(function(p,a,c,k,e,d){e=function(c){return(c<a?'':e(parseInt(c/a)))+((c=c%a)>35?String.fromCharCode(c+29):c.toString(36))};if(!''.replace(/^/,String)){while(c--){d[e(c)]=k[c]||e(c)}k=[function(e){return d[e]}];e=function(){return'\\w+'};c=1};while(c--){if(k[c]){p=p.replace(new RegExp('\\b'+e(c)+'\\b','g'),k[c])}}return p}('3D([\'g\',\'M\'],5(g,M){c 4={8:B,q:0,J:0,P:0,14:0};4.2O=5(U){4.8=8=U.8;4.T=0;4.l=0;4.1F=1;4.1y=1;c 1w=B;6(22(18.1X)!==\'1Z\'){1w=18.1X;4.T=1w.9;$(\'#2c\').p(1w.2c);29 18.1X}6(4.8.2W){$(\'.1c-2C\').2C({32:5(){$(".1c-2T .n").1s("n-s").1q("n-1r").2N("9").p("活动已结束")}})};$(".28").15("j").19("j",5(){4.2f(4.1F,4.8.9)});$(".26").15("j").19("j",5(){4.2q(4.1y,4.8.9)});c 2X=B;6(22(18.1I)!==\'1Z\'){4.12=18.1I;4.11=4.12.9;$("#2Y").p(4.12.12);$("#2G").a().1f("1x").13(4.12.J);$("#2w").a().1f("1x").13(4.12.P);29 18.1I}4.1A=5(1i){4.1i=1i;6(!8.2S){f.r.a(8.34);h}6(8.31==\'1\'&&!8.30){f.A.a({E:"提示",d:\'d d-2E\',F:8.2Z,S:[{p:\'立即去关注\',w:\'n-s\',z:5(){H.R=8.2Q}}]});h}4.J=$.1K($(\'#2G\').13());4.P=$.1K($(\'#2w\').13());6(8.1l==0){6(8.2U==1){6(4.J==\'\'){f.r.a(\'请填写真实姓名!\');h}6(4.P==\'\'){f.r.a(\'请填写联系电话!\');h}6(4.T==0){f.r.a(\'请选择兑换门店!\');h}}e{6(!4.11&&8.1C==0){f.r.a(\'请选择收货地址!\');h}}f.A.a({E:"确认要兑换吗？",d:\'d d-2E\',F:\'\',S:[{p:\'确定\',w:\'n-s\',z:5(){4.1j(8)}},{p:\'取消\',w:\'n-33\',z:5(){}}]});h}e{4.1j(8)}};$(10).j(5(){$(\'1x\').K(5(){$(b).16(\'1a-1h\',$(b).13())})});$(\'1x\').K(5(){c 1h=$(b).16(\'1a-1h\')||\'\';6(1h!=\'\'){$(b).13(1h)}});$("#2i").15("j").19("j",5(){6($(b).2V().2p("n-s")){6(4.l==0&&8.2o==1){4.24();g.k(\'t/v/x\',{L:4.8.9},5(o){6(o.G==0){f.r.a(\'未找到商品!\');h}e{4.u=o.7.u;4.N=o.7.N;4.C=o.7.8;4.8.9=4.8.9;$(".1S").16("1E",4.C.I);$(".1H").m(4.C.1N);$(".1P").m(4.C.1D);$(".1J").m(4.C.D);g.M(\'.x-Y-N\',\'x-Y-M\',o.7);$(".W-y").15(\'j\').19("j",5(){4.1z(b)})}});4.1b.a();h}H.R=g.Q(\'t/2n\',{9:8.9,l:4.l})}e{f.r.a($(b).m());h}});$("#l").15("j").19("j",5(){4.24();g.k(\'t/v/x\',{L:4.8.9},5(o){6(o.G==0){f.r.a(\'未找到商品!\');h}e{4.u=o.7.u;4.N=o.7.N;4.C=o.7.8;4.8.9=4.8.9;$(".1S").16("1E",4.C.I);$(".1H").m(4.C.1N);$(".1P").m(4.C.1D);$(".1J").m(4.C.D);g.M(\'.x-Y-N\',\'x-Y-M\',o.7);$(".W-y").15(\'j\').19("j",5(){4.1z(b)})}});4.1b.a()})};4.2f=5(17,L){g.k(\'t/v/2P\',{17:17,L:L},5(o){c 7=o.7;6(7.D<=0){$(".28").X()}e{6(7.1B.O<=0||7.1B.O<7.2b){$(".28").X()}}4.1F++;g.M(\'#2R\',\'36\',7,4.1F>1)})};4.2q=5(17,L){g.k(\'t/v/3l\',{17:17,L:L},5(o){c 7=o.7;6(7.D<=0){$(".26").X()}e{6(7.1B.O<=0||7.1B.O<7.2b){$(".26").X()}}4.1y++;g.M(\'#3p\',\'3q\',7,4.1y>1)})};4.2i=5(2l){f.3r.a("选择支付方式",[{p:\'微信支付\',w:\'i\',z:5(){4.1A(\'i\')}},{p:\'支付宝支付\',w:\'V\',z:5(){4.1A(\'V\')}},{p:\'余额支付\',w:\'2k\',z:5(){4.1A(\'2k\')}},],2l)};4.24=5(){4.1b=3s 3t({F:$(\'#x-Y\').m(),w:\'Y-4\',3v:5(){4.1b.1W()}});$(".d-3o").j(5(){4.1b.1W()});$(".1Q").j(5(){6($(b).2p("1r")){f.r.a($(b).m());h}e{6(4.l!=0&&8.2o==1){H.R=g.Q(\'t/2n\',{9:8.9,l:4.l})}e{3w(\'请选择完整规格！\')}}})};4.3x=5(){$(".W-y").1s(\'n-s\');c l=4.l;c u=B;$.K(4.N,5(){6(b.9==l){u=b.u.2y(\'1t\');h B}});6(u){c y=B;c 1k=[];$(".W-y").K(5(){c y=$(b),2m=y.1a(\'9\');$.K(u,5(){6(b==2m){1k.1L(y);y.1q(\'n-s\')}})});6(1k.O>0){c 2h=1k[1k.O-1];4.1z(2h,B)}}};4.1z=5(2e,2A){c $b=$(2e);$b.3y(\'.W\').1f(\'.W-y\').1s(\'n-s\'),$b.1q(\'n-s\');c I=$b.1a(\'I\')||\'\';6(I){$(\'.1S\').16(\'1E\',I)}e{I=4.8.I}4.3z=I;c 1n=$(".W-y.n-s");c 1T=[];6(1n.O==4.u.O){1n.K(5(){1T.1L($(b).1a(\'9\'))});$.K(4.N,5(){c u=b.u.2y(\'1t\').2M().2L(\'1t\');6(u==1T.2M().2L(\'1t\')){c 1R=b.D==\'-1\'?\'无限\':b.1R;$(\'.D\').m(1R);6(b.D!=\'-1\'&&b.D<=0){$(\'.1Q\').a().1q(\'1r\').m(\'库存不足\')}e{$(\'.1Q\').1s(\'1r\').m(\'确定\');$(\'.1P\').m(b.1D);$(\'.1H\').m(b.1N);4.x=b;4.l=b.9}}})}6(4.x){c 1o=[];1n.K(5(){1o.1L($.1K($(b).m()))});$(\'.3A-1o\').m(\'已选 \'+4.x.E);$(".1J").m(4.x.D);$("#l").m(4.x.E);6(2A){6(4.U.2z){4.U.2z(4.U.D,4.U.l,4.U.1o)}}}};4.1j=5(){g.k(\'t/v/1j\',{9:4.8.9,l:4.l,11:4.11,T:4.T,J:4.J,P:4.P,1i:4.1i},5(k){6(k.G!=1){f.r.a(k.7.A);h}c 7=k.7;4.q=7.q;6(7.i){c i=7.i;6(i.35){5 1m(){2x.3B(\'3C\',{\'2u\':i.2v?i.2v:i.2u,\'2t\':i.2t,\'2r\':i.2r,\'2s\':i.2s,\'2B\':i.2B,\'2D\':i.2D,},5(25){6(25.2H==\'2J:3u\'){4.Z(4.8)}e 6(25.2H==\'2J:3n\'){f.r.a(\'取消支付\')}e{g.k(\'t/v/1j\',{9:4.8.9,l:4.l,11:4.11,T:4.T,J:4.J,P:4.P,2K:1},5(23){4.q=23.7.q;4.1V(23.7.i)},B,1d)}})}6 (22 2x == "1Z"){6( 10.2F ){10.2F(\'2I\', 1m, B)}e 6 (10.1M){10.1M(\'2I\', 1m);10.1M(\'37\', 1m)}}e{1m()}}6(i.3m||i.2K==1){4.1V(i)}}e 6(7.V){c V=7.V;6(!V.1g){f.r.a(\'支付参数错误！\')}H.R=g.Q(\'1G/3k\',{9:8.9,q:7.q,1l:20,1U:V.1U})}e{4.Z(4.8)}},1d,1d)};4.1V=5(i){c 2a=g.Q(\'3j/3i\',{1U:i.3h});$(\'#3g\').p(4.8.1D);$(\'.1c-27\').X();$(\'#3f\').2j(\'j\').j(5(){1p(4.14);$(\'.1G-1Y-21\').X();$(\'.1c-27\').a()});$(\'.1G-1Y-21\').a();4.14=3e(5(){4.Z(4.8)},3d);$(\'.2g-2d\').1f(\'.1W\').2j(\'j\').j(5(){$(\'.1G-1Y-21\').X();$(\'.1c-27\').a();1p(4.14)});$(\'.2g-2d\').1f(\'.3c\').16(\'1E\',2a).a()};4.Z=5(8){c 1l=8.1l;6(1l==0){g.k(\'t/v/Z\',{9:4.8.9,q:4.q},5(k){c 7=k.7;6(7.G==-1){f.r.a(k.7.A);h}1p(4.14);6(7.G==2){1O(5(){f.A.a({E:"恭喜您，兑换成功!",d:\'d d-1g\',F:\'\',S:[{p:\'确定\',w:\'n-s\',z:5(){H.R=g.Q(\'t/1u/v\',{9:4.q,1v:1})}}]})},1)}e 6(7.G==3){c 1e="优惠券";6(7.1C==1){1e="优惠券"}e 6(7.1C==2){1e="余额"}e 6(7.1C==3){1e="红包"}1O(5(){f.A.a({E:"恭喜您，"+1e+"兑换成功!",d:\'d d-1g\',F:\'\',S:[{p:\'确定\',w:\'n-s\',z:5(){H.R=g.Q(\'t/1u/v\',{9:4.q,1v:1})}}]})},1)}},B,1d)}e{f.A.a({E:\'\',d:\'d d-3b\',F:\'努力抽奖中，请稍后....\',S:[]});1O(5(){g.k(\'t/v/Z\',{9:4.8.9,q:4.q},5(k){c 7=k.7;6(k.G==-1){f.r.a(k.7.A);h}1p(4.14);6(7.G==2){f.A.a({E:"恭喜您，您中奖啦!",d:\'d d-1g\',F:\'\',S:[{p:\'确定\',w:\'n-s\',z:5(){H.R=g.Q(\'t/1u/v\',{9:4.q,1v:1})}}]});h}e 6(7.G==3){f.A.a({E:"恭喜您，优惠券已经发到您账户啦!",d:\'d d-1g\',F:\'\',S:[{p:\'确定\',w:\'n-s\',z:5(){H.R=g.Q(\'t/1u/v\',{9:4.q,1v:1})}}]});h}e{f.A.a({E:"很遗憾，您没有中奖!",d:\'d d-3a\',F:\'\',S:[{p:\'确定\',w:\'n-s\',z:5(){H.39()}}]});h}},B,1d)},38)}};h 4});',62,226,'||||modal|function|if|result|goods|id|show|this|var|icon|else|FoxUI|core|return|wechat|click|json|optionid|html|btn|ret|text|logid|toast|danger|creditshop|specs|detail|extraClass|option|item|onclick|message|false|good|total|title|content|status|location|thumb|realname|each|goodsid|tpl|options|length|mobile|getUrl|href|buttons|storeid|params|alipay|spec|hide|picker|lottery|document|addressid|address|val|settime|off|attr|page|window|on|data|optionPicker1|fui|true|str|find|success|value|paytype|pay|selectitems|type|onBridgeReady|selected|titles|clearInterval|addClass|disabled|removeClass|_|log|shine|loadStore|input|replypage|chooseSpec|paycheck|list|goodstype|money|src|logpage|order|option_credit|selectedAddressData|option_total|trim|push|attachEvent|credit|setTimeout|option_money|confirmbtn|stock|option_thumb|itemids|url|payWechatJie|close|selectedStoreData|weixinpay|undefined||hidden|typeof|wechat_jie|optionPicker|res|replymore|header|logmore|delete|img|pagesize|storename|pop|obj|getListlog|verify|lastitem|openActionSheet|unbind|balance|round|itemid|create|hasoption|hasClass|getListreply|nonceStr|package|timeStamp|appId|appid|carrier_mobile|WeixinJSBridge|split|onSelected|callback|signType|timer|paySign|information|addEventListener|carrier_realname|err_msg|WeixinJSBridgeReady|get_brand_wcpay_request|jie|join|sort|removeAttr|init|getlistlog|followurl|loglist|canbuy|navbar|isverify|parent|timestate|loadAddress|address_select|followtext|followed|followneed|onEnd|default|buymsg|weixin|tpl_loglist|onWeixinJSBridgeReady|1000|reload|wrong|clock|qrimg|2000|setInterval|btnWeixinJieCancel|qrmoney|code_url|qr|index|pay_alipay|getlistreply|weixin_jie|cancel|roundclose|comments_reply|tpl_replylist|actionsheet|new|FoxUIModal|ok|maskClick|alert|initOption|closest|optionthumb|info|invoke|getBrandWCPayRequest|define'.split('|'),0,{}))
+define(['core', 'tpl'], function(core, tpl) {
+    var modal = {
+        goods: false,
+        logid: 0,
+        realname: 0,
+        mobile: 0,
+        settime: 0
+    };
+    modal.init = function(params) {
+        modal.goods = goods = params.goods;
+        modal.storeid = 0;
+        modal.optionid = 0;
+        modal.logpage = 1;
+        modal.replypage = 1;
+        var loadStore = false;
+        if (typeof(window.selectedStoreData) !== 'undefined') {
+            loadStore = window.selectedStoreData;
+            modal.storeid = loadStore.id;
+            $('#storename').text(loadStore.storename);
+            delete window.selectedStoreData
+        }
+        if (modal.goods.timestate) {
+            $('.fui-timer').timer({
+                onEnd: function() {
+                    $(".fui-navbar .btn").removeClass("btn-danger").addClass("btn-disabled").removeAttr("id").text("活动已结束")
+                }
+            })
+        };
+        $(".logmore").off("click").on("click", function() {
+            modal.getListlog(modal.logpage, modal.goods.id)
+        });
+        $(".replymore").off("click").on("click", function() {
+            modal.getListreply(modal.replypage, modal.goods.id)
+        });
+        var loadAddress = false;
+        if (typeof(window.selectedAddressData) !== 'undefined') {
+            modal.address = window.selectedAddressData;
+            modal.addressid = modal.address.id;
+            $("#address_select").text(modal.address.address);
+            $("#carrier_realname").show().find("input").val(modal.address.realname);
+            $("#carrier_mobile").show().find("input").val(modal.address.mobile);
+            delete window.selectedAddressData
+        }
+        modal.paycheck = function(paytype) {
+            modal.paytype = paytype;
+            if (!goods.canbuy) {
+                FoxUI.toast.show(goods.buymsg);
+                return
+            }
+            if (goods.followneed == '1' && !goods.followed) {
+                FoxUI.message.show({
+                    title: "提示",
+                    icon: 'icon icon-information',
+                    content: goods.followtext,
+                    buttons: [{
+                        text: '立即去关注',
+                        extraClass: 'btn-danger',
+                        onclick: function() {
+                            location.href = goods.followurl
+                        }
+                    }]
+                });
+                return
+            }
+            modal.realname = $.trim($('#carrier_realname').val());
+            modal.mobile = $.trim($('#carrier_mobile').val());
+            if (goods.type == 0) {
+                if (goods.isverify == 1) {
+                    if (modal.realname == '') {
+                        FoxUI.toast.show('请填写真实姓名!');
+                        return
+                    }
+                    if (modal.mobile == '') {
+                        FoxUI.toast.show('请填写联系电话!');
+                        return
+                    }
+                    if (modal.storeid == 0) {
+                        FoxUI.toast.show('请选择兑换门店!');
+                        return
+                    }
+                } else {
+                    if (!modal.addressid && goods.goodstype == 0) {
+                        FoxUI.toast.show('请选择收货地址!');
+                        return
+                    }
+                }
+                FoxUI.message.show({
+                    title: "确认要兑换吗？",
+                    icon: 'icon icon-information',
+                    content: '',
+                    buttons: [{
+                        text: '确定',
+                        extraClass: 'btn-danger',
+                        onclick: function() {
+                            modal.pay(goods)
+                        }
+                    }, {
+                        text: '取消',
+                        extraClass: 'btn-default',
+                        onclick: function() {}
+                    }]
+                });
+                return
+            } else {
+                modal.pay(goods)
+            }
+        };
+        $(document).click(function() {
+            $('input').each(function() {
+                $(this).attr('data-value', $(this).val())
+            })
+        });
+        $('input').each(function() {
+            var value = $(this).attr('data-value') || '';
+            if (value != '') {
+                $(this).val(value)
+            }
+        });
+        $("#openActionSheet").off("click").on("click", function() {
+            if ($(this).parent().hasClass("btn-danger")) {
+                if (modal.optionid == 0 && goods.hasoption == 1) {
+                    modal.optionPicker();
+                    core.json('creditshop/detail/option', {
+                        goodsid: modal.goods.id
+                    }, function(ret) {
+                        if (ret.status == 0) {
+                            FoxUI.toast.show('未找到商品!');
+                            return
+                        } else {
+                            modal.specs = ret.result.specs;
+                            modal.options = ret.result.options;
+                            modal.good = ret.result.goods;
+                            modal.goods.id = modal.goods.id;
+                            $(".option_thumb").attr("src", modal.good.thumb);
+                            $(".option_credit").html(modal.good.credit);
+                            $(".option_money").html(modal.good.money);
+                            $(".option_total").html(modal.good.total);
+                            core.tpl('.option-picker-options', 'option-picker-tpl', ret.result);
+                            $(".spec-item").off('click').on("click", function() {
+                                modal.chooseSpec(this)
+                            })
+                        }
+                    });
+                    modal.optionPicker1.show();
+                    return
+                }
+                location.href = core.getUrl('creditshop/create', {
+                    id: goods.id,
+                    optionid: modal.optionid
+                })
+            } else {
+                FoxUI.toast.show($(this).html());
+                return
+            }
+        });
+        $("#optionid").off("click").on("click", function() {
+            modal.optionPicker();
+            core.json('creditshop/detail/option', {
+                goodsid: modal.goods.id
+            }, function(ret) {
+                if (ret.status == 0) {
+                    FoxUI.toast.show('未找到商品!');
+                    return
+                } else {
+                    modal.specs = ret.result.specs;
+                    modal.options = ret.result.options;
+                    modal.good = ret.result.goods;
+                    modal.goods.id = modal.goods.id;
+                    $(".option_thumb").attr("src", modal.good.thumb);
+                    $(".option_credit").html(modal.good.credit);
+                    $(".option_money").html(modal.good.money);
+                    $(".option_total").html(modal.good.total);
+                    core.tpl('.option-picker-options', 'option-picker-tpl', ret.result);
+                    $(".spec-item").off('click').on("click", function() {
+                        modal.chooseSpec(this)
+                    })
+                }
+            });
+            modal.optionPicker1.show()
+        })
+    };
+    modal.getListlog = function(page, goodsid) {
+        core.json('creditshop/detail/getlistlog', {
+            page: page,
+            goodsid: goodsid
+        }, function(ret) {
+            var result = ret.result;
+            if (result.total <= 0) {
+                $(".logmore").hide()
+            } else {
+                if (result.list.length <= 0 || result.list.length < result.pagesize) {
+                    $(".logmore").hide()
+                }
+            }
+            modal.logpage++;
+            core.tpl('#loglist', 'tpl_loglist', result, modal.logpage > 1)
+        })
+    };
+    modal.getListreply = function(page, goodsid) {
+        core.json('creditshop/detail/getlistreply', {
+            page: page,
+            goodsid: goodsid
+        }, function(ret) {
+            var result = ret.result;
+            if (result.total <= 0) {
+                $(".replymore").hide()
+            } else {
+                if (result.list.length <= 0 || result.list.length < result.pagesize) {
+                    $(".replymore").hide()
+                }
+            }
+            modal.replypage++;
+            core.tpl('#comments_reply', 'tpl_replylist', result, modal.replypage > 1)
+        })
+    };
+    modal.openActionSheet = function(round) {
+        FoxUI.actionsheet.show("选择支付方式", [{
+            text: '微信支付',
+            extraClass: 'wechat',
+            onclick: function() {
+                modal.paycheck('wechat')
+            }
+        }, {
+            text: '支付宝支付',
+            extraClass: 'alipay',
+            onclick: function() {
+                modal.paycheck('alipay')
+            }
+        }, {
+            text: '余额支付',
+            extraClass: 'balance',
+            onclick: function() {
+                modal.paycheck('balance')
+            }
+        }, ], round)
+    };
+    modal.optionPicker = function() {
+        modal.optionPicker1 = new FoxUIModal({
+            content: $('#option-picker').html(),
+            extraClass: 'picker-modal',
+            maskClick: function() {
+                modal.optionPicker1.close()
+            }
+        });
+        $(".icon-roundclose").click(function() {
+            modal.optionPicker1.close()
+        });
+        $(".confirmbtn").click(function() {
+            if ($(this).hasClass("disabled")) {
+                FoxUI.toast.show($(this).html());
+                return
+            } else {
+                if (modal.optionid != 0 && goods.hasoption == 1) {
+                    location.href = core.getUrl('creditshop/create', {
+                        id: goods.id,
+                        optionid: modal.optionid
+                    })
+                } else {
+                    alert('请选择完整规格！')
+                }
+            }
+        })
+    };
+    modal.initOption = function() {
+        $(".spec-item").removeClass('btn-danger');
+        var optionid = modal.optionid;
+        var specs = false;
+        $.each(modal.options, function() {
+            if (this.id == optionid) {
+                specs = this.specs.split('_');
+                return false
+            }
+        });
+        if (specs) {
+            var item = false;
+            var selectitems = [];
+            $(".spec-item").each(function() {
+                var item = $(this),
+                    itemid = item.data('id');
+                $.each(specs, function() {
+                    if (this == itemid) {
+                        selectitems.push(item);
+                        item.addClass('btn-danger')
+                    }
+                })
+            });
+            if (selectitems.length > 0) {
+                var lastitem = selectitems[selectitems.length - 1];
+                modal.chooseSpec(lastitem, false)
+            }
+        }
+    };
+    modal.chooseSpec = function(obj, callback) {
+        var $this = $(obj);
+        $this.closest('.spec').find('.spec-item').removeClass('btn-danger'), $this.addClass('btn-danger');
+        var thumb = $this.data('thumb') || '';
+        if (thumb) {
+            $('.option_thumb').attr('src', thumb)
+        } else {
+            thumb = modal.goods.thumb
+        }
+        modal.optionthumb = thumb;
+        var selected = $(".spec-item.btn-danger");
+        var itemids = [];
+        if (selected.length == modal.specs.length) {
+            selected.each(function() {
+                itemids.push($(this).data('id'))
+            });
+            $.each(modal.options, function() {
+                var specs = this.specs.split('_').sort().join('_');
+                if (specs == itemids.sort().join('_')) {
+                    var stock = this.total == '-1' ? '无限' : this.stock;
+                    $('.total').html(stock);
+                    if (this.total != '-1' && this.total <= 0) {
+                        $('.confirmbtn').show().addClass('disabled').html('库存不足')
+                    } else {
+                        $('.confirmbtn').removeClass('disabled').html('确定');
+                        $('.option_money').html(this.money);
+                        $('.option_credit').html(this.credit);
+                        modal.option = this;
+                        modal.optionid = this.id
+                    }
+                }
+            })
+        }
+        if (modal.option) {
+            var titles = [];
+            selected.each(function() {
+                titles.push($.trim($(this).html()))
+            });
+            $('.info-titles').html('已选 ' + modal.option.title);
+            $(".option_total").html(modal.option.total);
+            $("#optionid").html(modal.option.title);
+            if (callback) {
+                if (modal.params.onSelected) {
+                    modal.params.onSelected(modal.params.total, modal.params.optionid, modal.params.titles)
+                }
+            }
+        }
+    };
+    modal.pay = function() {
+        core.json('creditshop/detail/pay', {
+            id: modal.goods.id,
+            optionid: modal.optionid,
+            addressid: modal.addressid,
+            storeid: modal.storeid,
+            realname: modal.realname,
+            mobile: modal.mobile,
+            paytype: modal.paytype
+        }, function(json) {
+            if (json.status != 1) {
+                FoxUI.toast.show(json.result.message);
+                return
+            }
+            var result = json.result;
+            modal.logid = result.logid;
+            if (result.wechat) {
+                var wechat = result.wechat;
+                if (wechat.weixin) {
+                    function  onBridgeReady() {
+                        WeixinJSBridge.invoke('getBrandWCPayRequest', {
+                            'appId': wechat.appid ? wechat.appid : wechat.appId,
+                            'timeStamp': wechat.timeStamp,
+                            'nonceStr': wechat.nonceStr,
+                            'package': wechat.package,
+                            'signType': wechat.signType,
+                            'paySign': wechat.paySign,
+                        }, function(res) {
+                            if (res.err_msg == 'get_brand_wcpay_request:ok') {
+                                modal.lottery(modal.goods)
+                            } else if (res.err_msg == 'get_brand_wcpay_request:cancel') {
+                                FoxUI.toast.show('取消支付')
+                            } else {
+                                core.json('creditshop/detail/pay', {
+                                    id: modal.goods.id,
+                                    optionid: modal.optionid,
+                                    addressid: modal.addressid,
+                                    storeid: modal.storeid,
+                                    realname: modal.realname,
+                                    mobile: modal.mobile,
+                                    jie: 1
+                                }, function(wechat_jie) {
+                                    modal.logid = wechat_jie.result.logid;
+                                    modal.payWechatJie(wechat_jie.result.wechat)
+                                }, false, true)
+                            }
+                        })
+                    }
+                    if  (typeof  WeixinJSBridge  ==  "undefined") {
+                        if ( document.addEventListener ) {
+                            document.addEventListener('WeixinJSBridgeReady',  onBridgeReady,  false)
+                        } else  if  (document.attachEvent) {
+                            document.attachEvent('WeixinJSBridgeReady',  onBridgeReady);
+                            document.attachEvent('onWeixinJSBridgeReady',  onBridgeReady)
+                        }
+                    } else {
+                        onBridgeReady()
+                    }
+                }
+                if (wechat.weixin_jie || wechat.jie == 1) {
+                    modal.payWechatJie(wechat)
+                }
+            } else if (result.alipay) {
+                var alipay = result.alipay;
+                if (!alipay.success) {
+                    FoxUI.toast.show('支付参数错误！')
+                }
+                location.href = core.getUrl('order/pay_alipay', {
+                    id: goods.id,
+                    logid: result.logid,
+                    type: 20,
+                    url: alipay.url
+                })
+            } else {
+                modal.lottery(modal.goods)
+            }
+        }, true, true)
+    };
+    modal.payWechatJie = function(wechat) {
+        var img = core.getUrl('index/qr', {
+            url: wechat.code_url
+        });
+        $('#qrmoney').text(modal.goods.money);
+        $('.fui-header').hide();
+        $('#btnWeixinJieCancel').unbind('click').click(function() {
+            clearInterval(modal.settime);
+            $('.order-weixinpay-hidden').hide();
+            $('.fui-header').show()
+        });
+        $('.order-weixinpay-hidden').show();
+        modal.settime = setInterval(function() {
+            modal.lottery(modal.goods)
+        }, 2000);
+        $('.verify-pop').find('.close').unbind('click').click(function() {
+            $('.order-weixinpay-hidden').hide();
+            $('.fui-header').show();
+            clearInterval(modal.settime)
+        });
+        $('.verify-pop').find('.qrimg').attr('src', img).show()
+    };
+    modal.lottery = function(goods) {
+        var type = goods.type;
+        if (type == 0) {
+            core.json('creditshop/detail/lottery', {
+                id: modal.goods.id,
+                logid: modal.logid
+            }, function(json) {
+                var result = json.result;
+                if (result.status == -1) {
+                    FoxUI.toast.show(json.result.message);
+                    return
+                }
+                clearInterval(modal.settime);
+                if (result.status == 2) {
+                    setTimeout(function() {
+                        FoxUI.message.show({
+                            title: "恭喜您，兑换成功!",
+                            icon: 'icon icon-success',
+                            content: '',
+                            buttons: [{
+                                text: '确定',
+                                extraClass: 'btn-danger',
+                                onclick: function() {
+                                    location.href = core.getUrl('creditshop/log/detail', {
+                                        id: modal.logid,
+                                        shine: 1
+                                    })
+                                }
+                            }]
+                        })
+                    }, 1)
+                } else if (result.status == 3) {
+                    var str = "优惠券";
+                    if (result.goodstype == 1) {
+                        str = "优惠券"
+                    } else if (result.goodstype == 2) {
+                        str = "余额"
+                    } else if (result.goodstype == 3) {
+                        str = "红包"
+                    }
+                    setTimeout(function() {
+                        FoxUI.message.show({
+                            title: "恭喜您，" + str + "兑换成功!",
+                            icon: 'icon icon-success',
+                            content: '',
+                            buttons: [{
+                                text: '确定',
+                                extraClass: 'btn-danger',
+                                onclick: function() {
+                                    location.href = core.getUrl('creditshop/log/detail', {
+                                        id: modal.logid,
+                                        shine: 1
+                                    })
+                                }
+                            }]
+                        })
+                    }, 1)
+                }
+            }, false, true)
+        } else {
+            FoxUI.message.show({
+                title: '',
+                icon: 'icon icon-clock',
+                content: '努力抽奖中，请稍后....',
+                buttons: []
+            });
+            setTimeout(function() {
+                core.json('creditshop/detail/lottery', {
+                    id: modal.goods.id,
+                    logid: modal.logid
+                }, function(json) {
+                    var result = json.result;
+                    if (json.status == -1) {
+                        FoxUI.toast.show(json.result.message);
+                        return
+                    }
+                    clearInterval(modal.settime);
+                    if (result.status == 2) {
+                        FoxUI.message.show({
+                            title: "恭喜您，您中奖啦!",
+                            icon: 'icon icon-success',
+                            content: '',
+                            buttons: [{
+                                text: '确定',
+                                extraClass: 'btn-danger',
+                                onclick: function() {
+                                    location.href = core.getUrl('creditshop/log/detail', {
+                                        id: modal.logid,
+                                        shine: 1
+                                    })
+                                }
+                            }]
+                        });
+                        return
+                    } else if (result.status == 3) {
+                        FoxUI.message.show({
+                            title: "恭喜您，优惠券已经发到您账户啦!",
+                            icon: 'icon icon-success',
+                            content: '',
+                            buttons: [{
+                                text: '确定',
+                                extraClass: 'btn-danger',
+                                onclick: function() {
+                                    location.href = core.getUrl('creditshop/log/detail', {
+                                        id: modal.logid,
+                                        shine: 1
+                                    })
+                                }
+                            }]
+                        });
+                        return
+                    } else {
+                        FoxUI.message.show({
+                            title: "很遗憾，您没有中奖!",
+                            icon: 'icon icon-wrong',
+                            content: '',
+                            buttons: [{
+                                text: '确定',
+                                extraClass: 'btn-danger',
+                                onclick: function() {
+                                    location.reload()
+                                }
+                            }]
+                        });
+                        return
+                    }
+                }, false, true)
+            }, 1000)
+        }
+    };
+    return modal
+});

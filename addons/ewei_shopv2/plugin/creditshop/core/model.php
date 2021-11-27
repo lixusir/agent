@@ -358,7 +358,7 @@ if (!class_exists('CreditshopModel')) {
 		public function getGoods($id, $member,$optionid=0,$num = 1) {
 
 			global $_W;
-			$credit = $member['credit1'];
+			$credit = $member['credit2'];
 			$money = $member['credit2'];
 			$optionid = intval($optionid);
 			$merchid = $_W['merchid'];
@@ -402,7 +402,7 @@ if (!class_exists('CreditshopModel')) {
 				if($goods['goodstype']==3){
 					if( $goods['packetsurplus'] <= 0 || $goods['surplusmoney'] <= $goods['packetlimit'] || $goods['surplusmoney']  < $goods['minpacketmoney'] ){
 						$goods['canbuy'] = false;
-						$goods['buymsg'] = empty($goods['type']) ? '已兑完' : '已抽完';
+						$goods['buymsg'] = empty($goods['type']) ? '已售罄' : '已抽完';
 					}
 				}else{
 					if ($goods['total'] > $num-1) {
@@ -413,7 +413,7 @@ if (!class_exists('CreditshopModel')) {
 						}
 					}else{
 						$goods['canbuy'] = false;
-						$goods['buymsg'] = empty($goods['type']) ? '已兑完' : '已抽完';
+						$goods['buymsg'] = empty($goods['type']) ? '已售罄' : '已抽完';
 					}
 				}
 				if($goods['hasoption'] && $optionid){
@@ -425,7 +425,7 @@ if (!class_exists('CreditshopModel')) {
 					$goods['optiontitle'] = $option['optiontitle'];
 					if($option['total']<=$num-1){
 						$goods['canbuy'] = false;
-						$goods['buymsg'] = empty($goods['type']) ? '已兑完' : '已抽完';
+						$goods['buymsg'] = empty($goods['type']) ? '已售罄' : '已抽完';
 					}
 				}
 				if($goods['isverify']==0){
@@ -471,7 +471,7 @@ if (!class_exists('CreditshopModel')) {
 						$logcount = pdo_fetchcolumn('select sum(goods_num)  from ' . tablename('ewei_shop_creditshop_log') . "  where goodsid=:goodsid and status>=2 and  date_format(from_UNIXTIME(`createtime`),'%Y-%m-%d') = date_format(now(),'%Y-%m-%d') and uniacid=:uniacid  ", array(':goodsid' => $id, ':uniacid' => $_W['uniacid']));
 						if ($logcount >= $goods['totalday']) {
 							$goods['canbuy'] = false;
-							$goods['buymsg'] = empty($goods['type']) ? '今日已兑完' : '今日已抽完';
+							$goods['buymsg'] = empty($goods['type']) ? '今日已售罄' : '今日已抽完';
 						}
 					}
 				}
@@ -506,7 +506,7 @@ if (!class_exists('CreditshopModel')) {
 				}
 
 				if ($goods['canbuy']) {
-					$credit_text = empty($_W['shopset']['trade']['credittext'])?'积分':$_W['shopset']['trade']['credittext'];
+					$credit_text = '余额';
                     if ($credit < $goods['credit']*$num && $goods['credit'] > 0) {
 						$goods['canbuy'] = false;
 						$goods['buymsg'] = $credit_text."不足";

@@ -1,6 +1,6 @@
 {if !empty($diyitem['data'])}
     {php $textyuan = !empty($_W['shopset']['commission']['texts']['yuan'])?$_W['shopset']['commission']['texts']['yuan']:'元'}
-    {php $textjifen = !empty($_W['shopset']['trade']['credittext'])?$_W['shopset']['trade']['credittext']:'积分'}
+    {php $textyuan = !empty($_W['shopset']['trade']['credittext'])?$_W['shopset']['trade']['credittext']:'余额'}
     {if empty($diyitem['params']['goodsscroll'])}
         <div class="fui-goods-group {$diyitem['style']['liststyle']}" style="background: {$diyitem['style']['background']};">
             {loop $diyitem['data'] $goodsitem}
@@ -92,8 +92,8 @@
                                             <p style="text-overflow:ellipsis;display: -webkit-box;overflow:hidden;-webkit-line-clamp: 1;-webkit-box-orient: vertical;word-break: break-all">
                                                 {if $goodsitem['price']==0&&$goodsitem['credit']==0}免费
                                                 {elseif $goodsitem['price']>0&&$goodsitem['credit']==0}{$goodsitem['price']}<small>{$textyuan}</small>
-                                                {elseif $goodsitem['price']==0&&$goodsitem['credit']>0}{$goodsitem['credit']}<small>{$textjifen}</small>
-                                                {elseif $goodsitem['price']>0&&$goodsitem['credit']>0}{$goodsitem['credit']}<small>{$textjifen}</small>+{$goodsitem['price']}<small>{$textyuan}</small>{/if}
+                                                {elseif $goodsitem['price']==0&&$goodsitem['credit']>0}{$goodsitem['credit']}<small>余额</small>
+                                                {elseif $goodsitem['price']>0&&$goodsitem['credit']>0}{$goodsitem['credit']}<small>余额</small>+{$goodsitem['price']}<small>{$textyuan}</small>{/if}
                                             </p>
                                         {/if}
 
@@ -220,8 +220,8 @@
                                                 <p style="text-overflow:ellipsis;display: -webkit-box;overflow:hidden;-webkit-line-clamp: 1;-webkit-box-orient: vertical;word-break: break-all">
                                                     {if $goodsitem['price']==0&&$goodsitem['credit']==0}免费
                                                     {elseif $goodsitem['price']>0&&$goodsitem['credit']==0}{$goodsitem['price']}<small>{$textyuan}</small>
-                                                    {elseif $goodsitem['price']==0&&$goodsitem['credit']>0}{$goodsitem['credit']}<small>{$textjifen}</small>
-                                                    {elseif $goodsitem['price']>0&&$goodsitem['credit']>0}{$goodsitem['credit']}<small>{$textjifen}</small>+{$goodsitem['price']}<small>{$textyuan}</small>{/if}
+                                                    {elseif $goodsitem['price']==0&&$goodsitem['credit']>0}{$goodsitem['credit']}<small>{$textyuan}</small>
+                                                    {elseif $goodsitem['price']>0&&$goodsitem['credit']>0}{$goodsitem['credit']}<small>{$textyuan}</small>+{$goodsitem['price']}<small>{$textyuan}</small>{/if}
                                                 </p>
                                             {/if}
 
