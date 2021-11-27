@@ -1008,19 +1008,19 @@ class Member_EweiShopV2Model {
 
         global $_W;
 
-        $credit_log = pdo_fetch('select sum(credit+get_score) as get_score,sum(release_score) as release_score from '.tablename('ewei_shop_creditshop_log')." where openid=:openid and status >=2 and uniacid=:uniacid ",array(':openid'=>$openid,':uniacid'=>$_W['uniacid']));
+        $credit_log = pdo_fetch('select sum(total_score) as total_score,sum(get_score) as get_score from '.tablename('ewei_shop_creditshop_log')." where openid=:openid and status >=2 and uniacid=:uniacid ",array(':openid'=>$openid,':uniacid'=>$_W['uniacid']));
 
         if(empty($credit_log)){
 
             return [
-                'get_score'     => 0,
-                'release_score' => 0
+                'total_score'     => 0,
+                'get_score' => 0
             ];
         }else{
 
             return [
-                'get_score'     => bcsub($credit_log['get_score'],$credit_log['release_score'],2),
-                'release_score' => $credit_log['release_score'],
+                'total_score'     => round($credit_log['total_score'],2),
+                'get_score'       => round($credit_log['get_score'],2),
             ];
         }
     }
