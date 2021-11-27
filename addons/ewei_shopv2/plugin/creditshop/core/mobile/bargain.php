@@ -66,16 +66,27 @@ class Bargain_EweiShopV2Page extends PluginMobileLoginPage {
 
         }else{
 
+            $key_num = 999;
+
             //消费者
             $order_user = pdo_get('ewei_shop_member',array('openid'=>$res['openid']),array('id'));
 
             $get_user = pdo_get('ewei_shop_member',array('openid'=>$_W['openid']));
 
-            $chain = explode(',',$get_user['chain']);
+            if($get_user['agentid'] == $order_user['id']){
 
-            rsort($chain);
+                $key_num = 0;
 
-            $key_num = array_search($order_user['id'],$chain);
+            }else{
+
+                $agent_id = pdo_getcolumn('ewei_shop_member',array('id'=>$get_user['agentid']),array('agentid'));
+
+                if($agent_id == $order_user['id']){
+
+                    $key_num = 1;
+                }
+            }
+
 
             if($key_num < 2){
 

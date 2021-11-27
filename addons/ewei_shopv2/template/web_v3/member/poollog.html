@@ -68,16 +68,16 @@
                     <td>第{$row['cycle']}期</td>
                     <td>{$row['price']}</td>
                     <td>
-                        {if $row['status'] == 0}
+                        {if $row['state'] == 0}
                             <span class="label label-success">进行中</span>
-                        {else if $row['status'] == 1}
+                        {else if $row['state'] == 1}
                             <span class="label label-danger">已结算</span>
                         {/if}
                     </td>
                     <td>
-                        {if $row['status'] == 0}
+                        {if $row['state'] == 0}
                             请等待
-                        {else if $row['status'] == 1}
+                        {else if $row['state'] == 1}
                             {php echo date('Y-m-d',$row['get_time'])}
                         {/if}
                     </td>
