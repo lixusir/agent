@@ -1,6 +1,11 @@
 define(['core', 'tpl'], function (core, tpl) {
     var modal = {page: 1, type: 0, loaded: false};
     modal.init = function (params) {
+
+        modal.loaded = params.loaded;
+
+        modal.page = params.page
+
         if(modal.loaded) {
             return;
         }

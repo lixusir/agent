@@ -18,8 +18,6 @@ class Log_credit_EweiShopV2Page extends MobileLoginPage
 	{
 		global $_W;
 		global $_GPC;
-		global $_W;
-		global $_GPC;
 		$type = $_GPC['type'];
 		$pindex = max(1, intval($_GPC['page']));
 

@@ -49,6 +49,7 @@ class Detail_EweiShopV2Page extends CreditshopMobilePage
 		$goods['goodsdetail'] = m('ui')->lazy($goods['goodsdetail']);
 		$credit = $member['credit1'];
 		$money = $member['credit2'];
+
 		if (!(empty($goods))) 
 		{
 			pdo_update('ewei_shop_creditshop_goods', array('views' => $goods['views'] + 1), array('id' => $id));
@@ -170,6 +171,7 @@ class Detail_EweiShopV2Page extends CreditshopMobilePage
 				$goodsrec[$key]['minmoney'] = intval($value['minmoney']);
 			}
 		}
+
 		$_W['shopshare'] = array('title' => (!(empty($goods['share_title'])) ? $goods['share_title'] : $goods['title']), 'imgUrl' => (!(empty($goods['share_icon'])) ? tomedia($goods['share_icon']) : tomedia($goods['thumb'])), 'link' => mobileUrl('creditshop/detail', array('id' => $id), true), 'desc' => (!(empty($goods['share_desc'])) ? $goods['share_desc'] : $goods['title']));
 		$com = p('commission');
 		if ($com) 
