@@ -345,7 +345,7 @@ class Levelrate_EweiShopV2Model{
         pdo_delete('ewei_shop_creditshop_bargain',array('uniacid'=>$_W['uniacid']));
 
         //奖金池
-        pdo_delete('ewei_shop_member_pool',array('uniacid'=>$_W['uniacid']));
+        pdo_delete('ewei_shop_member_pool');
 
 
     }
