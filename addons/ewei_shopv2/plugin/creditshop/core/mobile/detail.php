@@ -820,6 +820,20 @@ class Detail_EweiShopV2Page extends CreditshopMobilePage
 			$update['status'] = $status;
 			pdo_update('ewei_shop_creditshop_log', $update, array('id' => $logid));
 			pdo_update('ewei_shop_member',array('effective'=>1),array('openid'=>$member['openid']));
+
+			/**成本**/
+            $bargain_data = [
+                'uniacid'   => $_W['uniacid'],
+                'openid'    => 'null',
+                'oid'       => $log['id'],
+                'score'     => $log['set_score'],
+                'createtime'=> TIMESTAMP,
+                'state'     => 0,
+                'get_openid'=> $_W['openid']
+            ];
+
+            pdo_insert('ewei_shop_creditshop_bargain',$bargain_data);
+
 			$this->model->sendMessage($logid);
 			if ($status == 3) 
 			{

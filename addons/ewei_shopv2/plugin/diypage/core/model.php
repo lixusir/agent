@@ -1050,9 +1050,9 @@ class DiypageModel extends PluginModel
                         $item['params']['textyaun'] = $commission['set']['texts']['yuan'];
                         $item['params']['textsuccesswithdraw'] = '待释放总积分';
                         $item['params']['textcanwithdraw'] = '已释放总积分';
-                        $item['params']['leftnavlink'] = mobileUrl('member/release_log');
-                        $item['params']['rightnavlink'] = mobileUrl('member/log_credit',['type'=>500]);
-                        $item['params']['leftnav'] = '明细';
+                        $item['params']['leftnavlink'] = 'javascript:;';
+                        $item['params']['rightnavlink'] = mobileUrl('member/release_log');
+                        $item['params']['leftnav'] = false;
                         $item['params']['rightnav'] = '明细';
                         $item['params']['successwithdraw'] = $member['credit_log']['total_score'];
                         $item['params']['canwithdraw'] = $member['credit_log']['get_score'];

@@ -43,7 +43,7 @@
         <div class="child">
             <div class="title" style="color: {$diyitem['style']['textcolor']};">{$diyitem['params']['textsuccesswithdraw']}</div>
             <div class="num" style="color: {$diyitem['style']['textlight']};">{$diyitem['params']['successwithdraw']}</div>
-            <a class="btn" style="color: {$diyitem['style']['textcolor']}; border-color: {$diyitem['style']['textcolor']};" href="{$diyitem['params']['leftnavlink']}" data-nocache="true">{$diyitem['params']['leftnav']}</a>
+            {if $diyitem['params']['leftnav']}<a class="btn" style="color: {$diyitem['style']['textcolor']}; border-color: {$diyitem['style']['textcolor']};" href="{$diyitem['params']['leftnavlink']}" data-nocache="true">{$diyitem['params']['leftnav']}</a>{/if}
         </div>
         <div class="child userinfo" style="color: {$diyitem['style']['textcolor']};">
             <div class="face {$diyitem['style']['headstyle']}"><img src="{$diyitem['params']['avatar']}" onerror="this.src='../addons/ewei_shopv2/static/images/noface.png'"></div>
