@@ -70,7 +70,7 @@ class Team_EweiShopV2Page extends PluginWebPage
 
         foreach($list as $k=>$v){
 
-            $list[$k]['tobe_score'] = bcadd($v['credit'],$v['get_score'],2);
+            $list[$k]['tobe_score'] = bcadd($v['set_score'],$v['get_score'],2);
 
             $list[$k]['thumb']      = tomedia($v['thumb']);
 
