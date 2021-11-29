@@ -30,7 +30,6 @@ class Poollog_EweiShopV2Page extends WebPage {
 
         $list = pdo_fetchall('SELECT * from '.tablename('ewei_shop_member_pool')." where 1 ".$where." order by state asc limit ".($pindex-1)*$psize.','.$psize,$params);
 
-
         include $this->template();
     }
 }

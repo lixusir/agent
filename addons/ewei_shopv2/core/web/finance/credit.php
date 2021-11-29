@@ -41,9 +41,7 @@ class Credit_EweiShopV2Page extends WebPage
 
         if(!empty($_GPC['change_type'])){
 
-            $condition .= " and log.change_type=:change_type ";
-
-            $params[':change_type'] = $_GPC['change_type'];
+            $condition .= " and log.change_type in (".$_GPC['change_type'].") ";
 
         }
 

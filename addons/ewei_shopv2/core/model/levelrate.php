@@ -276,6 +276,27 @@ class Levelrate_EweiShopV2Model{
             }
         }
 
+        $config = m('common')->getSysset('shopset');
+
+        //获取股东身份的人
+        $share_user = pdo_getall('ewei_shop_member',array('share_level'=>1),array('id','openid'));
+
+        if(!empty($share_user)){
+
+            $share_total = count($share_user);
+
+            $share_price = bcdiv(bcmul($pool['price'],$config['pool_rate']/100,2),$share_total,2);
+
+            if($share_price > 0){
+
+                foreach($share_user as $u){
+
+                    m('member')->setCredit($u['openid'],'credit2',$share_price,[$_W['uid'],'股东分红'],301);
+
+                }
+            }
+        }
+
         pdo_update('ewei_shop_member_pool',['state'=>1,'get_time'=>TIMESTAMP],['id'=>$pool['id']]);
 
         echo 'ok';
@@ -336,6 +357,7 @@ class Levelrate_EweiShopV2Model{
             ['change_type' => 100,'change_name'=>'级别奖'],
             ['change_type' => 200,'change_name'=>'同级奖'],
             ['change_type' => 300,'change_name'=>'奖金池分红'],
+            ['change_type' => 301,'change_name'=>'股东分红'],
             ['change_type' => 400,'change_name'=>'购买代理'],
             ['change_type' => 401,'change_name'=>'区分红'],
             ['change_type' => 402,'change_name'=>'市分红'],

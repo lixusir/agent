@@ -67,13 +67,13 @@ class Task_EweiShopV2Page extends MobilePage
 		foreach($order as $o){
 
 			/**业务逻辑处理**/
-			if($order['finishtime'] > TIMESTAMP+(24*60*60*7)){
+			//if($order['finishtime'] > TIMESTAMP+(24*60*60*7)){
 
 				$upd_ids .= $o['id'].',';
 
 				m('levelrate')->commission_rate($o);
 
-			}
+			//}
 
 			/**结束**/
 
@@ -102,7 +102,7 @@ class Task_EweiShopV2Page extends MobilePage
 
 		if($w != 1){
 
-			echo  'not';die;
+			//echo  'not';die;
 
 		}
 
@@ -131,7 +131,7 @@ class Task_EweiShopV2Page extends MobilePage
 
 		//$where['end_time <'] = TIMESTAMP;
 
-		$field = ['id','openid','createtime','credit','get_score','release_score'];
+		$field = ['id','openid','createtime','set_score','get_score','release_score'];
 
 		while (true){
 
@@ -148,7 +148,7 @@ class Task_EweiShopV2Page extends MobilePage
 				$upd_data = [];
 
 				//待释放积分
-				$tobe_release = bcsub(bcadd($v['credit'],$v['get_score'],2) ,$v['release_score'],2);
+				$tobe_release = bcsub(bcadd($v['set_score'],$v['get_score'],2) ,$v['release_score'],2);
 
 				//释放至钱包
 				$tobe_amount =  bcmul($tobe_release,$config['release_rate']/100,2);
@@ -178,6 +178,11 @@ class Task_EweiShopV2Page extends MobilePage
 		}
 
 		echo 'ok';
+	}
+
+	public function get_del(){
+
+		m('level_rate')->del(1);
 	}
 }
 
