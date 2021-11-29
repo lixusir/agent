@@ -31,7 +31,7 @@ class Release_log_EweiShopV2Page extends MobileLoginPage
 
         $total = pdo_fetchcolumn('select count(b.id) from '.tablename('ewei_shop_creditshop_bargain')." as b join ".tablename('ewei_shop_member')." as m on m.openid=b.openid  where 1 ".$condition,$params);
 
-        $list = pdo_fetchall('select b.id,b.score,b.createtime,m.avatar,m.mobile,m.nickname from '.tablename('ewei_shop_creditshop_bargain')." as b join ".tablename('ewei_shop_member')." as m on m.openid=b.openid  where 1 ".$condition." order by b.id desc limit ".($pindex-1)*$psize.','.$psize,$params);
+        $list = pdo_fetchall('select b.id,b.score,b.createtime,m.avatar,m.mobile,m.nickname from '.tablename('ewei_shop_creditshop_bargain')." as b left join ".tablename('ewei_shop_member')." as m on m.openid=b.openid  where 1 ".$condition." order by b.id desc limit ".($pindex-1)*$psize.','.$psize,$params);
 
         foreach($list as $k=>$v){
 
@@ -39,7 +39,17 @@ class Release_log_EweiShopV2Page extends MobileLoginPage
 
             $list[$k]['createtime'] = date('Y-m-d H:i:s',$v['createtime']);
 
-            $list[$k]['realname'] = $v['realname']?$v['realname']:$v['nickname'];
+
+            if(!empty($v['mobile'])){
+
+                $list[$k]['realname'] = $v['realname']?$v['realname']:$v['nickname'];
+
+            }else{
+
+                $list[$k]['realname'] = '成本释放';
+            }
+
+
         }
 
         show_json(1, array('list' => $list, 'total' => $total, 'pagesize' => $psize));

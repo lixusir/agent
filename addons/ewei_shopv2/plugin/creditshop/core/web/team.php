@@ -125,7 +125,6 @@ class Team_EweiShopV2Page extends PluginWebPage
 
         $credit_list = pdo_fetchall('select o.*,m.avatar,m.realname,m.nickname,m.mobile from '.tablename('ewei_shop_creditshop_bargain')." as o left join  ".tablename('ewei_shop_member')." as m on m.openid=o.openid where o.oid=:oid ",array(':oid'=>$oid));
 
-
         include($this->template());
     }
 
