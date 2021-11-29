@@ -62,11 +62,11 @@
                 </span>
 
                 <span class="input-group-select">
-                    <select name='groupid' class='form-control'>
-                        <option value=''>分组</option>
-                        {loop $groups $group}
-                            <option value="{$group['id']}" {if $_GPC['groupid']==$group['id']}selected{/if}>{$group['groupname']}</option>
-                        {/loop}
+                    <select name='share_level' class='form-control'>
+                        <option value='' {if $_GPC['share_level'] == ''}selected{/if}>身份</option>
+                        <option value='0' {if $_GPC['share_level'] == '0'}selected{/if}>普通身份</option>
+                        <option value='1' {if $_GPC['share_level'] == '1'}selected{/if}>股东身份</option>
+
                     </select>
                 </span>
 
@@ -126,7 +126,7 @@
                     <tr>
                         <th style="width:25px;"></th>
                         <th style="width: 250px;">粉丝</th>
-                        <th style="">等级/标签组</th>
+                        <th style="">等级/身份</th>
                         <th style="">注册时间</th>
                         <th style="">积分/余额</th>
                         <th style="">成交</th>
@@ -190,7 +190,7 @@
                             </td>
 
                             <td>
-                                {if empty($row['levelname'])}普通会员{else}{$row['levelname']}{/if}{if !empty($row['groupname'])}/{$row['groupname']}{/if}
+                                {if empty($row['levelname'])}普通会员{else}{$row['levelname']}{/if}{if !empty($row['share_level'])}/股东身份{/if}
                             </td>
 
                             <td>{php echo date("Y-m-d",$row['createtime'])}<br/>{php echo date("H:i:s",$row['createtime'])}</td>
@@ -297,7 +297,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button data-dismiss="modal" class="close" type="button">×</button>
-                <h4 class="modal-title">{if !empty($group['id'])}编辑{else}添加{/if}标签组</h4>
+                <h4 class="modal-title">{if !empty($group['id'])}编辑{else}添加{/if}身份</h4>
             </div>
             <div class="modal-body">
 
@@ -314,7 +314,7 @@
                 </div>
 
                 <div class="form-group batch-group" style="display: none;">
-                    <label class="col-sm-2 control-label must">标签组</label>
+                    <label class="col-sm-2 control-label must">身份</label>
                     <div class="col-sm-9 col-xs-12">
                         <select name="batch-group[]" class="form-control select2" placeholder="会员会被加入指定的分组中" multiple style="position:absolute;">
                             {loop $groups $group}
@@ -362,7 +362,7 @@
 
     $("[data-toggle='batch-group'], [data-toggle='batch-level']").click(function () {
         var toggle = $(this).data('toggle');
-        $("#modal-change .modal-title").text(toggle=='batch-group'?"批量修改标签组":"批量修改会员等级");
+        $("#modal-change .modal-title").text(toggle=='batch-group'?"批量修改身份":"批量修改会员等级");
         $("#modal-change").find("."+toggle).show().siblings().hide();
         $("#modal-change-btn").attr('data-toggle', toggle=='batch-group'?'group':'level');
         $("#modal-change").modal();

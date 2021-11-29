@@ -1056,7 +1056,7 @@ class DiypageModel extends PluginModel
                         $item['params']['rightnav'] = '明细';
                         $item['params']['successwithdraw'] = $member['credit_log']['total_score'];
                         $item['params']['canwithdraw'] = $member['credit_log']['get_score'];
-
+                        $item['params']['share_name'] = $member['share_level'] == 1 ? '股东':false;
                         $item['params']['upname'] = $commission['set']['texts']['up'];
                         $item['params']['upmember'] = empty($member['up']) ? "总店" : $member['up']['nickname'];
                         $item['params']['texticode'] = $commission['set']['texts']['icode'];

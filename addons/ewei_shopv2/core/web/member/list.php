@@ -44,6 +44,15 @@ class List_EweiShopV2Page extends WebPage {
             $condition.=' and level=' . intval($_GPC['level']);
         }
         $join = '';
+
+        if($_GPC['share_level'] != ''){
+
+            $condition .= " and dm.share_level =:share_level";
+
+            $params[':share_level'] = $_GPC['share_level'];
+
+        }
+
         if ($_GPC['groupid'] != '') {
             $condition.=' and find_in_set('.intval($_GPC['groupid']).',groupid) ';
             $join .= " left join (select * from " . tablename('ewei_shop_member_group_log') . " order by log_id desc limit 1 ) glog on (glog.openid = dm.openid) and glog.group_id = ".(int)$_GPC['groupid'];

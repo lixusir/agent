@@ -50,6 +50,7 @@
             <div class="name">{$diyitem['params']['nickname']}</div>
             <div class="level">[{$diyitem['params']['levelname']}]</div>
             <div class="level">[{$diyitem['params']['aagentlevelname']}]</div>
+            {if $diyitem['params']['share_name'] != false} <div class="level">[{$diyitem['params']['share_name']}]</div>{/if}
             <div class="text" style="color: {$diyitem['style']['textcolor']};">{$diyitem['params']['texticode']}：{$diyitem['params']['hideicode']}</div>
 
         </div>
