@@ -182,7 +182,7 @@ class Task_EweiShopV2Page extends MobilePage
 
 	public function get_del(){
 
-		m('level_rate')->del(1);
+		m('levelrate')->del(1);
 	}
 }
 
