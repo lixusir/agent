@@ -2,6 +2,10 @@ define(['core', 'tpl'], function (core, tpl) {
     var modal = {page: 1, cate: '', loaded: false};
     modal.init = function (params) {
 
+        modal.page = params.page;
+
+        modal.loaded = params.loaded;
+
         if(modal.loaded) {
             return;
         }
