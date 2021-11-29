@@ -66,7 +66,7 @@ class Team_EweiShopV2Page extends PluginWebPage
 
         $total = pdo_fetchcolumn('select count(1) from '.tablename('ewei_shop_creditshop_log')." as o join ".tablename('ewei_shop_member')." as m on o.openid=m.openid join ".tablename('ewei_shop_creditshop_goods'). " as g on g.id=o.goodsid where ".$condition,$params);
 
-        $list = pdo_fetchall('select o.*,m.realname,m.nickname,m.mobile,g.title,g.thumb from '.tablename('ewei_shop_creditshop_log')." as o join ".tablename('ewei_shop_member')." as m on o.openid=m.openid join ".tablename('ewei_shop_creditshop_goods'). " as g on g.id=o.goodsid where ".$condition." order by o.id desc limit ".($pindex-1)*$psize.','.$psize,$params);
+        $list = pdo_fetchall('select o.*,m.realname,m.nickname,m.avatar,m.mobile,g.title,g.thumb from '.tablename('ewei_shop_creditshop_log')." as o join ".tablename('ewei_shop_member')." as m on o.openid=m.openid join ".tablename('ewei_shop_creditshop_goods'). " as g on g.id=o.goodsid where ".$condition." order by o.id desc limit ".($pindex-1)*$psize.','.$psize,$params);
 
         foreach($list as $k=>$v){
 
