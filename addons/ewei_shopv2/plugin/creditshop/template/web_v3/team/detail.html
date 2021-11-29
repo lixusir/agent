@@ -59,7 +59,9 @@
                     </td>
                     <td style='text-align: left;overflow:hidden;border-left:none;'>
                         {if $item['pay_type']=='system'}系统虚拟{/if}
-                        <a href="{php echo webUrl('member/list/detail',array('id'=>$item['uid']))}"> {$item['nickname']}</a>
+                        <a href="{php echo webUrl('member/list/detail',array('id'=>$item['uid']))}">
+                            {if $item['nickname']}{$item['nickname']}{else}{$item['realname']}{/if}
+                        </a>
                         <br/>{$item['mobile']}
                     </td>
                     <td style='text-align:center;' >
