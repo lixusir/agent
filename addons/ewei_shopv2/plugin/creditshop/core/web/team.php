@@ -121,7 +121,7 @@ class Team_EweiShopV2Page extends PluginWebPage
         global $_GPC;
         $oid = $_GPC["id"];
 
-        $goods = pdo_fetch('select g.thumb,g.credit,g.id,g.title from '.tablename('ewei_shop_creditshop_log')." as l join ".tablename('ewei_shop_creditshop_goods')." as g on l.goodsid=g.id where l.id=:id",array(':id'=>$oid));
+        $goods = pdo_fetch('select g.thumb,g.credit,g.id,g.title,g.set_score from '.tablename('ewei_shop_creditshop_log')." as l join ".tablename('ewei_shop_creditshop_goods')." as g on l.goodsid=g.id where l.id=:id",array(':id'=>$oid));
 
         $credit_list = pdo_fetchall('select o.*,m.realname,m.nickname,m.mobile from '.tablename('ewei_shop_creditshop_bargain')." as o left join  ".tablename('ewei_shop_member')." as m on m.openid=o.openid where o.oid=:oid ",array(':oid'=>$oid));
 
