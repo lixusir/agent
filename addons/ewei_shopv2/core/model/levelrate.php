@@ -341,6 +341,9 @@ class Levelrate_EweiShopV2Model{
         //推广区消费
         pdo_delete('ewei_shop_creditshop_log',array('uniacid'=>$_W['uniacid']));
 
+        //砍价记录
+        pdo_delete('ewei_shop_creditshop_bargain',array('uniacid'=>$_W['uniacid']));
+
         //奖金池
         pdo_delete('ewei_shop_member_pool',array('uniacid'=>$_W['uniacid']));
 
