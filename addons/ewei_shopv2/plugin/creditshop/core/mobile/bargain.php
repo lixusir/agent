@@ -92,6 +92,9 @@ class Bargain_EweiShopV2Page extends PluginMobileLoginPage {
 
                 $swi = 222;
 
+            }else{
+
+                $swi = 333;
             }
 
         }
