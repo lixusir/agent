@@ -358,6 +358,11 @@ class Levelrate_EweiShopV2Model{
         //奖金池
         pdo_delete('ewei_shop_member_pool');
 
+        //扣除优惠券
+        pdo_delete('ewei_shop_coupon_log',array('uniacid'=>$_W['uniacid']));
+
+        //优惠券日志
+        pdo_delete('ewei_shop_coupon_data',array('uniacid'=>$_W['uniacid']));
 
     }
 
