@@ -14,8 +14,19 @@ class Levelrate_EweiShopV2Model{
         global $_W;
 
         //本人消费触发上级升级条件
-        $user = pdo_get('ewei_shop_member',array('openid'=>$openid),array('id','openid','chain'));
+        $user = pdo_get('ewei_shop_member',array('openid'=>$openid),array('id','openid','chain','level'));
 
+        //查询自身条件是否满足
+        $level_info = $this->set_level($user);
+
+        if($level_info['level_id'] > $user['level']){
+
+            /**升级成功**/
+            pdo_update('ewei_shop_member', ['level'=> $level_info['level_id'],'level_log'=>$level_info['log']],['id'=>$user['id']]);
+
+        }
+
+        //查询上级条件是否满足
         $chain_user = pdo_fetchall('select id,openid,agentid,level from '.tablename('ewei_shop_member')." where id IN (".$user['chain']." ) ");
 
         rsort($chain_user);
