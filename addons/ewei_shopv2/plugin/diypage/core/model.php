@@ -1930,13 +1930,13 @@ class DiypageModel extends PluginModel
         $member['withdraw'] = floatval(pdo_getcolumn('ewei_shop_member_log',array('type'=>1,'openid'=>$this->member['openid'],'status'=>1),array('sum(money)')));
 
         //分销佣金
-        $member['commission_price'] = pdo_fetchcolumn('select sum(num) from '.tablename('ewei_shop_member_credit_record')." where change_type in (600,700) and openid=:o ",array(':o'=>$member['openid']));
+        $member['commission_price'] = floatval(pdo_fetchcolumn('select sum(num) from '.tablename('ewei_shop_member_credit_record')." where change_type in (600,700) and openid=:o ",array(':o'=>$member['openid'])));
 
         //区域分红
-        $member['abonus_price'] = pdo_fetchcolumn('select sum(num) from '.tablename('ewei_shop_member_credit_record')." where change_type in (401,402,403) and openid=:o ",array(':o'=>$member['openid']));
+        $member['abonus_price'] = floatval(pdo_fetchcolumn('select sum(num) from '.tablename('ewei_shop_member_credit_record')." where change_type in (401,402,403) and openid=:o ",array(':o'=>$member['openid'])));
 
         //团队分红
-        $member['team_price'] = pdo_fetchcolumn('select sum(num) from '.tablename('ewei_shop_member_credit_record')." where change_type in (100,200) and openid=:o ",array(':o'=>$member['openid']));
+        $member['team_price'] = floatval(pdo_fetchcolumn('select sum(num) from '.tablename('ewei_shop_member_credit_record')." where change_type in (100,200) and openid=:o ",array(':o'=>$member['openid'])));
 
 
 
