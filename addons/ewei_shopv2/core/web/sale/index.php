@@ -13,7 +13,7 @@ class Index_EweiShopV2Page extends ComWebPage
 	{
 		if (cv('sale.enough')) 
 		{
-			header('location: ' . webUrl('sale/enough'));
+			header('location: ' . webUrl('sale/coupon'));
 		}
 		else if (cv('sale.enoughfree')) 
 		{
