@@ -256,6 +256,8 @@ class MobilePage extends Page
 			}
 		}
 
+		$diymenuid = empty($diymenuid)?3:$diymenuid;
+
 		if (!empty($diymenuid)) {
 			$menu = pdo_fetch('SELECT * FROM ' . tablename('ewei_shop_diypage_menu') . ' WHERE id=:id and uniacid=:uniacid limit 1 ', array(':id' => $diymenuid, ':uniacid' => $_W['uniacid']));
 
