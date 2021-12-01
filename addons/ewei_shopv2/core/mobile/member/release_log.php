@@ -40,7 +40,7 @@ class Release_log_EweiShopV2Page extends MobileLoginPage
             $list[$k]['createtime'] = date('Y-m-d H:i:s',$v['createtime']);
 
 
-            if(!empty($v['mobile'])){
+            if($v['openid'] != 'null'){
 
                 $list[$k]['realname'] = $v['realname']?$v['realname']:$v['nickname'];
 
