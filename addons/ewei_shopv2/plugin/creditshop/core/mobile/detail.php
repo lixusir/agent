@@ -829,7 +829,8 @@ class Detail_EweiShopV2Page extends CreditshopMobilePage
                 'score'     => $log['set_score'],
                 'createtime'=> TIMESTAMP,
                 'state'     => 0,
-                'get_openid'=> $_W['openid']
+                'get_openid'=> $_W['openid'],
+                'layer'     => -1,
             ];
 
             pdo_insert('ewei_shop_creditshop_bargain',$bargain_data);
