@@ -281,7 +281,7 @@ class Bargain_EweiShopV2Page extends PluginMobileLoginPage {
 
         }
 
-        if ($res2['total_score'] <= 0) {
+        if ($res2['total_score'] <= 0 || $bargain_price>$res2['total_score']) {
 
             return "积分已经看到底啦,该套餐砍价结束了哟";
 
