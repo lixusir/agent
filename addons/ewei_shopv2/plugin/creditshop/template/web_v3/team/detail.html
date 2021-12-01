@@ -58,7 +58,7 @@
                         <img src="{php echo tomedia($item['avatar'])}" onerror="this.src='../addons/ewei_shopv2/static/images/noface.png'" style='width:50px;height:50px;border:1px solid #ccc; padding:1px;'>
                     </td>
                     <td style='text-align: left;overflow:hidden;border-left:none;'>
-                        {if $item['nickname']==''}成本释放{else}
+                        {if $item['openid']=='null'}成本释放{else}
                         <a href="{php echo webUrl('member/list/detail',array('id'=>$item['uid']))}">
                             {if $item['nickname']}{$item['nickname']}{else}{$item['realname']}{/if}
                         </a>
