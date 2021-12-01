@@ -128,6 +128,7 @@ class Selecturl_EweiShopV2Page extends WebPage
 					25 => array('name' => '分销佣金', 'url' => mobileUrl('member/commission', NULL, $full), 'url_wxapp' => ''),
 					26 => array('name' => '退出登录', 'url' => mobileUrl('account/logout', NULL, $full), 'url_wxapp' => ''),
 					27 => array('name' => '推广二维码', 'url' => mobileUrl('commission/qrcode', NULL, $full), 'url_wxapp' => ''),
+					28 => array('name' => '我的砍价', 'url' => mobileUrl('member/bargain_log', NULL, $full), 'url_wxapp' => ''),
 				)
 			)
 		);

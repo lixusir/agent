@@ -200,22 +200,24 @@
         {/if}
     </div>
 </div>
-<div class="form-group" {if $item['goodstype']!=0}style="display:none"{/if}>
-    <label class="col-lg control-label">商品原价</label>
+<div class="form-group" >
+    <label class="col-lg control-label">赠送购物券</label>
     <div class="col-sm-9 col-xs-12">
-        {ife 'creditshop.goods' $item}
+
         <div class="input-group fixsingle-input-group">
-            <input type="text" name="price" id="price" class="form-control" value="{$item['price']}" />
-            <!--<span class="input-group-addon">原价</span>
-            <input type="text" name="productprice" id="productprice" class="form-control" value="{$item['productprice']}" />-->
-            <span class="input-group-addon">元</span>
+            <select name="coupon_id" id="">
+                <option value="">不赠送</option>
+                {loop $coupon $c}
+                <option value="{$c['id']}" {if $item['coupon_id'] == $c['id']}selected{/if}>{$c['couponname']}-{$c['deduct']}</option>
+                {/loop}
+            </select>
         </div>
         <span class='help-block'></span>
-        {else}
-        <div class='form-control-static'>现价：{$item['price']} 元 原价：{$item['productprice']} 元/div>
-        {/if}
+
     </div>
 </div>
+
+
 <div class="form-group">
 <label class="col-lg control-label">释放成本</label>
 <div class="col-sm-9 col-xs-12">

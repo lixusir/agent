@@ -29,17 +29,9 @@ if(!function_exists('invete_code')){
 
     function invete_code($length){
 
-        $rand = '123456789QWERTYUIOPASDFGHJKLZXCVBNMqwertyuiopasdfghjklzxcvbnm';
+        $rand = rand(10,99).rand(10,99).rand(1000,9999);
 
-        $str = '';
-
-        for($i=0;$i<$length;$i++){
-
-            $str .= $rand[rand(0,strlen($rand)-1)];
-
-        }
-
-        return $str;
+        return $rand;
     }
 }
 

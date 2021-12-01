@@ -289,13 +289,13 @@ class Bargain_EweiShopV2Page extends PluginMobileLoginPage {
 
         $get_score = bcadd($res2['get_score'],$bargain_price,2);
 
-        //更新砍价
+        /**更新砍价**/
         $upd_id = pdo_update('ewei_shop_creditshop_log',['total_score'=>$total_score,'get_score'=>$get_score],array('id'=>$res2['id']));
 
-        //赠送购物券
-        $coupon = pdo_fetch('SELECT * FROM ' . tablename('ewei_shop_coupon') . ' WHERE id=:id and uniacid=:uniacid and merchid=0', array(':id' => 1, ':uniacid' => $_W['uniacid']));
+        /**赠送购物券**/
+        $coupon = pdo_fetch('SELECT * FROM ' . tablename('ewei_shop_coupon') . ' WHERE id=:id and uniacid=:uniacid and merchid=0', array(':id' => $goods['coupon_id'], ':uniacid' => $_W['uniacid']));
 
-        //增加优惠券日志
+        /**日志**/
         $log = array(
             'uniacid' => $_W['uniacid'],
             'merchid' => $coupon['merchid'],
@@ -322,6 +322,21 @@ class Bargain_EweiShopV2Page extends PluginMobileLoginPage {
             'senduid' => $_W['uid']
         );
         $cid = pdo_insert('ewei_shop_coupon_data', $data);
+
+        /**增加砍价记录**/
+        $bargain_log = pdo_get('ewei_shop_creditshop_bargain_log',array('oid'=>$res2['id']));
+
+        if(empty($bargain_log)){
+
+            pdo_insert('ewei_shop_creditshop_bargain_log',[
+                'uniacid'   => $_W['uniacid'],
+                'openid'    => $_W['openid'],
+                'oid'       => $res2['id'],
+                'createtime'=> TIMESTAMP,
+                'gid'       => $goods['id']
+            ]);
+
+        }
 
         if(!empty($res_id) && $upd_id && $logid && $cid){
 
