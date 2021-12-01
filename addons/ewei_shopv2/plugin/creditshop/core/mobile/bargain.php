@@ -340,7 +340,7 @@ class Bargain_EweiShopV2Page extends PluginMobileLoginPage {
         $cid = pdo_insert('ewei_shop_coupon_data', $data);
 
         /**增加砍价记录**/
-        $bargain_log = pdo_get('ewei_shop_creditshop_bargain_log',array('oid'=>$res2['id']));
+        $bargain_log = pdo_get('ewei_shop_creditshop_bargain_log',array('oid'=>$res2['id'],'openid'=>$_W['openid']));
 
         if(empty($bargain_log)){
 
