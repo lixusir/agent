@@ -1927,6 +1927,8 @@ class DiypageModel extends PluginModel
 
         $member['credit_log'] = m('member')->member_credit($member['openid']);
 
+        $member['coupon_total'] = pdo_fetchcolumn("select count(d.id) from `ims_ewei_shop_coupon_data` d inner join `ims_ewei_shop_coupon` c on d.couponid = c.id where d.openid=:openid and d.uniacid=:uniacid  and (   (c.timelimit = 0 and ( c.timedays=0 or c.timedays*86400 + d.gettime >=unix_timestamp() ) )  or  (c.timelimit =1 and c.timeend>=1638342493)) and  d.used =0",array('openid'=>$_W['openid'],':uniacid'=>$_W['uniacid']));
+
         $member['withdraw'] = floatval(pdo_getcolumn('ewei_shop_member_log',array('type'=>1,'openid'=>$this->member['openid'],'status'=>1),array('sum(money)')));
 
         //分销佣金
@@ -2051,6 +2053,10 @@ class DiypageModel extends PluginModel
             if (strexists($str, "r=member.log_credit")) {
                 return $this->member['credit2'];
             }
+            if(strexists($str,"r=sale.coupon.my")){
+
+                return $this->member['coupon_total'];
+            }
             if (strexists($str, "r=member.withdraw")) {
                 return $this->member['withdraw'];
             } if (strexists($str, "r=member.commission")) {
@@ -2070,6 +2076,10 @@ class DiypageModel extends PluginModel
         } elseif ($type == 'tiptext') {
             if (strexists($str, "r=member.log_credit")) {
                 return '元';
+            }
+            if(strexists($str,"r=sale.coupon.my")){
+
+                return '个';
             }
             if (strexists($str, "r=member.commission")) {
                 return '元';
