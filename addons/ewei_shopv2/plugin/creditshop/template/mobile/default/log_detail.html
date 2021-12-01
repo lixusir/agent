@@ -12,6 +12,11 @@
     .fui-actionsheet a.alipay{display: none;}
     {/if}
 </style>
+<style>
+    #alert-mask2{position: fixed;background: rgba(0, 0, 0, 0.8) none repeat scroll 0 0;width: 100%;height: 100%;left: 0;top: 0;z-index: 1000;-moz-transition-duration: 400ms;-webkit-transition-duration: 400ms;transition-duration: 400ms;}
+    #alert-mask3{position: fixed;background: rgba(0, 0, 0, 0.9) none repeat scroll 0 0;width: 100%;height: 100%;left: 0;top: 0;z-index: 1000;-moz-transition-duration: 400ms;-webkit-transition-duration: 400ms;transition-duration: 400ms;}
+    textarea {background: transparent;resize:none;color:white;width: 220px;height: 70px; border:none}
+</style>
 <div class='fui-page order-detail-page'>
     <div class="fui-header">
         <div class="fui-header-left">
@@ -410,6 +415,21 @@
         <div class="btn btn-default btn-default-o order-packet" data-logid="{$log['id']}">领取红包</div>
         {/if}
     </div>
+
+    {if $fuzhi_type == 1}
+    <div style="" id="share">
+        <div style="position: absolute;top: 5rem;z-index: 2;width: 70%;left:15%;height: 70vw;text-align: center">
+            <p style="color: #fff;height:100%;width: 100%;overflow: auto;word-wrap:break-word;
+    word-break:break-all;">点击下方按钮复制链接<br><br><textarea id="fuinfo" readonly>亲，感谢您帮忙砍一刀！{php echo mobileUrl('creditshop/bargain',array('id'=>$id,'mid'=>intval($_GPC['mid'])),1);}</textarea></p>
+            <a class="btn btn-danger external"onclick="return fuzhi()">点击复制链接</a>
+        </div>
+
+        <div id="alert-mask3" style="position:absolute;z-index:1;" onclick="$('#share').hide()">
+
+        </div>
+    </div>
+    {/if}
+
     <script language='javascript'>
         require(['../addons/ewei_shopv2/plugin/creditshop/static/js/log_detail.js'], function (modal) {
             modal.init({goods: {php echo json_encode($goods)}, log: {php echo json_encode($log)}});
@@ -419,4 +439,16 @@
     {template 'groups/orders/verify'}
     {/if}
 </div>
+<script>
+    function fuzhi(){
+        alert
+        var e = document.getElementById("fuinfo");
+        e.select(); // 选择对象
+        e.setSelectionRange(0,e.innerHTML.length);
+        document.execCommand("Copy"); // 执行浏览器复制命令
+        document.execCommand("Paste");
+        $('#share').hide();
+        return false;
+    }
+</script>
 {template '_footer'}

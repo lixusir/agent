@@ -144,6 +144,20 @@ class Log_EweiShopV2Page extends PluginMobileLoginPage
 		$merchid = intval($_W['merchid']);
 		$condition = ' and uniacid=:uniacid ';
 		$id = intval($_GPC['id']);
+
+	    $fuzhi_key = 'fuzhi_key_'.$id;
+
+	    if(!redis()->get($fuzhi_key)){
+
+	        $fuzhi_type = 1;
+
+	        redis()->set($fuzhi_key,1);
+
+        }else{
+
+	        $fuzhi_type = 0;
+        }
+
 		$log = pdo_fetch('select * from ' . tablename('ewei_shop_creditshop_log') . ' where id=:id and openid=:openid ' . $condition . ' limit 1', array(':id' => $id, ':openid' => $openid, ':uniacid' => $uniacid));
 		$log['goods_num'] = max(1, intval($log['goods_num']));
 		if (empty($log)) 
