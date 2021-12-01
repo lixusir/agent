@@ -446,8 +446,11 @@ class Goods_EweiShopV2Page extends PluginWebPage {
                 'bargain_day'   => intval($_GPC['bargain_day']),
                 'abonus_rate'   => serialize($_GPC['abonus_rate']),
                 'set_score'     => floatval($_GPC['set_score']),
-                'coupon_id'     => intval($_GPC['coupon_id'])
-			);
+                'coupon_id'     => intval($_GPC['coupon_id']),
+                'push_score'     => floatval($_GPC['push_score']),
+                'inter_score'     => floatval($_GPC['inter_score']),
+
+            );
 
 			if (isset($id) && $id > 0 )
             {

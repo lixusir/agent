@@ -217,8 +217,17 @@ class Bargain_EweiShopV2Page extends PluginMobileLoginPage {
 
         }
 
+        //判断会员的砍价积分是否封顶
+        $is_get_score = pdo_getcolumn('ewei_shop_creditshop_bargain',array('layer'=>$layer,'oid'=>$res2['id']),array('sum(score)'));
+
         //直推砍价
         if($layer == 0){
+
+            if($is_get_score >= $goods['push_score']){
+
+                return '砍价失败,直推会员砍价已封顶！';
+
+            }
 
             $state = intval($info['effective']);//0=首次砍价，1=重复砍价
 
@@ -231,6 +240,12 @@ class Bargain_EweiShopV2Page extends PluginMobileLoginPage {
 
         //间推砍价
         if($layer == 1){
+
+            if($is_get_score >= $goods['inter_score']){
+
+                return '砍价失败,间推会员砍价已封顶！';
+
+            }
 
             //查询上级是否为有效会员，否则不可以砍了
             $agent_user = pdo_get('ewei_shop_member',array('id'=>$info['agentid']),array('id','effective'));
@@ -272,7 +287,7 @@ class Bargain_EweiShopV2Page extends PluginMobileLoginPage {
 
         }
 
-
+        /**砍价记录**/
         $bargain_data = [
             'uniacid'   => $_W['uniacid'],
             'openid'    => $_W['openid'],
@@ -280,7 +295,8 @@ class Bargain_EweiShopV2Page extends PluginMobileLoginPage {
             'score'     => $bargain_price,
             'createtime'=> TIMESTAMP,
             'state'     => $state,
-            'get_openid'=> $res2['openid']
+            'get_openid'=> $res2['openid'],
+            'layer'     => $layer
         ];
 
         $res_id = pdo_insert('ewei_shop_creditshop_bargain',$bargain_data);
