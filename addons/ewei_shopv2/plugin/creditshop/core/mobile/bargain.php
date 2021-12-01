@@ -105,7 +105,7 @@ class Bargain_EweiShopV2Page extends PluginMobileLoginPage {
 
         $time3 = $time2 - time();
 
-        $twi_score = bcsub($goods['total_score'],$res['get_score'],2);
+        $twi_score = bcsub($res2['total_score'],$res['get_score'],2);
 
         $start_time = strtotime($res2['start_time']) - time();
 
