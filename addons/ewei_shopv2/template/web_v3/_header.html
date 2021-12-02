@@ -308,11 +308,11 @@
                 {if !$system['merch']}
                     {ifp 'commission.apply.view1|commission.apply.view2'}
                     <div class="panel panel-default">
-                        <div class="panel-heading" role="tab" id="headingThree" data-toggle="collapse" data-parent="#panel-accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                     <!--   <div class="panel-heading" role="tab" id="headingThree" data-toggle="collapse" data-parent="#panel-accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
                             <h4 class="panel-title">
                                 <i class="icow icow-yongjinmingxi"></i> <a>佣金提现</a> <span></span>
                             </h4>
-                        </div>
+                        </div>-->
                         <div id="collapseThree" class="panel-collapse collapse {if $_W['action']=='apply' && $_W['plugin']=='commission'}in{/if}" role="tabpanel" aria-labelledby="headingFour">
                             <ul class="panel-body">
                                 {if !empty($system['commission1'])}
