@@ -285,6 +285,7 @@ class Detail_EweiShopV2Page extends CreditshopMobilePage
 		$member = m('member')->getMember($openid);
 		$optionid = intval($_GPC['optionid']);
 		$goods = $this->model->getGoods($id, $member, $optionid, $num);
+		$goods['money'] = $goods['credit'];
 		$credit = $member['credit1'];
 		$money = $member['credit2'];
 		$paytype = $_GPC['paytype']?$_GPC['paytype']:'balance';
@@ -390,7 +391,7 @@ class Detail_EweiShopV2Page extends CreditshopMobilePage
 				$params['tid'] = $log['logno'];
 				$params['user'] = $openid;
 				$params['fee'] = ($goods['money'] * $num) + $goods['dispatch'];
-				$params['title'] = $set['shop']['name'] . ((empty($goods['type']) ? '积分兑换' : '积分抽奖')) . ' 单号:' . $log['logno'];
+				$params['title'] = $set['shop']['name'] . ((empty($goods['type']) ? '购物' : '购物')) . ' 单号:' . $log['logno'];
 				if (isset($set['pay']) && ($set['pay']['weixin'] == 1) && ($jie !== 1)) 
 				{
 					load()->model('payment');
@@ -669,6 +670,7 @@ class Detail_EweiShopV2Page extends CreditshopMobilePage
 		}
 		$optionid = $log['optionid'];
 		$goods = $this->model->getGoods($log['goodsid'], $member, $log['optionid'], $number);
+        $goods['money'] = $goods['credit'];
 		$goods['money'] *= $number;
 		$goods['credit'] *= $number;
 		$goods['dispatch'] = $this->model->dispatchPrice($log['goodsid'], $log['addressid'], $log['optionid'], $number);

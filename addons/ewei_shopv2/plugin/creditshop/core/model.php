@@ -508,7 +508,7 @@ if (!class_exists('CreditshopModel')) {
 				if ($goods['canbuy']) {
 					$credit_text = '余额';
                     if ($credit < $goods['credit']*$num && $goods['credit'] > 0) {
-						$goods['canbuy'] = false;
+						$goods['canbuy'] = true;
 						$goods['buymsg'] = $credit_text."不足";
 
 					}
