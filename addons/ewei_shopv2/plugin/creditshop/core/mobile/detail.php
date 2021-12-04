@@ -674,7 +674,7 @@ class Detail_EweiShopV2Page extends CreditshopMobilePage
 		$goods['money'] *= $number;
 		$goods['credit'] *= $number;
 		$goods['dispatch'] = $this->model->dispatchPrice($log['goodsid'], $log['addressid'], $log['optionid'], $number);
-		$credit = $member['credit1'];
+		$credit = $member['credit2'];
 		$money = $member['credit2'];
 		if (empty($log)) 
 		{
@@ -687,6 +687,7 @@ class Detail_EweiShopV2Page extends CreditshopMobilePage
 		$update = array('couponid' => $goods['couponid']);
 		if (empty($log['paystatus'])) 
 		{
+            /**修改**/
 			if ((0 < $goods['credit']) && ($credit < $goods['credit']) && ($log['paytype'] == 0))
 			{
 				show_json(0, array('status' => '-1', 'message' => '余额不足!'));
