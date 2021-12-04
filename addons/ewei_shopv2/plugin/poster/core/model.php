@@ -316,7 +316,7 @@ class PosterModel extends PluginModel {
 		if (!is_file($path . $file) || $qr['qrimg'] != $qr['current_qrimg'] ) {
             set_time_limit(0);
             @ini_set("memory_limit", "256M");
-            $target = imagecreatetruecolor(640, 1008);
+            $target = imagecreatetruecolor(640, 1308);
             $bg = $this->createImage(tomedia($poster['bg']));
             if (!empty($bg)){
                 imagecopy($target, $bg, 0, 0, 0, 0, 640, 1008);
