@@ -716,6 +716,7 @@ class Detail_EweiShopV2Page extends CreditshopMobilePage
 				{
 					show_json(0, array('status' => '-1', 'message' => '支付出错,请重试(1)!'));
 				}
+                $update['paystatus'] = 1;
 			}
 			if ($log['paytype'] == 2) 
 			{
