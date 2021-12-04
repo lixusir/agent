@@ -687,7 +687,7 @@ class Detail_EweiShopV2Page extends CreditshopMobilePage
 		$update = array('couponid' => $goods['couponid']);
 		if (empty($log['paystatus'])) 
 		{
-			if ((0 < $goods['credit']) && ($credit < $goods['credit'])) 
+			if ((0 < $goods['credit']) && ($credit < $goods['credit']) && ($log['paytype'] == 0))
 			{
 				show_json(0, array('status' => '-1', 'message' => '余额不足!'));
 			}
