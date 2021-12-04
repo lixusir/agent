@@ -26,6 +26,7 @@ class Create_EweiShopV2Page extends PluginMobileLoginPage {
         $shop = m('common')->getSysset('shop');
         $member = m('member')->getMember($openid);
         $goods = $this->model->getGoods($id, $member,$optionid,$num);
+        $goods['money'] = $goods['credit'];
         if (empty($goods)) {
             $this->message("商品已下架或被删除!", mobileUrl('creditshop'), 'error');
         }

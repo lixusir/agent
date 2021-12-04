@@ -89,8 +89,7 @@
                     </div>
                     <div class='fui-list-angle'>
                         <span class='marketprice'>
-                            {$goods['credit']}余额{if $goods['money']>0}<br />&yen;{$goods['money']}{/if}
-				            {if $goods['type'] == 1}<br/>   x 1{/if}
+                            {$goods['credit']}余额
                         </span>
                     </div>
                 </div>
@@ -179,13 +178,7 @@
             需付{if $goods['isverify'] == 0 && $goods['goodstype']==0 && $goods['type']==0 && $goods['dispatch'] > 0}(含运费){/if}：
             <span class="text-danger2" style="background: none;">
                 <span id="realcredit">{$goods['credit']}</span>余额
-                {if $goods['money'] > 0 || $goods['dispatch'] >0}+
-                    {if is_array($goods['dispatch'])}
-                        &yen;<span class="moneydispatch">{php echo number_format($goods['money'] + $goods['dispatch']['max'],2)}</span>
-                    {else}
-                        &yen;<span class="moneydispatch">{php echo number_format($goods['money'] + $goods['dispatch'],2)}</span>
-                    {/if}
-                {/if}
+
             </span>
         </p>
         <a href="javascript:;" class="nav-item btn btn-danger buybtn" id="openActionSheet">立即支付</a>

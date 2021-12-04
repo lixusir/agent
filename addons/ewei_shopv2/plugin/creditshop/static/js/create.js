@@ -345,6 +345,7 @@ define(['core', 'tpl'], function (core, tpl) {
         });
         $("#openActionSheet").off("click").on("click", function () {
             console.log(modal.wait);
+
             if (modal.wait == 1) {
                 return ;
             }
