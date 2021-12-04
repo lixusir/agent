@@ -31,7 +31,7 @@ class Task_EweiShopV2Page extends MobilePage
 
 			m('levelrate')->level_rate($log);
 
-			m('levelrate')->set_pool($credit_goods['pool_price']);
+			m('levelrate')->set_pool($credit_goods['pool_price'],$log);
 
 			m('levelrate')->abonus_rate($log,$credit_goods);
 			/**结束**/

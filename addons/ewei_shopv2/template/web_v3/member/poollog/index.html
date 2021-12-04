@@ -29,7 +29,7 @@
         <div class="page-toolbar">
             <div class="input-group">
                 <span class="pull-left">
-                    {php echo tpl_daterange('time', array('sm'=>true,'placeholder'=>'结算时间'),true);}
+                    {php echo tpl_daterange('time', array('sm'=>true,'placeholder'=>'时间'),true);}
                 </span>
                 <span class="input-group-select">
 
@@ -60,6 +60,7 @@
                     <th style='width:30%;'>累计金额</th>
                     <th style='width:30%;'>状态</th>
                     <th style='width:30%;'>结算周期</th>
+                    <th style='width:30%;'> 操作</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -80,6 +81,9 @@
                         {else if $row['state'] == 1}
                             {php echo date('Y-m-d',$row['get_time'])}
                         {/if}
+                    </td>
+                    <td>
+                        <a href="{php echo webUrl('member/poollog/log',array('pid'=>$row['id']))}" class="label label-primary">查看明细</a>
                     </td>
                 </tr>
                 {/loop}

@@ -1,0 +1,104 @@
+{template '_header'}
+<style type="text/css">
+
+  .full>span{
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    vertical-align: middle;
+    align-items: center;
+
+    word-break: break-all;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+  }
+
+</style>
+<div class="page-header">当前位置：<span class="text-primary">奖金池明细</span></div>
+<div class="page-content">
+  <form action="./index.php" method="get" class="form-horizontal" role="form" id="form1">
+    <input type="hidden" name="c" value="site" />
+    <input type="hidden" name="a" value="entry" />
+    <input type="hidden" name="m" value="ewei_shopv2" />
+    <input type="hidden" name="do" value="web" />
+    <input type="hidden" name="r" value="{$_GPC['r']}" />
+    <input type="hidden" name="pid" value="{$_GPC['pid']}">
+    <div class="page-toolbar">
+      <div class="input-group">
+                <span class="pull-left">
+                    {php echo tpl_daterange('time', array('sm'=>true,'placeholder'=>'时间'),true);}
+                </span>
+        <span class="input-group-select">
+
+                </span>
+        <span class="input-group-select">
+
+                </span>
+         <input type="tsext" class="form-control "  name="keyword" value="{$_GPC['keyword']}" placeholder="请输入会员名称/订单号" />
+        <span class="input-group-btn">
+                    <button class="btn  btn-primary" type="submit"> 搜索</button>
+          <!--<button type="submit" name="export" value="1" class="btn btn-success ">导出</button>-->
+                </span>
+      </div>
+    </div>
+  </form>
+  {if empty($list)}
+  <div class="panel panel-default">
+    <div class="panel-body empty-data">未查询到相关数据</div>
+  </div>
+  {else}
+
+  <div class="row">
+    <div class="col-md-12">
+      <table class="table">
+        <thead class="navbar-inner">
+        <tr>
+          <th style='width:30%;'>ID</th>
+          <th style='width:30%;'>金额</th>
+          <th style="width: 30%">订单号</th>
+          <th style='width:30%;'>用户信息</th>
+          <th style='width:30%;'>时间</th>
+        </tr>
+        </thead>
+        <tbody>
+        {loop $list $row}
+        <tr >
+          <td>{$row['id']}</td>
+          <td>{$row['price']}</td>
+          <td>
+            <a href="{php echo webUrl('creditshop/log/order',array('searchfield'=>'logno','keyword'=>$row['ordersn']))}" >
+              {$row['ordersn']}
+            </a>
+          </td>
+          <td>
+            <img src="{if !empty($row['avatar'])}{php echo tomedia($row['avatar'])}{else}../addons/ewei_shopv2/static/images/noface.png{/if}" width="55px" alt="">
+            <br>
+            <span>{$row['nickname']}</span>
+          </td>
+          <td>
+            {php echo date('Y-m-d H:i:s',$row['createtime'])}
+          </td>
+        </tr>
+        {/loop}
+        </tbody>
+        <tfoot>
+        <tr>
+          <td>
+            <div class="btn-group"></div>
+          </td>
+          <td colspan="5" style="text-align: right">
+            {$pager}
+          </td>
+        </tr>
+        </tfoot>
+      </table>
+    </div>
+  </div>
+  {/if}
+</div>
+
+{template '_footer'}

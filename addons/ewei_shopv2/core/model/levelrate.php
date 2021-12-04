@@ -219,7 +219,7 @@ class Levelrate_EweiShopV2Model{
      * 累计奖金池
      * @param $price
      */
-    public function set_pool($price){
+    public function set_pool($price,$log){
 
         global $_W;
 
@@ -239,11 +239,25 @@ class Levelrate_EweiShopV2Model{
 
             pdo_insert('ewei_shop_member_pool',$data);
 
+            $pid = pdo_insertid();
+
         }else{
 
             pdo_update('ewei_shop_member_pool',['price'=>bcadd($price,$pool['price'],2)],['id'=>$pool['id']]);
 
+            $pid = $pool['id'];
+
         }
+
+        /**记录日志**/
+        pdo_insert('ewei_shop_member_pool_log',[
+            'uniacid'   => $_W['uniacid'],
+            'openid'    => $log['openid'],
+            'ordersn'   => $log['logno'],
+            'price'     => $price,
+            'createtime'=> TIMESTAMP,
+            'pid'       => $pid
+        ]);
 
     }
 
@@ -360,6 +374,9 @@ class Levelrate_EweiShopV2Model{
 
         //奖金池
         pdo_delete('ewei_shop_member_pool');
+
+        //奖金池日志
+        pdo_delete('ewei_shop_member_pool_log');
 
         //扣除优惠券
         pdo_delete('ewei_shop_coupon_log',array('uniacid'=>$_W['uniacid']));
