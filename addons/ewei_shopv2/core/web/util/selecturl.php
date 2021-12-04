@@ -129,6 +129,7 @@ class Selecturl_EweiShopV2Page extends WebPage
 					26 => array('name' => '退出登录', 'url' => mobileUrl('account/logout', NULL, $full), 'url_wxapp' => ''),
 					27 => array('name' => '推广二维码', 'url' => mobileUrl('commission/qrcode', NULL, $full), 'url_wxapp' => ''),
 					28 => array('name' => '我的砍价', 'url' => mobileUrl('member/bargain_log', NULL, $full), 'url_wxapp' => ''),
+					29 => array('name' => '推广区全部商品', 'url' => mobileUrl('creditshop/lists', NULL, $full), 'url_wxapp' => ''),
 				)
 			)
 		);
@@ -172,7 +173,7 @@ class Selecturl_EweiShopV2Page extends WebPage
 		}
 
 		if (p('membercard')) {
-			$allUrls[2]['list'][] = array('name' => '会员卡中心', 'url' => mobileUrl('membercard/index', array(), $full), 'url_wxapp' => '/pages/member/membercard/index');
+			/*$allUrls[2]['list'][] = array('name' => '会员卡中心', 'url' => mobileUrl('membercard/index', array(), $full), 'url_wxapp' => '/pages/member/membercard/index');*/
 		}
 
 		if (p('dividend') && !$platform) {
