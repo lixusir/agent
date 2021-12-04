@@ -361,10 +361,10 @@ class Detail_EweiShopV2Page extends CreditshopMobilePage
 			$set = m('common')->getSysset();
 			if ($paytype == 'balance') 
 			{
-				if (($goods['money'] + $goods['dispatch']) < $money) 
-				{
-					$paystatus = 0;
-				}
+                if (($goods['money'] + $goods['dispatch']) <= $money)
+                {
+                    $paystatus = 0;
+                }
 				else 
 				{
 					show_json(0, '余额不足!');
