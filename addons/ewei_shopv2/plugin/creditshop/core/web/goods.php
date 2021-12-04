@@ -382,7 +382,7 @@ class Goods_EweiShopV2Page extends PluginWebPage {
 				'thumb' => save_media($_GPC['thumb']),
 				'price' => floatval($_GPC['price']),
 				'productprice' => floatval($_GPC['productprice']),
-				'credit' => intval($_GPC['credit']),
+				'credit' => floatval($_GPC['credit']),
 				'money' => trim($_GPC['money']),
 				'dispatchtype' => intval($_GPC['dispatchtype']),
 				'dispatchid' => intval($_GPC['dispatchid']),
@@ -466,8 +466,9 @@ class Goods_EweiShopV2Page extends PluginWebPage {
 					$data['verifynum'] = 1;
 				}
 			}
+
 			if($data['credit']<=0){
-				show_json(0,'请正确填写积分！');
+				show_json(0,'请正确填写余额！');
 			}
 			if($data['money']<0){
 				show_json(0,'请正确填写金额！');
