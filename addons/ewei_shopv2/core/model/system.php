@@ -1287,11 +1287,11 @@ class System_EweiShopV2Model
                                 'title'=>'平台设置',
                                 'route'=>'shopset'
                             ),
-                           /* array(
+                            array(
                                 'title'=>'关注及分享',
                                 'route'=>'follow'
                             ),
-                            array(
+                           /* array(
                                 'title'=>'商城状态',
                                 'route'=>'close'
                             ),
@@ -1328,7 +1328,23 @@ class System_EweiShopV2Model
                             )
                         )
                     ),
+
                     array(
+                        'title'=>'短信配置',
+                        'route'=>'sms',
+                        'iscom'=>'sms',
+                        'items'=>array(
+                            array(
+                                'title'=>'短信消息库',
+                                'route'=>'temp'
+                            ),
+                            array(
+                                'title'=>'短信接口设置',
+                                'route'=>'set'
+                            )
+                        )
+                    ),
+                    /*array(
                         'title'=>'消息推送',
                         'items'=>array(
                             array(
@@ -1347,21 +1363,6 @@ class System_EweiShopV2Model
                             array(
                                 'title'=>'消息通知队列',
                                 'route'=>'notice_redis',
-                            )
-                        )
-                    ),
-                    array(
-                        'title'=>'短信配置',
-                        'route'=>'sms',
-                        'iscom'=>'sms',
-                        'items'=>array(
-                            array(
-                                'title'=>'短信消息库',
-                                'route'=>'temp'
-                            ),
-                            array(
-                                'title'=>'短信接口设置',
-                                'route'=>'set'
                             )
                         )
                     ),
@@ -1385,7 +1386,7 @@ class System_EweiShopV2Model
                                 'route'=>'set'
                             )
                         )
-                    ),
+                    ),*/
                     array(
                         'title'=>'其他',
                         'items'=>array(
