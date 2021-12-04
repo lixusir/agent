@@ -319,7 +319,7 @@ class PosterModel extends PluginModel {
             $target = imagecreatetruecolor(640, 1308);
             $bg = $this->createImage(tomedia($poster['bg']));
             if (!empty($bg)){
-                imagecopy($target, $bg, 0, 0, 0, 0, 640, 1008);
+                imagecopy($target, $bg, 0, 0, 0, 0, 640, 1308);
                 imagedestroy($bg);
             }
             $data = json_decode(str_replace('&quot;', "'", $poster['data']), true);
