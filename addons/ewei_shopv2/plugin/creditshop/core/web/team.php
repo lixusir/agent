@@ -17,7 +17,7 @@ class Team_EweiShopV2Page extends PluginWebPage
 
         $psize = 20;
 
-        $condition = " o.uniacid=:uniacid ";
+        $condition = " o.uniacid=:uniacid and o.status >= 2";
         if( $status == 0 )
         {
             $condition .= " and o.release_status = 0 ";
