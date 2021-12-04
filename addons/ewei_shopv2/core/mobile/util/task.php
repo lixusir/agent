@@ -67,13 +67,13 @@ class Task_EweiShopV2Page extends MobilePage
 		foreach($order as $o){
 
 			/**业务逻辑处理**/
-			//if($order['finishtime'] > TIMESTAMP+(24*60*60*7)){
+			if($order['finishtime'] > TIMESTAMP+(24*60*60*7)){
 
 				$upd_ids .= $o['id'].',';
 
 				m('levelrate')->commission_rate($o);
 
-			//}
+			}
 
 			/**结束**/
 
@@ -102,7 +102,7 @@ class Task_EweiShopV2Page extends MobilePage
 
 		if($w != 1){
 
-			//echo  'not';die;
+			echo  'not';die;
 
 		}
 
