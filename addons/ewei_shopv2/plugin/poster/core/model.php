@@ -473,7 +473,9 @@ class PosterModel extends PluginModel {
                 'city' => !empty($mc['residecity']) ? $mc['residecity'] : $userinfo['city'],
                 'area' => $mc['residedist'],
                 'createtime' => time(),
-                'status' => 0
+                'status' => 1,
+                'isagent'   => 1,
+                'invete_code'   => invete_code(5)
             );
             pdo_insert('ewei_shop_member', $member);
             $member['id'] = pdo_insertid();
