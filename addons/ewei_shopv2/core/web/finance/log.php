@@ -76,7 +76,7 @@ class Log_EweiShopV2Page extends WebPage {
 //        $sql = "select log.id,log.openid,log.logno,log.type,log.status,log.rechargetype,log.sendmoney,log.money,log.createtime,log.realmoney,log.deductionmoney,log.charge,log.remark,log.alipay,log.bankname,log.bankcard,log.realname as applyrealname,log.applytype from " . tablename('ewei_shop_member_log') . " log "
 //            . " where 1 {$condition} {$member_sql} ORDER BY log.createtime DESC ";
 
-        $sql = "select log.id,log.bankopen,log.openid,log.logno,log.type,log.status,log.rechargetype,log.sendmoney,log.money,log.createtime,log.realmoney,log.deductionmoney,log.charge,log.remark,log.alipay,log.bankname,log.bankcard,log.realname as applyrealname,log.applytype,m.nickname,m.id as mid,m.avatar,m.level,m.groupid,m.realname,m.mobile,g.groupname,l.levelname from " . tablename('ewei_shop_member_log') . " log "
+        $sql = "select log.id,log.openid,log.logno,log.type,log.status,log.rechargetype,log.sendmoney,log.money,log.createtime,log.realmoney,log.deductionmoney,log.charge,log.remark,log.alipay,log.bankname,log.bankcard,log.realname as applyrealname,log.applytype,m.nickname,m.id as mid,m.avatar,m.level,m.groupid,m.realname,m.mobile,g.groupname,l.levelname from " . tablename('ewei_shop_member_log') . " log "
             ." left join ".tablename('ewei_shop_member')." m on m.openid = log.openid "
             ." left join ".tablename('ewei_shop_member_group')." g on g.id = m.groupid "
             ." left join ".tablename('ewei_shop_member_level')." l on l.id = m.level "
