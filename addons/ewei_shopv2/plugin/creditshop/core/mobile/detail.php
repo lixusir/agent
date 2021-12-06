@@ -195,6 +195,34 @@ class Detail_EweiShopV2Page extends CreditshopMobilePage
 		}
 		include $this->template();
 	}
+
+    /**
+     * 验证手机号
+     */
+    public function checkbind(){
+
+        global $_W,$_GPC;
+
+        $member = m('member')->getMember($_W['openid']);
+
+        //  验证手机号
+        if(!empty($_W['shopset']['wap']['open']) && !empty($_W['shopset']['wap']['mustbind']) && empty($member['mobileverify'])){
+            $sendtime = $_SESSION['verifycodesendtime'];
+            if(empty($sendtime) || $sendtime+60<time()){
+                $endtime = 0;
+            }else{
+                $endtime = 60 - (time() - $sendtime);
+            }
+            show_json(3, array(
+                'endtime'=>$endtime,
+                'imgcode'=>$_W['shopset']['wap']['smsimgcode']
+            ));
+        }else{
+
+            show_json(1);
+        }
+    }
+
 	public function getlistlog() 
 	{
 		global $_W;

@@ -118,36 +118,54 @@ define(['core', 'tpl'], function(core, tpl) {
         });
         $("#openActionSheet").off("click").on("click", function() {
             if ($(this).parent().hasClass("btn-danger")) {
-                if (modal.optionid == 0 && goods.hasoption == 1) {
-                    modal.optionPicker();
-                    core.json('creditshop/detail/option', {
-                        goodsid: modal.goods.id
-                    }, function(ret) {
-                        if (ret.status == 0) {
-                            FoxUI.toast.show('未找到商品!');
+
+                core.json('creditshop/detail/checkbind',{},function(json){
+
+                    if(json.status == 1){
+
+                        if (modal.optionid == 0 && goods.hasoption == 1) {
+                            modal.optionPicker();
+                            core.json('creditshop/detail/option', {
+                                goodsid: modal.goods.id
+                            }, function(ret) {
+                                if (ret.status == 0) {
+                                    FoxUI.toast.show('未找到商品!');
+                                    return
+                                } else {
+                                    modal.specs = ret.result.specs;
+                                    modal.options = ret.result.options;
+                                    modal.good = ret.result.goods;
+                                    modal.goods.id = modal.goods.id;
+                                    $(".option_thumb").attr("src", modal.good.thumb);
+                                    $(".option_credit").html(modal.good.credit);
+                                    $(".option_money").html(modal.good.money);
+                                    $(".option_total").html(modal.good.total);
+                                    core.tpl('.option-picker-options', 'option-picker-tpl', ret.result);
+                                    $(".spec-item").off('click').on("click", function() {
+                                        modal.chooseSpec(this)
+                                    })
+                                }
+                            });
+                            modal.optionPicker1.show();
                             return
-                        } else {
-                            modal.specs = ret.result.specs;
-                            modal.options = ret.result.options;
-                            modal.good = ret.result.goods;
-                            modal.goods.id = modal.goods.id;
-                            $(".option_thumb").attr("src", modal.good.thumb);
-                            $(".option_credit").html(modal.good.credit);
-                            $(".option_money").html(modal.good.money);
-                            $(".option_total").html(modal.good.total);
-                            core.tpl('.option-picker-options', 'option-picker-tpl', ret.result);
-                            $(".spec-item").off('click').on("click", function() {
-                                modal.chooseSpec(this)
-                            })
                         }
-                    });
-                    modal.optionPicker1.show();
-                    return
-                }
-                location.href = core.getUrl('creditshop/create', {
-                    id: goods.id,
-                    optionid: modal.optionid
-                })
+                        location.href = core.getUrl('creditshop/create', {
+                            id: goods.id,
+                            optionid: modal.optionid
+                        })
+
+                    }else{
+
+                        modal.mustbind = 1;
+                        modal.endtime = 0;
+                        modal.imgcode = 0;
+                        modal.show();
+                        return
+                    }
+
+                },true);
+
+
             } else {
                 FoxUI.toast.show($(this).html());
                 return
@@ -178,6 +196,26 @@ define(['core', 'tpl'], function(core, tpl) {
             });
             modal.optionPicker1.show()
         })
+    };
+    modal.show = function () {
+
+        if (modal.mustbind) {
+            require(['biz/member/account'], function (account) {
+                account.initQuick({
+                    action: 'bind',
+                    backurl: btoa(location.href),
+                    endtime: modal.endtime,
+                    imgcode: modal.imgcode,
+                    success: function () {
+                        var args = modal.params;
+                        args.refresh = true;
+                        modal.init(args)
+                    }
+                })
+            });
+            return
+        }
+
     };
     modal.getListlog = function(page, goodsid) {
         core.json('creditshop/detail/getlistlog', {
