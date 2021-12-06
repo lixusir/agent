@@ -345,6 +345,17 @@ class PosterProcessor extends PluginProcessor {
 			if (!empty($cset)) {
 				if ($member['isagent'] != 1) {
 					if ($qrmember['isagent'] == 1 && $qrmember['status'] == 1) {
+
+                        if (!empty($qrmember) && $qrmember['id'] != $member['id'] && empty($member['childtime'])) {
+
+                            $parent = m('member')->getMember($qrmember['id']);
+
+                            $chain = $parent['chain'].','.$parent['id'];
+
+                            pdo_update('ewei_shop_member',array('agentid'=>$parent['id'],'chain'=>$chain,'childtime'=>time()),array('id'=>$member['id']));
+
+                        }
+
 						if (!empty($poster['bedown'])) {
 							if (empty($member['agentid'])) {
 								if(empty($member['fixagentid'])){
