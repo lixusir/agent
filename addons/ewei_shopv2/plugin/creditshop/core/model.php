@@ -85,6 +85,30 @@ if (!class_exists('CreditshopModel')) {
 			}
 			return $dispatch;
 		}
+
+        public function checkFollowed()
+        {
+            global $_W;
+
+
+            $openid = $_W['openid'];
+
+            $sql = 'SELECT `follow` FROM ' . tablename('mc_mapping_fans') . ' WHERE openid = :openid AND uniacid = :uniacid';
+
+            $isFollowed = pdo_fetchcolumn($sql, array(':openid' => $openid, ':uniacid' => $_W['uniacid']));
+
+            if (!empty($isFollowed)) {
+
+                return true;
+
+            }
+
+            $sets = pdo_fetchcolumn('SELECT `sets` FROM ' . tablename('ewei_shop_sysset') . ' WHERE uniacid = :uniacid', array(':uniacid' => $_W['uniacid']));
+            $qr = unserialize($sets);
+            logg('qr.txt', json_encode($qr));
+            return array(0, tomedia($qr['share']['followqrcode']));
+        }
+
         public function payResult($logno,$type,$total_fee, $app=false) {
 
             global $_W;

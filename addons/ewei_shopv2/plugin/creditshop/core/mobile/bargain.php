@@ -13,6 +13,7 @@ class Bargain_EweiShopV2Page extends PluginMobileLoginPage {
 
         $ajax = $_GPC['ajax'];
 
+        $isFollowed = $this->model->checkFollowed();
 
         $myMid = (int)m('member')->getMid();
         $mid = (int)$_GPC['mid'];
@@ -135,6 +136,10 @@ class Bargain_EweiShopV2Page extends PluginMobileLoginPage {
 
         if ($ajax == 151) {
 
+            if ($isFollowed !== true) {
+                exit('请先关注再砍价');
+            }
+
             echo $this->cut($res,$time3,$swi,$key_num,$res2);
             die();
 
@@ -203,6 +208,7 @@ class Bargain_EweiShopV2Page extends PluginMobileLoginPage {
      * @return string
      */
     public function cut($res2,$end_time,$swi,$layer,$goods){
+
         global $_GPC,$_W;
 
         $sum = 1;
