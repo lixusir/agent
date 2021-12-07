@@ -392,6 +392,16 @@
         </div>
     </div>
 </div>
+{if $isFollowed!==true}
+<div>
+    <div style="position: absolute;top: 5rem;z-index: 2;width: 70%;left:15%;height: 70vw;text-align: center">
+        <p style="color: #fff">长按二维码关注后才能砍价</p>
+        <img src="{$isFollowed[1]}" alt="" width="100%">
+        <a class="btn btn-danger external" href="{php echo mobileUrl('creditshop/detail',array('id'=>$id,'timstamp'=>time()),1);}">我已关注</a>
+    </div>
+    <div id="alert-mask2" style="position:absolute;z-index:1;"></div>
+</div>
+{/if}
 {template 'creditshop/picker'}
 {if is_weixin()}
 <script language='javascript'>

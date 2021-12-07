@@ -15,6 +15,7 @@ class Detail_EweiShopV2Page extends CreditshopMobilePage
 		$id = intval($_GPC['id']);
 		$merch_plugin = p('merch');
 		$merch_data = m('common')->getPluginset('merch');
+        $isFollowed = $this->model->checkFollowed();
 		if ($merch_plugin && $merch_data['is_openmerch']) 
 		{
 			$is_openmerch = 1;

@@ -44,7 +44,7 @@ define(['core', 'tpl', 'biz/member/cart', 'biz/plugin/diyform'], function (core,
                     modal.followtip = ret.result.followtip;
                     modal.followurl = ret.result.followurl;
                     modal.followqrcode = ret.result.followqrcode;
-                    if (modal.followqrcode != null) {
+                    if (modal.followqrcode != '' && modal.followqrcode != null) {
                         modal.containerFollowHTML = tpl('followqrcode', ret.result);
                     }
                     modal.show();
