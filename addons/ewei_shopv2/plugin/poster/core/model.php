@@ -478,8 +478,8 @@ class PosterModel extends PluginModel {
                 'invete_code'   => invete_code(5)
             );
             file_put_contents($_SERVER['DOCUMENT_ROOT'].'/data/result.txt',serialize($_REQUEST));
-            pdo_insert('ewei_shop_member', $member);
-            $member['id'] = pdo_insertid();
+           /* pdo_insert('ewei_shop_member', $member);
+            $member['id'] = pdo_insertid();*/
             $member['isnew'] = true;
             if(method_exists(m('member'),'memberRadisCountDelete')) {
                 m('member')->memberRadisCountDelete(); 

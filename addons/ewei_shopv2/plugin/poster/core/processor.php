@@ -147,6 +147,12 @@ class PosterProcessor extends PluginProcessor {
 		$sceneid = isset($keys[1]) ? $keys[1] : '';
 		$ticket = $obj->message['ticket'];
 		$member = $obj->member;
+
+		if(empty($member)){
+
+		    return  false;
+        }
+
 		if (empty($ticket)) {
 			return $this->responseDefault($obj);
 		}
