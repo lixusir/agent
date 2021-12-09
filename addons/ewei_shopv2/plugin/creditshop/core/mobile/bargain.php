@@ -9,6 +9,8 @@ class Bargain_EweiShopV2Page extends PluginMobileLoginPage {
     public function main(){
         global $_W, $_GPC;
 
+
+
         $id = $_GPC['id'];
 
         $ajax = $_GPC['ajax'];
@@ -17,6 +19,13 @@ class Bargain_EweiShopV2Page extends PluginMobileLoginPage {
 
         $myMid = (int)m('member')->getMid();
         $mid = (int)$_GPC['mid'];
+
+        if($_GPC['mid'] == 0 || empty($_GPC['mid'])){
+
+            $_GPC['mid'] = $myMid;
+
+        }
+
         if ($mid!==$myMid){
             echo "<script>window.location.href='".mobileUrl('creditshop/bargain',array('mid'=>$myMid,'id'=>$id))."'</script>";die();
         }

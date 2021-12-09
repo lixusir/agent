@@ -149,6 +149,8 @@ class Log_EweiShopV2Page extends PluginMobileLoginPage
 		$condition = ' and uniacid=:uniacid ';
 		$id = intval($_GPC['id']);
 
+		$_GPC['mid'] = $member['id'];
+
 	    $fuzhi_key = 'fuzhi_key_'.$id;
 
 	    if(!redis()->get($fuzhi_key)){
