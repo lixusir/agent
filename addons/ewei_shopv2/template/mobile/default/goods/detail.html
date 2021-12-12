@@ -439,10 +439,10 @@
                     {/if}
                 <!--促销-->
                     {if $goods['isdiscount'] && $goods['isdiscount_time']>=time()}
-                         <span class="original">&yen;{$goods['productprice']}</span>
+                         <span class="original" style="text-decoration: blink">券后价:&yen;{$goods['productprice']}</span>
                     {else}
                         {if $goods['productprice']>0}
-                            <span  class="original">&yen;{$goods['productprice']}</span>
+                            <span  class="original" style="text-decoration: blink">券后价:&yen;{$goods['productprice']}</span>
                         {/if}
                     {/if}
                 {/if}
