@@ -194,7 +194,7 @@ class DiypageModel extends PluginModel
                                                         }
                                                         $goods_price = pdo_fetch("select title,minprice,maxprice,ispresell,presellend,preselltimeend,presellprice from " . tablename('ewei_shop_goods') . " where id=:id and uniacid=:uniacid limit 1", array(':id' => $good['id'], ':uniacid' => $_W['uniacid']));
                                                         if ($good['productprice'] < $goods_price['maxprice']) {
-                                                            $good['productprice'] = (float)$goods_price['maxprice'];
+                                                            //$good['productprice'] = (float)$goods_price['maxprice'];
                                                         }
                                                         // 如果预售开启并且有结束时间并且当前时间小于结束时间（也就是商品还在预售期内）比最低价格低,那么就修改最低价格为预售价格 #[5903]
                                                         if ($goods_price['ispresell'] == 1
