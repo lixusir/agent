@@ -76,7 +76,7 @@
                             <p class="productprice {if empty($diyitem['params']['showproductprice']) && $diyitem['params']['showsales']!=1}noheight{/if}">
 
                                     {if !empty($diyitem['params']['showproductprice']) && $goodsitem['productprice']>0}
-                                    <span style="color: {$diyitem['style']['productpricecolor']};">{php echo !empty($diyitem['params']['productpricetext'])?$diyitem['params']['productpricetext']:''}<span {if !empty($diyitem['params']['productpriceline'])}style=""{/if}>券后价:&yen;{$goodsitem['productprice']}</span></span>
+                                    <span style="color: {$diyitem['style']['productpricecolor']};"><span {if !empty($diyitem['params']['productpriceline'])}style=""{/if}>券后价:&yen;{$goodsitem['productprice']}</span></span>
                                     {/if}
                                     {if $diyitem['params']['showsales']==1}
                                     <span style="color: {$diyitem['style']['salescolor']};">{php echo !empty($diyitem['params']['salestext'])?$diyitem['params']['salestext']:'销量'}: {$goodsitem['sales']}</span>
@@ -205,7 +205,7 @@
                                 {if (!empty($diyitem['params']['showproductprice']) && $goodsitem['productprice']>0 && $goodsitem['productprice']>$goodsitem['price']) || $diyitem['params']['showsales']==1}
                                 <p class="productprice {if empty($diyitem['params']['showproductprice']) && $diyitem['params']['showsales']!=1}noheight{/if}">
                                     {if !empty($diyitem['params']['showproductprice']) && $goodsitem['productprice']>0 && $goodsitem['productprice']>$goodsitem['price']}
-                                    <span style="color: {$diyitem['style']['productpricecolor']};">{php echo !empty($diyitem['params']['productpricetext'])?$diyitem['params']['productpricetext']:'原价'}:<span {if !empty($diyitem['params']['productpriceline'])}style=""{/if}>&yen{$goodsitem['productprice']}</span></span>
+                                    <span style="color: {$diyitem['style']['productpricecolor']};">{php echo !empty($diyitem['params']['productpricetext'])?$diyitem['params']['productpricetext']:'券后价'}:<span {if !empty($diyitem['params']['productpriceline'])}style=""{/if}>&yen{$goodsitem['productprice']}</span></span>
                                     {/if}
                                     {if $diyitem['params']['showsales']==1}
                                     <span style="color: {$diyitem['style']['salescolor']};">{php echo !empty($diyitem['params']['salestext'])?$diyitem['params']['salestext']:'销量'}: {$goodsitem['sales']}</span>
